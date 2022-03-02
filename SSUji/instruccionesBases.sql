@@ -6,13 +6,15 @@ CREATE TABLE Student {
     balance FLOAT,
     isSKP   BOOLEAN,
     CONSTRAINT cp_student PRIMARY KEY (dni),
+    CONSTRAINT calt_student UNIQUE (email)
+}
 
 CREATE TABLE Offer {
     name        VARCHAR(50),
     dniOffer    VARCHAR(10),
     skillName   VARCHAR(50),
     skillLevel  VARCHAR(50),
-    description VARCHAR(50),
+    description VARCHAR(100),
     startDate   DATE,
     endDate     DATE,
     CONSTRAINT cp_offer PRIMARY KEY (dniOffer, skillName, skillLevel),
@@ -20,22 +22,25 @@ CREATE TABLE Offer {
 
     CONSTRAINT ca_offer_skill FOREIGN KEY (skillName) REFERENCES Skill(name) ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT ca_offer_skill_level FOREIGN KEY (skillLevel) REFERENCES Skill(level) ON DELETE RESTRICT ON UPDATE CASCADE,
-
+    CONSTRAINT ri_offer_endDate CHECK (endDate >= startDate)
+}
 
 CREATE TABLE Request {
     name        VARCHAR(50),
     dniRequest  VARCHAR(10),
     skillName   VARCHAR(50),
     skillLevel  VARCHAR(50),
-    description VARCHAR(50),
+    description VARCHAR(100),
     startDate   DATE,
     endDate     DATE,
     CONSTRAINT cp_request PRIMARY KEY (dniRequest, skillName, skillLevel),
     CONSTRAINT ca_request_student FOREIGN KEY (dnirequest) REFERENCES Student(dni) ON DELETE RESTRICT ON UPDATE CASCADE,
 
     CONSTRAINT ca_request_skill_skill FOREIGN KEY (skillName) REFERENCES Skill(name) ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT ca_request_skill_level FOREIGN KEY (skillLevel) REFERENCES Skill(skill) ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT ca_request_skill_level FOREIGN KEY (skillLevel) REFERENCES Skill(skill) ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT ri_request_endDate CHECK (endDate >= startDate)
 
+}
 
 CREATE TABLE Collaboration {
     dniOffer    VARCHAR(10),
@@ -45,6 +50,7 @@ CREATE TABLE Collaboration {
     place       VARCHAR(100),
     state       VARCHAR(50),
     score       INTEGER,
+    hours       FLOAT,
     startDate   DATE,
     endDate     DATE,
     CONSTRAINT cp_collaboration PRIMARY KEY (dniOffer, dniRequest, skillName, skillLevel, state),
@@ -54,9 +60,10 @@ CREATE TABLE Collaboration {
     CONSTRAINT ca_collaboration_skill_skill FOREIGN KEY (skillName) REFERENCES Skill(skill) ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT ca_collaboration_skill_level FOREIGN KEY (skillLevel) REFERENCES Skill(level) ON DELETE RESTRICT ON UPDATE CASCADE,
 
-    CONSTRAINT ri_collaboration_score CHECK (0<= score >= 5)
-    CONSTRAINT ri_collaboration_state CHECK (state in ('notStarted', 'inProgress', 'finished'))
-
+    CONSTRAINT ri_collaboration_score CHECK (score BETWEEN 0 AND 5),
+    CONSTRAINT ri_collaboration_state CHECK (state in ('notStarted', 'inProgress', 'finished')),
+    CONSTRAINT ri_collaboration_endDate CHECK (endDate >= startDate)
+}
 
 CREATE TABLE Skill {
     name        VARCHAR(50),
@@ -65,3 +72,4 @@ CREATE TABLE Skill {
     active      BOOLEAN,
     CONSTRAINT cp_skill PRIMARY KEY (name, level),
     CONSTRAINT ri_collaboration_level CHECK (level in ('beginner', 'intermediate', 'expert'))
+}
