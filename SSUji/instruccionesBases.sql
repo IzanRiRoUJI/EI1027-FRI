@@ -1,15 +1,16 @@
-CREATE TABLE Student {
+CREATE TABLE Student (
     dni     VARCHAR(10),
     name    VARCHAR(50),
     email   VARCHAR(50),
     degree  VARCHAR(50),
-    balance FLOAT,
-    isSKP   BOOLEAN,
+    balance FLOAT DEFAULT 0,
+    isSKP   BOOLEAN DEFAULT FALSE,
+
     CONSTRAINT cp_student PRIMARY KEY (dni),
     CONSTRAINT calt_student UNIQUE (email)
-}
+);
 
-CREATE TABLE Offer {
+CREATE TABLE Offer (
     name        VARCHAR(50),
     dniOffer    VARCHAR(10),
     skillName   VARCHAR(50),
@@ -23,9 +24,9 @@ CREATE TABLE Offer {
     CONSTRAINT ca_offer_skill FOREIGN KEY (skillName) REFERENCES Skill(name) ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT ca_offer_skill_level FOREIGN KEY (skillLevel) REFERENCES Skill(level) ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT ri_offer_endDate CHECK (endDate >= startDate)
-}
+);
 
-CREATE TABLE Request {
+CREATE TABLE Request (
     name        VARCHAR(50),
     dniRequest  VARCHAR(10),
     skillName   VARCHAR(50),
@@ -39,10 +40,9 @@ CREATE TABLE Request {
     CONSTRAINT ca_request_skill_skill FOREIGN KEY (skillName) REFERENCES Skill(name) ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT ca_request_skill_level FOREIGN KEY (skillLevel) REFERENCES Skill(skill) ON DELETE RESTRICT ON UPDATE CASCADE
     CONSTRAINT ri_request_endDate CHECK (endDate >= startDate)
+);
 
-}
-
-CREATE TABLE Collaboration {
+CREATE TABLE Collaboration (
     dniOffer    VARCHAR(10),
     dniRequest  VARCHAR(10),
     skillName   VARCHAR(50),
@@ -63,13 +63,13 @@ CREATE TABLE Collaboration {
     CONSTRAINT ri_collaboration_score CHECK (score BETWEEN 0 AND 5),
     CONSTRAINT ri_collaboration_state CHECK (state in ('notStarted', 'inProgress', 'finished')),
     CONSTRAINT ri_collaboration_endDate CHECK (endDate >= startDate)
-}
+);
 
-CREATE TABLE Skill {
+CREATE TABLE Skill (
     name        VARCHAR(50),
     description VARCHAR(100),
     level       VARCHAR(50),
-    active      BOOLEAN,
+    active      BOOLEAN DEFAULT TRUE,
     CONSTRAINT cp_skill PRIMARY KEY (name, level),
-    CONSTRAINT ri_collaboration_level CHECK (level in ('beginner', 'intermediate', 'expert'))
-}
+    CONSTRAINT ri_skill_level CHECK (level in ('beginner', 'intermediate', 'expert'))
+);
