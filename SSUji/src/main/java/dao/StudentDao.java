@@ -30,6 +30,11 @@ public class StudentDao {
                 student.getDni());
     }
 
+    public void deleteStudent(String dni) {
+        jdbcTemplate.update("DELETE FROM Student WHERE dni = ?",
+                dni);
+    }
+
     public void updateStudent(Student student) {
         jdbcTemplate.update("UPDATE Student " +
                 "SET name=?, email=?, degree=?, balance=?, isSKP=?" +
