@@ -1,3 +1,11 @@
+DROP TABLE Collaboration;
+DROP TABLE Offer;
+DROP TABLE Request;
+DROP TABLE Student;
+DROP TABLE Skill;
+
+
+
 CREATE TABLE Student (
     dni     VARCHAR(10),
     name    VARCHAR(50),

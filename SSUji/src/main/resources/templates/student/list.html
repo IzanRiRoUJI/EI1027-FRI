@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Students</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<h1>Students List</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>DNI</th>
+        <th>Name</th>
+        <th>email</th>
+        <th>degree</th>
+        <th>balance</th>
+        <th>isSKP</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="student: ${students}">
+        <td th:text="${student.dni}"></td>
+        <td th:text="${student.name}"></td>
+        <td th:text="${student.email}"></td>
+        <td th:text="${student.degree}"></td>
+        <td th:text="${student.balance}"></td>
+        <td th:text="${student.isSKP}"></td>
+        <td><a th:href="@{/student/update/{dni}(dni=${student.dni})}" class="btn btn-warning">Edit</a>
+        </td>
+        <td><a th:href="@{/student/delete/{dni}(dni=${student.dni})}" class="btn btn-danger">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="add" class="btn btn-success">Add student</a>
+</body>
+</html>
