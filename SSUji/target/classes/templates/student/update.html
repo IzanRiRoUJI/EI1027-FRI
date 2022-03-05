@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Students</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<h1>Student </h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Num. Federat</th>
+        <th>Nom</th>
+        <th>Pais</th>
+        <th>Edat</th>
+        <th>Gènere</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="nadador: ${nadadors}">
+        <td th:text="${nadador.numFederat}"></td>
+        <td th:text="${nadador.nom}"></td>
+        <td th:text="${nadador.pais}"></td>
+        <td th:text="${nadador.edat}"></td>
+        <td th:text="${nadador.genere}"></td>
+        <td><a th:href="@{/nadador/update/{nom}(nom=${nadador.nom})}" class="btn btn-warning">Edita</a>
+        </td>
+        <td><a th:href="@{/nadador/delete/{nom}(nom=${nadador.nom})}" class="btn btn-danger">Esborra</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="add" class="btn btn-success">Afegeix nadador</a>
+</body>
+</html>
