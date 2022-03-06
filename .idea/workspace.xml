@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eeebe747-814d-4414-b433-8387766c977d" name="Default Changelist" comment="" />
+    <list default="true" id="eeebe747-814d-4414-b433-8387766c977d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/SSUji/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SSUji/src/main/resources/templates/skill/add.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SSUji/src/main/resources/templates/skill/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SSUji/src/main/resources/templates/skill/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/src/main/java/es/uji/ei1027/skillsharing/dao/RequestRowMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/src/main/java/es/uji/ei1027/skillsharing/dao/RequestRowMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/src/main/java/es/uji/ei1027/skillsharing/dao/StudentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/src/main/java/es/uji/ei1027/skillsharing/dao/StudentDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/src/main/java/es/uji/ei1027/skillsharing/dao/StudentRowMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/src/main/java/es/uji/ei1027/skillsharing/dao/StudentRowMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/src/main/resources/static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/src/main/resources/templates/student/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/src/main/resources/templates/student/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/src/main/resources/templates/student/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/src/main/resources/templates/student/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/controller/studentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/controller/studentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/dao/StudentDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/dao/StudentDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/dao/StudentRowMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/dao/StudentRowMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/target/classes/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/target/classes/templates/student/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/templates/student/add.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/target/classes/templates/student/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/templates/student/update.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

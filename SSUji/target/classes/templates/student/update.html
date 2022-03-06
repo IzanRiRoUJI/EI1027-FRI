@@ -1,38 +1,44 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Manage Students</title>
+    <title>Update Student</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
-<h1>Student </h1>
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th>Num. Federat</th>
-        <th>Nom</th>
-        <th>Pais</th>
-        <th>Edat</th>
-        <th>Gènere</th>
-        <th></th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="nadador: ${nadadors}">
-        <td th:text="${nadador.numFederat}"></td>
-        <td th:text="${nadador.nom}"></td>
-        <td th:text="${nadador.pais}"></td>
-        <td th:text="${nadador.edat}"></td>
-        <td th:text="${nadador.genere}"></td>
-        <td><a th:href="@{/nadador/update/{nom}(nom=${nadador.nom})}" class="btn btn-warning">Edita</a>
-        </td>
-        <td><a th:href="@{/nadador/delete/{nom}(nom=${nadador.nom})}" class="btn btn-danger">Esborra</a>
-        </td>
-    </tr>
-    </tbody>
-</table>
-<a href="add" class="btn btn-success">Afegeix nadador</a>
+<h2>Update student</h2>
+<form action="#" th:action="@{/student/update}"
+      th:object="${student}" method="post">
+    <table>
+        <tr>
+            <td><label>DNI</label></td>
+            <td><input type="text" th:field="*{dni}" /></td>
+        </tr>
+        <tr>
+            <td><label>Name</label></td>
+            <td><input type="text" th:field="*{name}" /></td>
+        </tr>
+        <tr>
+            <td><label>email</label></td>
+            <td><input type="text" th:field="*{email}" /></td>
+        </tr>
+        <tr>
+            <td><label>Degree</label></td>
+            <td><input type="text" th:field="*{degree}" /></td>
+        </tr>
+        <tr>
+            <td><label>Balance</label></td>
+            <td><input type="number" th:field="*{balance}" /></td>
+        </tr>
+        <tr>
+            <td><label>isSKP</label></td>
+            <td><input type="checkbox" th:checked="*{isSKP}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Update Student" /></td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Manage Skills</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<h1>Skills List</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>description</th>
+        <th>level</th>
+        <th>active</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="skill: ${skills}">
+        <td th:text="${student.id}"></td>
+        <td th:text="${student.name}"></td>
+        <td th:text="${student.description}"></td>
+        <td th:text="${student.level}"></td>
+        <td th:text="${student.active}"></td>
+        <td><a th:href="@{/skill/update/{id}(id=${student.id})}" class="btn btn-warning">Edit</a>
+        </td>
+        <td><a th:href="@{/skill/delete/{id}(id=${student.id})}" class="btn btn-danger">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="add" class="btn btn-success">Add skill</a>
+</body>
+</html>
