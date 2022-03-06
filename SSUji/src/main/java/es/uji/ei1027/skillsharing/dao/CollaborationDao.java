@@ -1,13 +1,11 @@
 package es.uji.ei1027.skillsharing.dao;
 
 import es.uji.ei1027.skillsharing.model.Collaboration;
-import es.uji.ei1027.skillsharing.model.Skill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
