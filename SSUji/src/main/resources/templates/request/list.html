@@ -28,10 +28,8 @@
         <td th:text="${request.description}"></td>
         <td th:text="${request.startDate}"></td>
         <td th:text="${request.endDate}"></td>
-        <td><a th:href="@{/request/update/{id}(id=${student.id})}" class="btn btn-warning">Edit</a>
-        </td>
-        <td><a th:href="@{/request/delete/{id}(id=${student.id})}" class="btn btn-danger">Delete</a>
-        </td>
+        <td><a th:href="@{/request/update/{dniRequest/{skillId}(dniRequest=${offer.dniRequest},skillId=${request.skillId)}" class="btn btn-warning">Edit</a></td>
+        <td><a th:href="@{/request/update/{dniRequest/{skillId}(dniRequest=${offer.dniRequest},skillId=${request.skillId)}" class="btn btn-danger">Delete</a></td>
     </tr>
     </tbody>
 </table>
