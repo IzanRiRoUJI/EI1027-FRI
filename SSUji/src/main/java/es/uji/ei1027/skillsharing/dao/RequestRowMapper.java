@@ -3,6 +3,8 @@ package es.uji.ei1027.skillsharing.dao;
 
 import es.uji.ei1027.skillsharing.model.Request;
 import org.springframework.jdbc.core.RowMapper;
+
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
@@ -16,11 +18,11 @@ public final class RequestRowMapper implements RowMapper<Request> {
         request.setSkillId(rs.getInt("skillId"));
         request.setDescription(rs.getString("description"));
 
-        Time t = rs.getTime("startDate");
-        request.setStartDate(t != null ? t.toLocalTime() : null);
+        Date t = rs.getDate("startDate");
+        request.setStartDate(t != null ? t.toLocalDate() : null);
 
-        t = rs.getTime("endDate");
-        request.setEndDate(t != null ? t.toLocalTime() : null);
+        t = rs.getDate("endDate");
+        request.setEndDate(t != null ? t.toLocalDate() : null);
 
         return request;
 

@@ -31,9 +31,9 @@ public class SkillDao {
                 skill.getId(), skill.getName(), skill.getDescription(), skill.getLevel(), skill.isActive());
     }
 
-    public void deleteSkill(Skill skill){
+    public void deleteSkill(int id){
         jdbcTemplate.update(
-                "DELETE FROM Skill WHERE id=?", skill.getId());
+                "DELETE FROM Skill WHERE id=?", id);
     }
 
     public void updateSkill(Skill skill){
@@ -43,7 +43,7 @@ public class SkillDao {
                 skill.getName(), skill.getDescription(), skill.getLevel(), skill.isActive(), skill.getId());
     }
 
-    public Skill getSkill(String id){
+    public Skill getSkill(int id){
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM Skill WHERE id=?", new SkillRowMapper(), id);
         }catch(EmptyResultDataAccessException e) {
@@ -55,6 +55,7 @@ public class SkillDao {
     public List<Skill> getSkills(){
         try {
             return jdbcTemplate.query("SELECT * FROM Skill", new SkillRowMapper());
+
         }catch(EmptyResultDataAccessException e) {
             return new ArrayList<Skill>();
         }

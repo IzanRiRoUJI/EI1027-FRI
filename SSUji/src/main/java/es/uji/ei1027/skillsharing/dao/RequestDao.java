@@ -37,7 +37,7 @@ public class RequestDao {
 
     public void updateRequest(Request request) {
         jdbcTemplate.update("UPDATE Request " +
-                        "SET name=?, description=?, starDate=?, endDate=?" +
+                        "SET name=?, description=?, startDate=?, endDate=?" +
                         "WHERE dniRequest=? AND skillId=?",
                 request.getName(), request.getDescription(), request.getStartDate(),
                 request.getEndDate(), request.getDniRequest(), request.getSkillId());
