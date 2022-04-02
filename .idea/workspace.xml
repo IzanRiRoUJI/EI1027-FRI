@@ -2,23 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eeebe747-814d-4414-b433-8387766c977d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/SSUji/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SSUji/src/main/resources/templates/skill/add.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SSUji/src/main/resources/templates/skill/list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SSUji/src/main/resources/templates/skill/update.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SSUji/src/main/java/es/uji/ei1027/skillsharing/dao/RequestRowMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/src/main/java/es/uji/ei1027/skillsharing/dao/RequestRowMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SSUji/src/main/java/es/uji/ei1027/skillsharing/dao/StudentDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/src/main/java/es/uji/ei1027/skillsharing/dao/StudentDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SSUji/src/main/java/es/uji/ei1027/skillsharing/dao/StudentRowMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/src/main/java/es/uji/ei1027/skillsharing/dao/StudentRowMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SSUji/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/src/main/resources/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SSUji/src/main/resources/templates/student/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/src/main/resources/templates/student/add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SSUji/src/main/resources/templates/student/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/src/main/resources/templates/student/update.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/SkillSharingApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/SkillSharingApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/SkillSharingConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/SkillSharingConfiguration.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/controller/studentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/controller/studentController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/dao/CollaborationRowMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/dao/CollaborationRowMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/dao/OfferRowMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/dao/OfferRowMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/dao/RequestRowMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/dao/RequestRowMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/dao/SkillDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/dao/SkillDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/dao/SkillRowMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/dao/SkillRowMapper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/dao/StudentDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/dao/StudentDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/dao/StudentRowMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/dao/StudentRowMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/model/Collaboration.class" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/model/Collaboration.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/model/Offer.class" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/model/Offer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/model/Request.class" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/model/Request.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/model/Skill.class" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/model/Skill.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/model/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/es/uji/ei1027/skillsharing/model/Student.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SSUji/target/classes/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/static/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SSUji/target/classes/templates/student/add.html" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/templates/student/add.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SSUji/target/classes/templates/student/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/SSUji/target/classes/templates/student/update.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +54,9 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/SSUji" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="eeebe747-814d-4414-b433-8387766c977d" name="Default Changelist" comment="" />
@@ -63,5 +66,11 @@
       <updated>1646122535052</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1648826381219">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1648826381219" />
   </component>
 </project>
