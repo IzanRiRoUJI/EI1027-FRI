@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Collaboration</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>Update Collaboration</h2>
+<form action="#" th:action="@{/collaboration/update}"
+      th:object="${collaboration}" method="post">
+        <table>
+            <tr>
+                <td><label>Offer's DNI</label></td>
+                <td><input type="text" th:field="*{dniOffer}" readonly/></td>
+            </tr>
+            <tr>
+                <td><label>Request's DNI</label></td>
+                <td><input type="text" th:field="*{dniRequest}" readonly/></td>
+            </tr>
+            <tr>
+                <td><label>Skill ID</label></td>
+                <td><input type="number" th:field="*{skillId}" readonly/></td>
+            </tr>
+            <tr>
+                <td><label>Place</label></td>
+                <td><input type="text" th:field="*{place}" /></td>
+            </tr>
+            <tr>
+                <td><label>State</label></td>
+                <td><input type="text" th:field="*{state}" readonly/></td>
+            </tr>
+            <tr>
+                <td><label>Score</label></td>
+                <td><input type="number" th:field="*{score}"/></td>
+            </tr>
+            <tr>
+                <td><label>Hours</label></td>
+                <td><input type="number" th:field="*{hours}"/></td>
+            </tr>
+            <tr>
+                <td><label>Starting day</label></td>
+                <td><input type="date" th:field="*{startDate}"/></td>
+            </tr>
+            <tr>
+                <td><label>Ending day</label></td>
+                <td><input type="date" th:field="*{endDate}"/></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Update collaboration" /></td>
+            </tr>
+        </table>
+</form>
+</body>
+</html>
