@@ -43,6 +43,12 @@ public class CollaborationDao {
                 collaboration.getDniOffer(),collaboration.getDniRequest(), collaboration.getSkillId(), collaboration.getState());
     }
 
+    public void deleteCollaboration(String dniOffer, String dniRequest, int skillId, String state){
+        jdbcTemplate.update(
+                "DELETE FROM COLLABORATION WHERE dniOffer = ? AND dniRequest = ? AND skillId = ? AND state = ?",
+                dniOffer,dniRequest, skillId, state);
+    }
+
     public void updateCollaboration(Collaboration collaboration){
         jdbcTemplate.update(
                 "UPDATE FROM COLLABORATION SET place=?, score=?, hours=?, starDate=?, endDate=? WHERE dniOffer = ? AND dniRequest = ? AND skillId = ? AND state = ?",
