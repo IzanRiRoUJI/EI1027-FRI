@@ -30,23 +30,23 @@ public class OfferDao {
                 offer.getDniOffer(), offer.getSkillId());
     }
 
-    public void deleteOffer(String dniOffer) {
-        jdbcTemplate.update("DELETE FROM Offer WHERE dniOffer = ?",
-                dniOffer);
+    public void deleteOffer(String dniOffer, int skillId) {
+        jdbcTemplate.update("DELETE FROM Offer WHERE dniOffer = ? AND skillId = ?",
+                dniOffer, skillId);
     }
 
     public void updateOffer(Offer offer) {
         jdbcTemplate.update("UPDATE Offer " +
-                        "SET name=?, description=?, starDate=?, endDate=?" +
+                        "SET name=?, description=?, startDate=?, endDate=?" +
                         "WHERE dniOffer=? AND skillId=?",
                 offer.getName(), offer.getDescription(), offer.getStartDate(),
                 offer.getEndDate(), offer.getDniOffer(), offer.getSkillId());
     }
 
-    public Offer getOffer(String dniOffer) {
+    public Offer getOffer(String dniOffer, int skillId) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM Offer WHERE dniOffer=?",
-                    new OfferRowMapper(), dniOffer);
+            return jdbcTemplate.queryForObject("SELECT * FROM Offer WHERE dniOffer=? AND skillId = ?",
+                    new OfferRowMapper(), dniOffer, skillId);
         }
         catch(EmptyResultDataAccessException e) {
             return null;

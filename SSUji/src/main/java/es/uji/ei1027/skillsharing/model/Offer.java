@@ -1,5 +1,6 @@
 package es.uji.ei1027.skillsharing.model;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Offer {
@@ -7,8 +8,8 @@ public class Offer {
     private String dniOffer;
     private int skillId;
     private String description;
-    private LocalTime startDate;
-    private LocalTime endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     public String getName() {
         return name;
@@ -42,19 +43,19 @@ public class Offer {
         this.description = description;
     }
 
-    public LocalTime getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalTime startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public LocalTime getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalTime endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 

@@ -30,23 +30,23 @@ public class RequestDao {
                 request.getDniRequest(), request.getSkillId());
     }
 
-    public void deleteRequest(String dniRequest) {
-        jdbcTemplate.update("DELETE FROM Request WHERE dniRequest = ?",
-                dniRequest);
+    public void deleteRequest(String dniRequest, int skillId) {
+        jdbcTemplate.update("DELETE FROM Request WHERE dniRequest = ? AND skillId = ?",
+                dniRequest, skillId);
     }
 
     public void updateRequest(Request request) {
         jdbcTemplate.update("UPDATE Request " +
-                        "SET name=?, description=?, starDate=?, endDate=?" +
+                        "SET name=?, description=?, startDate=?, endDate=?" +
                         "WHERE dniRequest=? AND skillId=?",
                 request.getName(), request.getDescription(), request.getStartDate(),
                 request.getEndDate(), request.getDniRequest(), request.getSkillId());
     }
 
-    public Request getRequest(String dniRequest) {
+    public Request getRequest(String dniRequest, int skillId) {
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM Request WHERE dniRequest=?",
-                    new RequestRowMapper(), dniRequest);
+            return jdbcTemplate.queryForObject("SELECT * FROM Request WHERE dniRequest=? AND skillId = ?",
+                    new RequestRowMapper(), dniRequest, skillId);
         }
         catch(EmptyResultDataAccessException e) {
             return null;

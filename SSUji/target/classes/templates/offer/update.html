@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Offer</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>Update offer</h2>
+<form action="#" th:action="@{/offer/update}"
+      th:object="${offer}" method="post">
+    <table>
+        <table>
+            <tr>
+                <td><label>Name</label></td>
+                <td><input type="text" th:field="*{name}" /></td>
+            </tr>
+            <tr>
+                <td><label>Offer's DNI</label></td>
+                <td><input type="text" th:field="*{dniOffer}" readonly /></td>
+            </tr>
+            <tr>
+                <td><label>Skill ID</label></td>
+                <td><input type="number" th:field="*{skillId}" readonly /></td>
+            </tr>
+            <tr>
+                <td><label>Description</label></td>
+                <td><input type="text" th:field="*{description}" /></td>
+            </tr>
+            <tr>
+                <td><label>Starting day</label></td>
+                <td><input type="date" th:field="*{startDate}"/></td>
+            </tr>
+            <tr>
+                <td><label>Ending day</label></td>
+                <td><input type="date" th:field="*{endDate}"/></td>
+            </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Update Offer" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

@@ -2,9 +2,12 @@ package es.uji.ei1027.skillsharing.dao;
 
 import es.uji.ei1027.skillsharing.model.Offer;
 import org.springframework.jdbc.core.RowMapper;
+
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.LocalDate;
 
 public final class OfferRowMapper implements RowMapper<Offer> {
 
@@ -15,11 +18,11 @@ public final class OfferRowMapper implements RowMapper<Offer> {
         offer.setSkillId(rs.getInt("skillId"));
         offer.setDescription(rs.getString("description"));
 
-        Time t = rs.getTime("startDate");
-        offer.setStartDate(t != null ? t.toLocalTime() : null);
+        Date t = rs.getDate("startDate");
+        offer.setStartDate(t != null ? t.toLocalDate() : null);
 
-        t = rs.getTime("endDate");
-        offer.setEndDate(t != null ? t.toLocalTime() : null);
+        t = rs.getDate("endDate");
+        offer.setEndDate(t != null ? t.toLocalDate() : null);
 
         return offer;
 
