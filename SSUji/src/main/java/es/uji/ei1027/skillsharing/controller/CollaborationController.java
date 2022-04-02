@@ -46,16 +46,6 @@ public class CollaborationController {
     public String updateCollaboration(Model model, @PathVariable String dniOffer, @PathVariable String dniRequest, @PathVariable int skillId, @PathVariable String state) {
         model.addAttribute("collaboration", collaborationDao.getCollaboration(dniOffer, dniRequest, skillId, state));
         return "collaboration/update";
-
-//                dniOffer    VARCHAR(10),
-//                dniRequest  VARCHAR(10),
-//                skillId     SERIAL,
-//                place       VARCHAR(100),
-//                state       VARCHAR(50) DEFAULT 'notStarted',
-//                score       INTEGER,
-//                hours       FLOAT,
-//                startDate   DATE,
-//                endDate     DATE,
     }
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
