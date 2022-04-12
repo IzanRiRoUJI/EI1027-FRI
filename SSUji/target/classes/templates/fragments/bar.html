@@ -22,28 +22,31 @@
 
             <!-- info perfil usuario -->
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Perfil
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Profile
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkUser">
                     <a class="dropdown-item" href="#">My Offers</a>
                     <a class="dropdown-item" href="#">My Requests</a>
                     <a class="dropdown-item" href="#">My Collaborations</a>
+                    <a class="dropdown-item" href="#">Edit Profile</a>
                 </div>
             </li>
 
-
+            <!-- info perfil usuario -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkSKP" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    SKP
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkSKP">
+                    <a class="dropdown-item" href="/skill/list" th:href="@{/skill/list}">Skills</a>
+                    <a class="dropdown-item" href="#">Statistics</a>
+                    <a class="dropdown-item" href="/student/list" th:href="@{/student/list}">Manage Students</a>
+                </div>
+            </li>
         </ul>
     </div>
 
-
-<!--        <div class="navbar-collapse collapse">-->
-<!--            <ul class="navbar-nav mr-auto">-->
-<!--                <li class="nav-item" ><a class="nav-link" href="/" th:href="@{/}">Pàgina principal</a></li>-->
-<!--                <li class="nav-item" ><a class="nav-link" href="/nadador/list" th:href="@{/nadador/list}">Gestion de usuarios</a></li>-->
-<!--                <li class="nav-item" ><a class="nav-link" href="/user/list" th:href="@{/user/list}">Area privada</a></li>-->
-<!--            </ul>-->
-<!--        </div>-->
 
 </nav>
 
