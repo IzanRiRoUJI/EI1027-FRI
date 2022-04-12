@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <!-- tabla estudiantes no baneados -->
+    <h2>Not banned (por ahora con SKP)</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>DNI</th>
+            <th>Name</th>
+            <th>email</th>
+            <th>degree</th>
+            <th>balance</th>
+            <th>isSKP</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student: ${studentsNotBanned}">
+            <td th:text="${student.dni}"></td>
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.email}"></td>
+            <td th:text="${student.degree}"></td>
+            <td th:text="${student.balance}"></td>
+            <td th:text="${student.isSKP}"></td>
+            <td><a th:href="@{/student/update/{dni}(dni=${student.dni})}" class="btn btn-warning">Ban</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <!-- tabla estudiantes baneados -->
+    <h2>Banned</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>DNI</th>
+            <th>Name</th>
+            <th>email</th>
+            <th>degree</th>
+            <th>balance</th>
+            <th>isSKP</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student: ${studentsBanned}">
+            <td th:text="${student.dni}"></td>
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.email}"></td>
+            <td th:text="${student.degree}"></td>
+            <td th:text="${student.balance}"></td>
+            <td th:text="${student.isSKP}"></td>
+            <td><a th:href="@{/student/delete/{dni}(dni=${student.dni})}" class="btn btn-danger">Unban</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

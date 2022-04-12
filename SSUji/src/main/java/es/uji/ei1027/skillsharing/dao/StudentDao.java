@@ -62,4 +62,13 @@ public class StudentDao {
         }
     }
 
+    public List<Student> getStudentsByBanStatus(boolean banStatus) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Student WHERE isSKP=?", new StudentRowMapper(), banStatus);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Student>();
+        }
+    }
+
 }
