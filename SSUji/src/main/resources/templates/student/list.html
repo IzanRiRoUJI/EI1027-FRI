@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+
 <head>
     <title>Manage Students</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 </head>
 <body>
+<div layout:fragment="content"> <!-- insertamos contenido -->
 <h1>Students List</h1>
 <table class="table table-striped">
     <thead>
@@ -36,5 +40,6 @@
     </tbody>
 </table>
 <a href="add" class="btn btn-success">Add student</a>
+</div>
 </body>
 </html>
