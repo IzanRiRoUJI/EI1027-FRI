@@ -78,8 +78,8 @@ public class studentController {
     public String listStudentsByBanStatus(Model model) {
         model.addAttribute("studentsNotBanned", studentDao.getStudentsByBanStatus(false));
         model.addAttribute("studentsBanned", studentDao.getStudentsByBanStatus(true));
-        System.out.println(model.getAttribute("studentsNotBanned"));
-        System.out.println(model.getAttribute("studentsBanned"));
+        // System.out.println(model.getAttribute("studentsNotBanned"));
+        // System.out.println(model.getAttribute("studentsBanned"));
         return "student/ban";
     }
 

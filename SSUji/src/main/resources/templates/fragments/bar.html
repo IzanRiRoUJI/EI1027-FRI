@@ -12,7 +12,8 @@
 
     <!-- botones -->
     <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
+
+        <ul class="navbar-nav"> <!-- botones izq -->
             <li class="nav-item">
                 <a class="nav-link" href="/offer/list" th:href="@{/offer/list}">Offers <span class="sr-only">(current)</span></a>
             </li>
@@ -20,7 +21,7 @@
                 <a class="nav-link" href="/request/list" th:href="@{/request/list}">Requests</a>
             </li>
 
-            <!-- info perfil usuario -->
+            <!-- info usuario -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Profile
@@ -33,7 +34,7 @@
                 </div>
             </li>
 
-            <!-- info perfil usuario -->
+            <!-- info SKP -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkSKP" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     SKP
@@ -45,9 +46,18 @@
                 </div>
             </li>
         </ul>
+
+        <ul class="navbar-nav ml-auto"> <!-- botones der -->
+            <li class="nav-item">
+                <a class="nav-link" href="#" th:href="@{#}">Log in<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" th:href="@{#}">Log out</a>
+            </li>
+        </ul>
+
+
     </div>
-
-
 </nav>
 
 <!-- imports -->
