@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class StudentDao {
+public class StudentDao implements UserDao{
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -20,9 +20,9 @@ public class StudentDao {
     }
 
     public void addStudent(Student student) {
-        jdbcTemplate.update("INSERT INTO Student VALUES (?,?,?,?,?,?)",
+        jdbcTemplate.update("INSERT INTO Student VALUES (?,?,?,?,?,?,?)",
                 student.getDni(), student.getName(), student.getEmail(),
-                student.getDegree(), student.getBalance(), student.isSKP());
+                student.getDegree(), student.getBalance(), student.isSKP(), student.getPassword());
     }
 
     public void deleteStudent(Student student) {
@@ -37,16 +37,26 @@ public class StudentDao {
 
     public void updateStudent(Student student) {
         jdbcTemplate.update("UPDATE Student " +
-                "SET name=?, email=?, degree=?, balance=?, isSKP=?, banned=?" +
+                "SET name=?, email=?, degree=?, balance=?, isSKP=?, password=?" +
                 "WHERE dni=?",
                 student.getName(), student.getEmail(), student.getDegree(),
-                student.getBalance(), student.isSKP(), student.getDni(), student.isBanned());
+                student.getBalance(), student.isSKP(), student.getDni(), student.getPassword());
     }
 
     public Student getStudent(String dniStudent) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM Student WHERE dni=?",
                     new StudentRowMapper(), dniStudent);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return null;
+        }
+    }
+
+    public Student getStudentByEmail(String email) {
+        try {
+            return jdbcTemplate.queryForObject("SELECT * FROM Student WHERE email=?",
+                    new StudentRowMapper(), email);
         }
         catch(EmptyResultDataAccessException e) {
             return null;
@@ -64,11 +74,26 @@ public class StudentDao {
 
     public List<Student> getStudentsByBanStatus(boolean banStatus) {
         try {
-            return jdbcTemplate.query("SELECT * FROM Student WHERE banned=?", new StudentRowMapper(), banStatus);
+            return jdbcTemplate.query("SELECT * FROM Student WHERE isSKP=?", new StudentRowMapper(), banStatus);
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Student>();
         }
     }
 
+    @java.lang.Override
+    public Student loadUserByUsername(String email, String password) {
+        Student user = this.getStudentByEmail(email);
+        if (user == null)
+            return null; // Usuari no trobat
+        // Contrasenya
+        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
+        if (passwordEncryptor.checkPassword(password, user.getPassword())) {
+            // Es deuria esborrar de manera segura el camp password abans de tornar-lo
+            return user;
+        }
+        else {
+            return null; // bad login!
+        }
+    }
 }
