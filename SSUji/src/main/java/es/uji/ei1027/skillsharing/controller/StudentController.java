@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/student")
-public class studentController {
+public class StudentController {
 
     private StudentDao studentDao;
 

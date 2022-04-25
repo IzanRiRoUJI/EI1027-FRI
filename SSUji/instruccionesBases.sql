@@ -13,6 +13,8 @@ CREATE TABLE Student (
     degree  VARCHAR(50),
     balance FLOAT DEFAULT 0,
     isSKP   BOOLEAN DEFAULT FALSE,
+    banned  BOOLEAN DEFAULT FALSE,
+    password VARCHAR(50),
 
     CONSTRAINT cp_student PRIMARY KEY (dni),
     CONSTRAINT calt_student UNIQUE (email)

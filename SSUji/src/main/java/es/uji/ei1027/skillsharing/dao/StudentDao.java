@@ -37,10 +37,10 @@ public class StudentDao {
 
     public void updateStudent(Student student) {
         jdbcTemplate.update("UPDATE Student " +
-                "SET name=?, email=?, degree=?, balance=?, isSKP=?" +
+                "SET name=?, email=?, degree=?, balance=?, isSKP=?, banned=?" +
                 "WHERE dni=?",
                 student.getName(), student.getEmail(), student.getDegree(),
-                student.getBalance(), student.isSKP(), student.getDni());
+                student.getBalance(), student.isSKP(), student.getDni(), student.isBanned());
     }
 
     public Student getStudent(String dniStudent) {
@@ -64,7 +64,7 @@ public class StudentDao {
 
     public List<Student> getStudentsByBanStatus(boolean banStatus) {
         try {
-            return jdbcTemplate.query("SELECT * FROM Student WHERE isSKP=?", new StudentRowMapper(), banStatus);
+            return jdbcTemplate.query("SELECT * FROM Student WHERE banned=?", new StudentRowMapper(), banStatus);
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Student>();

@@ -7,6 +7,7 @@ public class Student {
     private String degree;
     private float balance;
     private boolean isSKP;
+    private boolean banned;
 
     public String getDni() {
         return dni;
@@ -56,15 +57,13 @@ public class Student {
         isSKP = SKP;
     }
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "dni='" + dni + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", degree='" + degree + '\'' +
-                ", balance=" + balance +
-                ", isSKP=" + isSKP +
-                '}';
+    public boolean isBanned() {
+        return banned;
     }
+
+    public void setBanned(boolean banned) {
+        this.banned = banned;
+    }
+
+
 }
