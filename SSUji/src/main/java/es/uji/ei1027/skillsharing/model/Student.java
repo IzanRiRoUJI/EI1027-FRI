@@ -10,6 +10,10 @@ public class Student {
     private String password;
     private boolean banned;
 
+    public boolean isBanned() {
+        return banned;
+    }
+
     public String getPassword() {
         return password;
     }

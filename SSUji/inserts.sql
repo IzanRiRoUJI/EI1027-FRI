@@ -7,10 +7,10 @@ INSERT INTO Student (dni , name, email, degree, password)
 VALUES (5678, 'Paco Matao', 'seAMataoPaco@gmail.com', 'Ingenieria', '123');
 
 INSERT INTO Student (dni , name, email, degree, password, banned)
-VALUES (5678, 'Paco 1', 'seAMataoPaco1@gmail.com', 'Ingenieria', '123', TRUE);
+VALUES (56768, 'Paco 1', 'seAMataoPaco1@gmail.com', 'Ingenieria', '123', TRUE);
 
 INSERT INTO Student (dni , name, email, degree, password, banned)
-VALUES (5678, 'Paco 2', 'seAMataoPaco2@gmail.com', 'Ingenieria', '123', TRUE);
+VALUES (56978, 'Paco 2', 'seAMataoPaco2@gmail.com', 'Ingenieria', '123', TRUE);
 
 INSERT INTO Student (dni , name, email, degree, isskp, password)
 VALUES (91011, 'Manolo Hey', 'heyMan@gmail.com', 'Medicina', TRUE, '123');

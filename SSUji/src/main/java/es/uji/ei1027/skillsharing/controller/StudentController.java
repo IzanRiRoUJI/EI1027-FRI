@@ -65,21 +65,18 @@ public class StudentController {
         return "redirect:../list";
     }
 
-    /*
-    @RequestMapping(value = "/delete/{}/{nProva}")
-    public String processDeleteClassif(@PathVariable String nNadador,
-                                       @PathVariable String nProva) {
-
-        classificacioDao.deleteClassificacio(nNadador, nProva);
-        return "redirect:../../list";
-    }*/
+    @RequestMapping(value="/ban/{dni}/{banned}")
+    public String processBan(@PathVariable String dni, @PathVariable boolean banned) {
+        System.out.println(dni);
+        System.out.println(banned);
+        studentDao.setBanStudent(dni, !banned);
+        return "redirect:..";
+    }
 
     @RequestMapping("/ban")
     public String listStudentsByBanStatus(Model model) {
         model.addAttribute("studentsNotBanned", studentDao.getStudentsByBanStatus(false));
         model.addAttribute("studentsBanned", studentDao.getStudentsByBanStatus(true));
-        // System.out.println(model.getAttribute("studentsNotBanned"));
-        // System.out.println(model.getAttribute("studentsBanned"));
         return "student/ban";
     }
 

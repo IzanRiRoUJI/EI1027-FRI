@@ -4,15 +4,17 @@
       layout:decorate="~{fragments/base}">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Manage Students</title>
+    <link type="text/css" th:href="@{static/css/base.css}" href="static/css/base.css" rel="stylesheet"/>
 </head>
 <body>
 <div layout:fragment="content">
-    <br>
-
     <!-- tabla estudiantes no baneados -->
+
+    <h1>Manage Students</h1>
+
     <h2>Not banned</h2>
-    <table>
+    <table class="table table-striped table-sm">
         <thead>
         <tr>
             <th>DNI</th>
@@ -20,6 +22,7 @@
             <th>email</th>
             <th>degree</th>
             <th>balance</th>
+            <th>banned (debug)</th>
             <th></th>
         </tr>
         </thead>
@@ -30,7 +33,8 @@
             <td th:text="${student.email}"></td>
             <td th:text="${student.degree}"></td>
             <td th:text="${student.balance}"></td>
-            <td><a th:href="@{/student/update/{dni}(dni=${student.dni})}" class="btn boton"> Ban</a></td>
+            <td th:text="${student.banned}"></td>
+            <td><a th:href="@{/student/ban/{dni}/{banned}(dni=${student.dni},banned=${student.banned})}" class="btn boton"> Ban</a></td>
         </tr>
         </tbody>
     </table>
@@ -40,7 +44,7 @@
 
     <!-- tabla estudiantes baneados -->
     <h2>Banned</h2>
-    <table>
+    <table class="table table-striped table-sm">
         <thead>
         <tr>
             <th>DNI</th>
@@ -48,6 +52,7 @@
             <th>email</th>
             <th>degree</th>
             <th>balance</th>
+            <th>banned (debug)</th>
             <th></th>
         </tr>
         </thead>
@@ -58,10 +63,17 @@
             <td th:text="${student.email}"></td>
             <td th:text="${student.degree}"></td>
             <td th:text="${student.balance}"></td>
-            <td><a th:href="@{/student/delete/{dni}(dni=${student.dni})}" class="btn boton">Unban</a></td>
+            <td th:text="${student.banned}"></td>
+            <td><a th:href="@{/student/ban/{dni}/{banned}(dni=${student.dni},banned=${student.banned})}" class="btn boton" > Unban</a></td>
         </tr>
         </tbody>
     </table>
+
+
+        </div>
+    </div>
+
+
 </div>
 </body>
 </html>

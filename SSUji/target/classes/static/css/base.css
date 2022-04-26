@@ -27,10 +27,39 @@
 
 .boton {
     background-color: #eb895b;
-    font-size: 60%;
-    font-family: Arimo-Regular;
+    font-size: 90%;
+    font-family: Arimo-Bold;
 }
 
+
+table{
+  border: 1px solid #ddd;
+}
+th{
+   background-color: #63bb9d;
+   color: #ffffff;
+   font-family: Arimo-Bold;
+   text-align: center;
+}
+tr{
+   font-family: Arimo-Regular;
+   text-align: center;
+}
+
+h2{
+   color: #062744;
+   font-family: Arimo-Bold;
+   font-size: 180%;
+   text-align: left;
+}
+
+h1{
+   color: #062744;
+   font-family: Arimo-Bold;
+   font-size: 210%;
+   text-align: center;
+
+}
 
 
 @font-face {

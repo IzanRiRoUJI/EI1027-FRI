@@ -75,11 +75,17 @@ public class StudentDao implements UserDao{
 
     public List<Student> getStudentsByBanStatus(boolean banStatus) {
         try {
-            return jdbcTemplate.query("SELECT * FROM Student WHERE isSKP=?", new StudentRowMapper(), banStatus);
+            return jdbcTemplate.query("SELECT * FROM Student WHERE banned=? AND isSKP=FALSE", new StudentRowMapper(), banStatus);
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Student>();
         }
+    }
+
+    public void setBanStudent(String dni, boolean newStatus) {
+        System.out.println("--------- dni " + dni + " | " + newStatus);
+        jdbcTemplate.update("UPDATE Student " +
+                        "SET banned=? WHERE dni=?", newStatus, dni);
     }
 
     @java.lang.Override
