@@ -58,12 +58,14 @@ public class LoginController {
         }
 
         session.setAttribute("user", user);
+        System.out.println("INICIO SESIION " + user);
 
         return "redirect:/";
     }
 
     @RequestMapping("/logout")
     public String logout(HttpSession session) {
+        System.out.println("FIN SESIION " + session.getAttribute("user"));
         session.invalidate();
         return "redirect:/";
     }

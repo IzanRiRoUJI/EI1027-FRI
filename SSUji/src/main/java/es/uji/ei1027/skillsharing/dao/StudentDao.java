@@ -90,14 +90,21 @@ public class StudentDao implements UserDao{
         System.out.println(user);
         if (user == null)
             return null; // Usuari no trobat
+
         // Contrasenya
-        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
-        if (passwordEncryptor.checkPassword(password, user.getPassword())) {
-            // Es deuria esborrar de manera segura el camp password abans de tornar-lo
+        if(password.equals(user.getPassword())){
             return user;
+        } else{
+            return null;
         }
-        else {
-            return null; // bad login!
-        }
+
+//        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
+//        if (passwordEncryptor.checkPassword(password, user.getPassword())) { //ERROR
+//            // Es deuria esborrar de manera segura el camp password abans de tornar-lo
+//            return user;
+//        }
+//        else {
+//            return null; // bad login!
+//        }
     }
 }
