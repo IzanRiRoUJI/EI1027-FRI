@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
+<head>
+    <title>Manage Request</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<div layout:fragment="content"> <!-- insertamos contenido -->
+<h1>Request List</h1>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Request's DNI</th>
+        <th>Skill ID</th>
+        <th>Description</th>
+        <th>Starting day</th>
+        <th>Ending day</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="request: ${requests}">
+        <td th:text="${request.name}"></td>
+        <td th:text="${request.dniRequest}"></td>
+        <td th:text="${request.skillId}"></td>
+        <td th:text="${request.description}"></td>
+        <td th:text="${request.startDate}"></td>
+        <td th:text="${request.endDate}"></td>
+        <td><a th:href="@{/request/update/{dniRequest}/{skillId}(dniRequest=${request.dniRequest},skillId=${request.skillId})}" class="btn btn-warning">Edit</a></td>
+        <td><a th:href="@{/request/delete/{dniRequest}/{skillId}(dniRequest=${request.dniRequest},skillId=${request.skillId})}" class="btn btn-danger">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+<a href="add" class="btn btn-success">Add request</a>
+</body>
+</html>

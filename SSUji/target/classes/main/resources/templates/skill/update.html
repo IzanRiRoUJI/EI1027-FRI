@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Update Skill</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+<h2>New skill</h2>
+<form action="#" th:action="@{/skill/update}"
+      th:object="${skill}" method="post">
+    <table>
+        <tr>
+            <td><label>ID</label></td>
+            <td><input type="number" th:field="*{id}" readonly/></td>
+        </tr>
+        <tr>
+            <td><label>Name</label></td>
+            <td><input type="text" th:field="*{name}" /></td>
+        </tr>
+        <tr>
+            <td><label>description</label></td>
+            <td><input type="text" th:field="*{description}" /></td>
+        </tr>
+        <tr>
+            <td><label>Level</label></td>
+            <td>
+                <select th:field="*{level}">
+                    <option th:value="'beginner'" th:text="beginner"></option>
+                    <option th:value="'intermediate'" th:text="intermediate"></option>
+                    <option th:value="'expert'" th:text="expert"></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label>Active</label></td>
+            <td><input type="checkbox" th:checked="*{active}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Update Skill" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

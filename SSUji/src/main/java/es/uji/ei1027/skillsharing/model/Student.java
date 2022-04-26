@@ -8,9 +8,14 @@ public class Student {
     private float  balance;
     private boolean isSKP;
     private String password;
+    private boolean banned;
 
     public String getPassword() {
         return password;
+    }
+
+    public void setBanned(boolean banned) {
+        this.banned = banned;
     }
 
     public void setPassword(String password) {
