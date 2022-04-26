@@ -15,8 +15,8 @@
       th:object="${user}" method="post">
     <p>
         <label>Email:</label>
-        <input class="form_control" type="text" th:field="*{username}"/>
-    <div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+        <input class="form_control" type="text" th:field="*{email}"/>
+    <div class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
     </p>
     <p>
         <label>Contraseña:</label>

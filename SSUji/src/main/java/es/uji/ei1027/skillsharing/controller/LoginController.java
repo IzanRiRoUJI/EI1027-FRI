@@ -23,7 +23,7 @@ class UserValidator implements Validator {
     public void validate(Object obj, Errors errors) {
         Student user = (Student) obj;
         if (user.getEmail().trim().equals(""))
-            errors.rejectValue("username", "Obligatorio",
+            errors.rejectValue("email", "Obligatorio",
                     "No puedes dejar el campo vacio");
         if(user.getPassword().trim().equals(""))
             errors.rejectValue("password", "Obligatorio",

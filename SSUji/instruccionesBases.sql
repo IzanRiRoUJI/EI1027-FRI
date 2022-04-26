@@ -14,7 +14,7 @@ CREATE TABLE Student (
     balance FLOAT DEFAULT 0,
     isSKP   BOOLEAN DEFAULT FALSE,
     banned  BOOLEAN DEFAULT FALSE,
-    password VARCHAR(50),
+    password VARCHAR(50) NOT NULL,
 
     CONSTRAINT cp_student PRIMARY KEY (dni),
     CONSTRAINT calt_student UNIQUE (email)
