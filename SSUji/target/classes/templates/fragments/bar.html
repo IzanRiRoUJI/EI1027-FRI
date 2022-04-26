@@ -1,41 +1,49 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="loggeduser" th:object="${session}">
-    <!-- logo -->
-    <a class="navbar-brand" href="/" th:href="@{/}">
-        <img src="../static/images/logoSkillSharing.png"
-             th:src="@{/images/logoSkillSharing.png}" width="60" height="30" class="d-inline-block align-top" alt="">
-        Skill Sharing
-    </a>
+<head>
+    <link type="text/css" th:href="@{/css/base.css}" href="/css/base.css" rel="stylesheet"/>
+</head>
 
-    <!-- botones -->
-    <div class="collapse navbar-collapse" id="navbarNav">
+<div class="loggeduser" th:object="${session}">
+    <nav class="navbar navbar-expand-lg navbar-light bar py-0">
 
-        <ul class="navbar-nav"> <!-- botones izq -->
-            <li class="nav-item">
-                <a class="nav-link" href="/offer/list" th:href="@{/offer/list}">Offers <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/request/list" th:href="@{/request/list}">Requests</a>
-            </li>
+            <!-- logo -->
+            <a class="navbar-brand" href="/" th:href="@{/}">
+                <img src="../static/images/logoSkillSharing.png"
+                     th:src="@{/images/logoSkillSharing_solo_white.png}" width="50" height="50" class="d-inline-block align-top" alt="">
+            </a>
+            <a class="navbar-brand logoText" href="/" th:href="@{/}">
+                Skill Sharing
+            </a>
 
-            <!-- info usuario -->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Profile
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkUser">
-                    <a class="dropdown-item" href="#">My Offers</a>
-                    <a class="dropdown-item" href="#">My Requests</a>
-                    <a class="dropdown-item" href="#">My Collaborations</a>
-                    <a class="dropdown-item" href="#">Edit Profile</a>
-                </div>
-            </li>
+            <!-- botones -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav"> <!-- botones izq -->
+                    <li class="nav-item">
+                        <a class="nav-link bar" th:href="@{/offer/list}">Offers <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bar" href="/request/list" th:href="@{/request/list}">Requests</a>
+                    </li>
+
+                    <!-- info usuario -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle bar" href="#" id="navbarDropdownMenuLinkUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Profile
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkUser">
+                            <a class="dropdown-item" href="#">My Offers</a>
+                            <a class="dropdown-item" href="#">My Requests</a>
+                            <a class="dropdown-item" href="#">My Collaborations</a>
+                            <a class="dropdown-item" href="#">Edit Profile</a>
+                        </div>
+                    </li>
+
                     <!-- info SKP -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLinkSKP" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle bar" href="#" id="navbarDropdownMenuLinkSKP" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             SKP
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkSKP">
@@ -46,28 +54,25 @@
                     </li>
                 </ul>
 
+                <ul class="navbar-nav ml-auto" > <!-- botones der -->
+                    <li class="nav-item">
+                        <a class="nav-link bar" href="/login" th:href="@{/login}">Log in<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link bar" href="/logout" th:href="@{/logout}">Log out</a>
+                    </li>
 
+                    <p th:if="*{user == null}">
+                        <a href="/login" th:href="@{/login}">No autenticat Entrar</a>
+                    </p>
+                    <p th:unless="*{user == null}">
+                        <a href="/logout" th:href="@{/logout}">Autenticat com <span th:text="*{user.name}"></span> Eixir</a>
+                    </p>
+                </ul>
 
-<!--        <ul class="navbar-nav ml-auto"> &lt;!&ndash; botones der &ndash;&gt;-->
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link" href="#" th:href="@{#}">Log in<span class="sr-only">(current)</span></a>-->
-<!--            </li>-->
-<!--            <li class="nav-item">-->
-<!--                <a class="nav-link" href="#" th:href="@{#}">Log out</a>-->
-<!--            </li>-->
-<!--        </ul>-->
-
-
-            <p th:if="*{user == null}">
-                No autenticat <a href="/login" th:href="@{/login}">Entrar</a>
-            </p>
-            <p th:unless="*{user == null}">
-                Autenticat com <span th:text="*{user.name}"></span> <a href="/logout" th:href="@{/logout}">Eixir</a>
-            </p>
-        </div>
-
-    </div>
-</nav>
+            </div>
+    </nav>
+</div>
 
 <!-- imports -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

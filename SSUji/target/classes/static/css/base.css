@@ -11,3 +11,54 @@
     text-align: center;
     line-height: 3;
 }
+
+.bar{
+    font-size: 95%;
+    font-family: Arimo-Regular;
+    background-color: #062744;
+    color: #ffffff !important;
+}
+
+.logoText{
+    font-size: 150%;
+    font-family: Bellota-Bold;
+    color: #ffffff !important;
+}
+
+.boton {
+    background-color: #eb895b;
+    font-size: 60%;
+    font-family: Arimo-Regular;
+}
+
+
+
+@font-face {
+  font-family: Arimo-Regular;
+  src: url("../fonts/Arimo-Regular.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: Arimo-Bold;
+  src: url("../fonts/Arimo-Bold.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: Arimo-Italic;
+  src: url("../fonts/Arimo-Italic.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: Bellota-Regular;
+  src: url("../fonts/BellotaText-Regular.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: Bellota-Bold;
+  src: url("../fonts/BellotaText-Bold.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: Bellota-Italic;
+  src: url("../fonts/BellotaText-Italic.ttf") format('truetype');
+}
