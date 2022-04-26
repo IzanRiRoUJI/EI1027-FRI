@@ -1,6 +1,7 @@
 package es.uji.ei1027.skillsharing.dao;
 
 import es.uji.ei1027.skillsharing.model.Student;
+import org.jasypt.util.password.BasicPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -83,17 +84,27 @@ public class StudentDao implements UserDao{
 
     @java.lang.Override
     public Student loadUserByUsername(String email, String password) {
-        Student user = this.getStudentByEmail(email);
+
+        System.out.println("email " + email + " | pass " + password);
+        Student user = this.getStudentByEmail(email.trim());
+        System.out.println(user);
         if (user == null)
             return null; // Usuari no trobat
+
         // Contrasenya
-        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
-        if (passwordEncryptor.checkPassword(password, user.getPassword())) {
-            // Es deuria esborrar de manera segura el camp password abans de tornar-lo
+        if(password.equals(user.getPassword())){
             return user;
+        } else{
+            return null;
         }
-        else {
-            return null; // bad login!
-        }
+
+//        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
+//        if (passwordEncryptor.checkPassword(password, user.getPassword())) { //ERROR
+//            // Es deuria esborrar de manera segura el camp password abans de tornar-lo
+//            return user;
+//        }
+//        else {
+//            return null; // bad login!
+//        }
     }
 }

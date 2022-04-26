@@ -1,13 +1,22 @@
 -- Student -->20905896T
 
-INSERT INTO Student (dni , name, email, degree)
-VALUES (1234, 'Roberto ElRueda', 'rodando@gmail.com', 'Medicina');
+INSERT INTO Student (dni , name, email, degree, password)
+VALUES (1234, 'Roberto ElRueda', 'rodando@gmail.com', 'Medicina', '123');
 
-INSERT INTO Student (dni , name, email, degree)
-VALUES (5678, 'Paco Matao', 'seAMataoPaco@gmail.com', 'Ingenieria');
+INSERT INTO Student (dni , name, email, degree, password)
+VALUES (5678, 'Paco Matao', 'seAMataoPaco@gmail.com', 'Ingenieria', '123');
 
-INSERT INTO Student (dni , name, email, degree, isskp)
-VALUES (91011, 'Manolo Hey', 'heyMan@gmail.com', 'Medicina', TRUE);
+INSERT INTO Student (dni , name, email, degree, password, banned)
+VALUES (5678, 'Paco 1', 'seAMataoPaco1@gmail.com', 'Ingenieria', '123', TRUE);
+
+INSERT INTO Student (dni , name, email, degree, password, banned)
+VALUES (5678, 'Paco 2', 'seAMataoPaco2@gmail.com', 'Ingenieria', '123', TRUE);
+
+INSERT INTO Student (dni , name, email, degree, isskp, password)
+VALUES (91011, 'Manolo Hey', 'heyMan@gmail.com', 'Medicina', TRUE, '123');
+
+INSERT INTO Student (dni , name, email, degree, isskp, password)
+VALUES (91041, 'Manolo No Hey', 'heyNoMan@gmail.com', 'Medicina', TRUE, '123');
 
 -- Student -->
 

@@ -17,6 +17,7 @@ public final class StudentRowMapper implements RowMapper<Student> {
         student.setBalance(rs.getFloat("balance"));
         student.setSKP(rs.getBoolean("isSKP"));
         student.setBanned(rs.getBoolean("banned"));
+        student.setPassword(rs.getString("password"));
 
         return student;
     }
