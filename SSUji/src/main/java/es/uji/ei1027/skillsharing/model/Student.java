@@ -79,6 +79,8 @@ public class Student {
                 ", degree='" + degree + '\'' +
                 ", balance=" + balance +
                 ", isSKP=" + isSKP +
+                ", password=" + password +
+                ", banned=" + banned +
                 '}';
     }
 }
