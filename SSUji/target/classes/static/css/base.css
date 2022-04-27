@@ -18,7 +18,6 @@
     text-align: left;
 }
 
-
 .menuP {
     position: fixed;
     top: 30%;
@@ -42,6 +41,16 @@
     color: #ffffff !important;
 }
 
+/* ----------- POP UP ----------- */
+
+.popUpBody{
+    font-size: 95%;
+    font-family: Arimo-Regular;
+    text-align: left;
+    margin-left: 30px;
+}
+
+/* ----------- BUTTONS ----------- */
 .buttonWarning {
     background-color: #eb895b;
     font-size: 90%;

@@ -46,7 +46,34 @@
                     <td th:text="${student.degree}"></td>
                     <td th:text="${student.balance}"></td>
                     <td th:text="${student.banned}"></td>
-                    <td><a th:href="@{/student/ban/{dni}/{banned}(dni=${student.dni},banned=${student.banned})}" class="btn buttonWarning"> Ban</a></td>
+
+                    <td>
+                        <a data-toggle="modal" th:attr="data-target='#popup'+${student.dni}" class="btn buttonWarning">Ban</a>
+
+                        <!-- Pop up -->
+                        <div class="modal fade" th:id="'popup' + ${student.dni}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 id="exampleModalLabel">Are you sure?</h3>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="popUpBody">
+                                        Are you sure you want to ban <b th:text="${student.name}"></b> (<b th:text="${student.dni}"></b>) ? <br>
+                                        (This action can be reversed)
+                                        <br>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn buttonEdit" href="#" data-dismiss="modal">Cancel</a>
+                                        <a href="/student/ban/{dni}/{banned}(dni=${student.dni},banned=${student.banned})" th:href="@{/student/ban/{dni}/{banned}(dni=${student.dni},banned=${student.banned})}" class="btn buttonWarning">Ban</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -84,6 +111,7 @@
         </div>
 
     </div>
+
 
 </div>
 </body>
