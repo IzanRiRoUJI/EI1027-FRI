@@ -1,6 +1,23 @@
+/* ----------- COLOURS ----------- */
+/*
+
+    #062744 - azul oscuro
+    #63bb9d - verde
+    #ededed - gris claro
+    #eb895b - naranja
+    #ffffff - blanco
+
+*/
+
+/* ----------- CLASSES ----------- */
 .right {
     text-align: right;
 }
+
+.left {
+    text-align: left;
+}
+
 
 .menuP {
     position: fixed;
@@ -25,13 +42,27 @@
     color: #ffffff !important;
 }
 
-.boton {
+.buttonWarning {
     background-color: #eb895b;
     font-size: 90%;
     font-family: Arimo-Bold;
+    border: 1px solid #062744;
+}
+.buttonEdit {
+    background-color: #ededed;
+    font-size: 90%;
+    font-family: Arimo-Bold;
+    border: 1px solid #062744;
+}
+.buttonAdd {
+    background-color: #63bb9d;
+    color: #ffffff;
+    font-size: 90%;
+    font-family: Arimo-Bold;
+    border: 1px solid #062744;
 }
 
-
+/* ----------- TABLE ----------- */
 table{
   border: 1px solid #ddd;
 }
@@ -46,13 +77,8 @@ tr{
    text-align: center;
 }
 
-h2{
-   color: #062744;
-   font-family: Arimo-Bold;
-   font-size: 180%;
-   text-align: left;
-}
 
+/* ----------- HEADERS ----------- */
 h1{
    color: #062744;
    font-family: Arimo-Bold;
@@ -60,8 +86,21 @@ h1{
    text-align: center;
 
 }
+h2{
+   color: #062744;
+   font-family: Arimo-Bold;
+   font-size: 180%;
+   text-align: left;
+}
+h3{
+   color: #062744;
+   font-family: Arimo-Bold;
+   font-size: 140%;
+   text-align: left;
+}
 
 
+/* ----------- FONTS ----------- */
 @font-face {
   font-family: Arimo-Regular;
   src: url("../fonts/Arimo-Regular.ttf") format('truetype');

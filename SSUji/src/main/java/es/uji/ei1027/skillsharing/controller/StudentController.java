@@ -67,8 +67,6 @@ public class StudentController {
 
     @RequestMapping(value="/ban/{dni}/{banned}")
     public String processBan(@PathVariable String dni, @PathVariable boolean banned) {
-        System.out.println(dni);
-        System.out.println(banned);
         studentDao.setBanStudent(dni, !banned);
         return "redirect:..";
     }

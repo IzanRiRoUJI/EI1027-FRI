@@ -1,6 +1,7 @@
 package es.uji.ei1027.skillsharing.dao;
 
 import es.uji.ei1027.skillsharing.model.Skill;
+import es.uji.ei1027.skillsharing.model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -62,5 +63,19 @@ public class SkillDao {
         }catch(EmptyResultDataAccessException e) {
             return new ArrayList<Skill>();
         }
+    }
+
+    public List<Skill> getSkillByActiveStatus(boolean activeStatus) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Skill WHERE active=?", new SkillRowMapper(), activeStatus);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Skill>();
+        }
+    }
+
+    public void setActiveSkill(int dni, boolean newStatus) {
+        jdbcTemplate.update("UPDATE Skill " +
+                "SET active=? WHERE id=?", newStatus, dni);
     }
 }

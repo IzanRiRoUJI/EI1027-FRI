@@ -83,7 +83,6 @@ public class StudentDao implements UserDao{
     }
 
     public void setBanStudent(String dni, boolean newStatus) {
-        System.out.println("--------- dni " + dni + " | " + newStatus);
         jdbcTemplate.update("UPDATE Student " +
                         "SET banned=? WHERE dni=?", newStatus, dni);
     }

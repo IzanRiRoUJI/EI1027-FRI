@@ -24,7 +24,9 @@ public class SkillController {
 
     @RequestMapping("/list")
     public String listSkills(Model model) {
-        model.addAttribute("skills", skillDao.getSkills());
+        // model.addAttribute("skills", skillDao.getSkills());
+        model.addAttribute("skillsNotActive", skillDao.getSkillByActiveStatus(false));
+        model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
         return "skill/list";
     }
 
@@ -60,5 +62,11 @@ public class SkillController {
     public String processDelete(@PathVariable int id) {
         skillDao.deleteSkill(id);
         return "redirect:../list";
+    }
+
+    @RequestMapping(value="/list/{id}/{active}")
+    public String processActive(@PathVariable int id, @PathVariable boolean active) {
+        skillDao.setActiveSkill(id, !active);
+        return "redirect:..";
     }
 }
