@@ -1,47 +1,89 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
-    <title>Create new Skill</title>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <meta charset="UTF-8">
+    <title>Create Skill</title>
+    <link type="text/css" th:href="@{static/css/base.css}" href="static/css/base.css" rel="stylesheet"/>
 </head>
 <body>
-<h2>New skill</h2>
-<form action="#" th:action="@{/skill/add}"
-      th:object="${skill}" method="post">
-    <table>
-        <tr>
-            <td><label>ID</label></td>
-            <td><input type="number" th:field="*{id}"/></td>
-        </tr>
-        <tr>
-            <td><label>Name</label></td>
-            <td><input type="text" th:field="*{name}" /></td>
-        </tr>
-        <tr>
-            <td><label>Description</label></td>
-            <td><input type="text" th:field="*{description}" /></td>
-        </tr>
-        <tr>
-            <td><label>Level</label></td>
-            <td>
-                <select th:field="*{level}">
-                    <option th:value="'beginner'" th:text="beginner"></option>
-                    <option th:value="'intermediate'" th:text="intermediate"></option>
-                    <option th:value="'expert'" th:text="expert"></option>
-                </select>
-            </td>
+<div layout:fragment="content">
+<!--<h2>New skill</h2>-->
+<!--<form action="#" th:action="@{/skill/add}"-->
+<!--      th:object="${skill}" method="post">-->
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <td><label>ID</label></td>-->
+<!--            <td><input type="number" th:field="*{id}"/></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td><label>Name</label></td>-->
+<!--            <td><input type="text" th:field="*{name}" /></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td><label>Description</label></td>-->
+<!--            <td><input type="text" th:field="*{description}" /></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td><label>Level</label></td>-->
+<!--            <td>-->
+<!--                <select th:field="*{level}">-->
+<!--                    <option th:value="'beginner'" th:text="beginner"></option>-->
+<!--                    <option th:value="'intermediate'" th:text="intermediate"></option>-->
+<!--                    <option th:value="'expert'" th:text="expert"></option>-->
+<!--                </select>-->
+<!--            </td>-->
 
-        </tr>
-        <tr>
-            <td><label>Active</label></td>
-            <td><input type="checkbox" th:checked="*{active}" /></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Create new Skill" /></td>
-        </tr>
-    </table>
-</form>
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td><label>Active</label></td>-->
+<!--            <td><input type="checkbox" th:checked="*{active}" /></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td colspan="2"><input type="submit" value="Create new Skill" /></td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--</form>-->
+
+    <h1>Create Skill</h1>
+
+
+        <div class="col-lg-7 mx-auto">
+            <div class="card mt-2 mx-auto p-4 bg-light">
+                <div class="card-body bg-light">
+                    <div class="container">
+                        <form action="#" th:action="@{/skill/add}" th:object="${skill}" method="post">
+                            <div class="controls">
+
+                                <div class="form-group"> <label for="form_name">Name *</label> <input th:field="*{name}" id="form_name" type="text" name="name" class="form-control" placeholder="Please enter the name of the skill." required="required" data-error="Name is required."> </div>
+                                <div class="form-group"> <label for="form_description">Description *</label> <textarea th:field="*{description}" id="form_description" name="description" class="form-control" placeholder="Write the description of the skill here." rows="4" required="required" data-error="A description is required."></textarea> </div>
+
+
+                                <div class="form-group"> <label for="form_level">Level *</label>
+                                    <select th:field="*{level}" id="form_level" name="level" class="form-control" required="required" data-error="Please specify the level.">
+                                        <option value="" selected disabled>--Select the level of the skill--</option>
+                                        <option th:value="'beginner'" th:text="beginner"></option>
+                                        <option th:value="'intermediate'" th:text="intermediate"></option>
+                                        <option th:value="'expert'" th:text="expert"></option>
+                                    </select>
+                                </div>
+
+
+                                <div class="form-group"> <label for="form_active">Active &nbsp&nbsp</label>
+                                    <input id="form_active" type="checkbox" name="active" th:field="*{active}" />
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12"> <input type="submit" class="btn buttonAddA btn-send pt-2 btn-block" value="Create new Skill"> </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div> <!-- /.8 -->
+        </div> <!-- /.row-->
+
+</div>
 </body>
 </html>

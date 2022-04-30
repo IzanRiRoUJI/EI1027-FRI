@@ -29,9 +29,14 @@ public class SkillDao {
 //    active      BOOLEAN DEFAULT TRUE,
 
     public void addSkill(Skill skill){
+//        jdbcTemplate.update(
+//                "INSERT INTO Skill VALUES(?, ?, ?, ?, ?)",
+//                skill.getId(), skill.getName(), skill.getDescription(), skill.getLevel(), skill.isActive());
+
         jdbcTemplate.update(
-                "INSERT INTO Skill VALUES(?, ?, ?, ?, ?)",
-                skill.getId(), skill.getName(), skill.getDescription(), skill.getLevel(), skill.isActive());
+                "INSERT INTO Skill (name, description, level, active)" +
+                        " VALUES(?, ?, ?, ?)",
+                skill.getName(), skill.getDescription(), skill.getLevel(), skill.isActive());
     }
 
 

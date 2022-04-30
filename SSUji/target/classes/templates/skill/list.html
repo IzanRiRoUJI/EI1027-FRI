@@ -12,9 +12,9 @@
 <div layout:fragment="content">
     <h1>Skills List</h1>
 
-    <div class="right">
-        <a href="/add" class="btn buttonAdd">Add skill</a>
-    </div>
+<!--    <div class="right">-->
+<!--        <a href="/add" class="btn buttonAddA">Add skill</a>-->
+<!--    </div>-->
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
@@ -37,8 +37,7 @@
                     <th>Description</th>
                     <th>Level</th>
                     <th>Active</th>
-                    <th></th>
-                    <th></th>
+                    <th colspan="2"><a th:href="@{/skill/add}" class="btn buttonAddA">Add Skill</a></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -68,8 +67,9 @@
                     <th>Description</th>
                     <th>Level</th>
                     <th>Active</th>
-                    <th></th>
-                    <th></th>
+<!--                    <th></th>-->
+<!--                    <th></th>-->
+                    <th colspan="2"><a th:href="@{/skill/add}" class="btn buttonAddA">Add Skill</a></th>
                 </tr>
                 </thead>
                 <tbody>
