@@ -1,7 +1,9 @@
 package es.uji.ei1027.skillsharing.controller;
 
 import es.uji.ei1027.skillsharing.dao.CollaborationDao;
+import es.uji.ei1027.skillsharing.dao.SkillDao;
 import es.uji.ei1027.skillsharing.model.Collaboration;
+import es.uji.ei1027.skillsharing.services.CollaborationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,9 +23,19 @@ public class CollaborationController {
         this.collaborationDao=collaborationDao;
     }
 
+    private CollaborationService collaborationService;
+
+    @Autowired
+    public void setCollaborationService(CollaborationService collaborationService) {
+        this.collaborationService = collaborationService;
+    }
+
     @RequestMapping("/list")
     public String listCollaborations(Model model) {
-        model.addAttribute("collaborations", collaborationDao.getCollaborations());
+        model.addAttribute("collaborationsNotStarted", collaborationDao.getCollaborationsByState("notStarted"));
+        model.addAttribute("collaborationsInProgress", collaborationDao.getCollaborationsByState("inProgress"));
+        model.addAttribute("collaborationsFinished", collaborationDao.getCollaborationsByState("finished"));
+        model.addAttribute("skillsInfo", collaborationService.getSkillsById());
         return "collaboration/list";
     }
 

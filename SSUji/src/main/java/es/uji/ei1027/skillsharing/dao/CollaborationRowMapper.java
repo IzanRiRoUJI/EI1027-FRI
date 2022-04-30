@@ -21,11 +21,11 @@ public final class CollaborationRowMapper implements RowMapper<Collaboration> {
         collaboration.setScore(rs.getInt("score"));
         collaboration.setHours(rs.getFloat("hours"));
 
-        Time t = rs.getTime("startDate");
-        collaboration.setStartDate(t != null ? t.toLocalTime() : null);
-
-        t = rs.getTime("endDate");
-        collaboration.setEndDate(t != null ? t.toLocalTime() : null);
+//        Time t = rs.getTime("startDate");
+//        collaboration.setStartDate(t != null ? t.toLocalTime() : null);
+//
+//        t = rs.getTime("endDate");
+//        collaboration.setEndDate(t != null ? t.toLocalTime() : null);
 
         return collaboration;
 

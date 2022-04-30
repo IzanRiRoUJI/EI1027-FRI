@@ -71,4 +71,13 @@ public class CollaborationDao {
             return new ArrayList<Collaboration>();
         }
     }
+
+    public List<Collaboration> getCollaborationsByState(String state){ //  (state in ('notStarted', 'inProgress', 'finished')),
+//        System.out.println("--------------"  + state);
+        try {
+            return jdbcTemplate.query("SELECT * FROM Collaboration WHERE state=?", new CollaborationRowMapper(), state);
+        }catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Collaboration>();
+        }
+    }
 }
