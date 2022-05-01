@@ -58,6 +58,7 @@ public class LoginController {
         }
 
         session.setAttribute("user", user);
+        session.setAttribute("userDNI", user.getDni()); // Hacer user.dni en el html da error asi que guardo dni en otra variable
         System.out.println("INICIO SESIION " + user);
 
         return "redirect:/";
