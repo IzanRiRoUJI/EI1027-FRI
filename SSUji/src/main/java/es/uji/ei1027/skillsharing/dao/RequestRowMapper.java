@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.LocalDate;
 
 public final class RequestRowMapper implements RowMapper<Request> {
 
@@ -17,12 +18,8 @@ public final class RequestRowMapper implements RowMapper<Request> {
         request.setDniRequest(rs.getString("dniRequest"));
         request.setSkillId(rs.getInt("skillId"));
         request.setDescription(rs.getString("description"));
-
-        Date t = rs.getDate("startDate");
-        request.setStartDate(t != null ? t.toLocalDate() : null);
-
-        t = rs.getDate("endDate");
-        request.setEndDate(t != null ? t.toLocalDate() : null);
+        request.setStartDate(rs.getObject("startDate", LocalDate.class));
+        request.setEndDate(rs.getObject("endDate", LocalDate.class));
 
         return request;
 

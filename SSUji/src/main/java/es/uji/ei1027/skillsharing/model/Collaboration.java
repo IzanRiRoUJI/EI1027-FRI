@@ -1,6 +1,7 @@
 package es.uji.ei1027.skillsharing.model;
 
-import java.time.LocalTime;
+import org.springframework.format.annotation.DateTimeFormat;
+import java.time.LocalDate;
 
 public class Collaboration {
     private String dniOffer;
@@ -10,8 +11,10 @@ public class Collaboration {
     private String state;
     private int score;
     private float hours;
-    private LocalTime startDate;
-    private LocalTime endDate;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private LocalDate startDate;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    private LocalDate endDate;
 
     public String getDniOffer() {
         return dniOffer;
@@ -69,19 +72,19 @@ public class Collaboration {
         this.hours = hours;
     }
 
-    public LocalTime getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalTime startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public LocalTime getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalTime endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
