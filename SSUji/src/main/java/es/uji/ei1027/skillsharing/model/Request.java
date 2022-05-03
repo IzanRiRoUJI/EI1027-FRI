@@ -1,5 +1,7 @@
 package es.uji.ei1027.skillsharing.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -8,7 +10,9 @@ public class Request {
     private String dniRequest;
     private int skillId;
     private String description;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate startDate;
+    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate endDate;
 
     public String getName() {

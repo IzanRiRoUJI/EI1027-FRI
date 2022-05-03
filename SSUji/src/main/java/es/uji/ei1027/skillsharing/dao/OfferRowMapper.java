@@ -17,13 +17,8 @@ public final class OfferRowMapper implements RowMapper<Offer> {
         offer.setDniOffer(rs.getString("dniOffer"));
         offer.setSkillId(rs.getInt("skillId"));
         offer.setDescription(rs.getString("description"));
-
-        Date t = rs.getDate("startDate");
-        offer.setStartDate(t != null ? t.toLocalDate() : null);
-
-        t = rs.getDate("endDate");
-        offer.setEndDate(t != null ? t.toLocalDate() : null);
-
+        offer.setStartDate(rs.getObject("startDate", LocalDate.class));
+        offer.setEndDate(rs.getObject("endDate", LocalDate.class));
         return offer;
 
 //                name        VARCHAR(50),

@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.LocalDate;
 
 public final class CollaborationRowMapper implements RowMapper<Collaboration> {
 
@@ -14,18 +15,13 @@ public final class CollaborationRowMapper implements RowMapper<Collaboration> {
         Collaboration collaboration = new Collaboration();
         collaboration.setDniOffer(rs.getString("dniOffer"));
         collaboration.setDniRequest(rs.getString("dniRequest"));
-
         collaboration.setSkillId(rs.getInt("skillId"));
         collaboration.setPlace(rs.getString("place"));
         collaboration.setState(rs.getString("state"));
         collaboration.setScore(rs.getInt("score"));
         collaboration.setHours(rs.getFloat("hours"));
-
-//        Time t = rs.getTime("startDate");
-//        collaboration.setStartDate(t != null ? t.toLocalTime() : null);
-//
-//        t = rs.getTime("endDate");
-//        collaboration.setEndDate(t != null ? t.toLocalTime() : null);
+        collaboration.setStartDate(rs.getObject("startDate", LocalDate.class));
+        collaboration.setEndDate(rs.getObject("endDate", LocalDate.class));
 
         return collaboration;
 
