@@ -71,15 +71,15 @@ public class OfferController {
     @RequestMapping(value="/update/{dniOffer}/{skillId}", method = RequestMethod.GET)
     public String updateOffer(Model model, @PathVariable String dniOffer, @PathVariable int skillId) {
         model.addAttribute("offer", offerDao.getOffer(dniOffer,skillId));
+        model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
         return "offer/update";
     }
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(
-            @ModelAttribute("offer") Offer offer,
-            BindingResult bindingResult) {
+    public String processUpdateSubmit(@ModelAttribute("offer") Offer offer, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "offer/update";
+
         offerDao.updateOffer(offer);
         return "redirect:list";
     }

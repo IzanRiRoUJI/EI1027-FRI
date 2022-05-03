@@ -1,6 +1,7 @@
 package es.uji.ei1027.skillsharing.controller;
 
 import es.uji.ei1027.skillsharing.dao.RequestDao;
+import es.uji.ei1027.skillsharing.dao.SkillDao;
 import es.uji.ei1027.skillsharing.model.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,14 @@ public class RequestController {
         this.requestDao=requestDao;
     }
 
+    private SkillDao skillDao;
+
+    @Autowired
+    public void setSkillDao(SkillDao skillDao) {
+        this.skillDao = skillDao;
+    }
+
+
     @RequestMapping("/list")
     public String listRequests(Model model) {
         model.addAttribute("requests", requestDao.getRequests());
@@ -31,6 +40,7 @@ public class RequestController {
     @RequestMapping(value="/add")
     public String addRequest(Model model) {
         model.addAttribute("request", new Request());
+        model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
         return "request/add";
     }
 
@@ -46,13 +56,13 @@ public class RequestController {
     @RequestMapping(value="/update/{dniRequest}/{skillId}", method = RequestMethod.GET)
     public String updateRequest(Model model, @PathVariable String dniRequest, @PathVariable int skillId) {
         model.addAttribute("request", requestDao.getRequest(dniRequest,skillId));
+        model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
         return "request/update";
     }
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(
-            @ModelAttribute("request") Request request,
-            BindingResult bindingResult) {
+    public String processUpdateSubmit(@ModelAttribute("request") Request request, BindingResult bindingResult) {
+        System.out.println("---------" + request);
         if (bindingResult.hasErrors())
             return "request/update";
         requestDao.updateRequest(request);
