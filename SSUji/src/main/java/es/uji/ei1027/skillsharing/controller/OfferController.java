@@ -43,7 +43,10 @@ public class OfferController {
     }
 
     @RequestMapping(value="/add")
-    public String addOffer(Model model) {
+    public String addOffer(Model model, HttpSession session) {
+        if (session.getAttribute("nextUrl") == null){
+            session.setAttribute("nextUrl", "/offer/add");
+        }
         model.addAttribute("offer", new Offer());
         model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
         return "offer/add";
@@ -69,7 +72,10 @@ public class OfferController {
 
 
     @RequestMapping(value="/update/{dniOffer}/{skillId}", method = RequestMethod.GET)
-    public String updateOffer(Model model, @PathVariable String dniOffer, @PathVariable int skillId) {
+    public String updateOffer(Model model, @PathVariable String dniOffer, @PathVariable int skillId, HttpSession session) {
+        if (session.getAttribute("nextUrl") == null){
+            session.setAttribute("nextUrl", "/offer/update");
+        }
         model.addAttribute("offer", offerDao.getOffer(dniOffer,skillId));
         model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
         return "offer/update";
@@ -85,9 +91,12 @@ public class OfferController {
     }
 
     @RequestMapping(value="/delete/{dniOffer}/{skillId}")
-    public String processDelete(@PathVariable String dniOffer, @PathVariable int skillId) {
+    public String processDelete(@PathVariable String dniOffer, @PathVariable int skillId, HttpSession session) {
+        if (session.getAttribute("nextUrl") == null){
+            session.setAttribute("nextUrl", "offer/list");
+        }
         offerDao.deleteOffer(dniOffer, skillId);
-        return "redirect:../list";
+        return "redirect:/offer/list";
     }
 
 

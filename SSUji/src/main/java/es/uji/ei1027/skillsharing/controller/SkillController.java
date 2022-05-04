@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/skill")
 public class SkillController {
@@ -23,8 +25,11 @@ public class SkillController {
     }
 
     @RequestMapping("/list")
-    public String listSkills(Model model) {
+    public String listSkills(Model model, HttpSession session) {
         // model.addAttribute("skills", skillDao.getSkills());
+        if (session.getAttribute("nextUrl") == null){
+            session.setAttribute("nextUrl", "skill/list");
+        }
         model.addAttribute("skillsNotActive", skillDao.getSkillByActiveStatus(false));
         model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
         return "skill/list";
