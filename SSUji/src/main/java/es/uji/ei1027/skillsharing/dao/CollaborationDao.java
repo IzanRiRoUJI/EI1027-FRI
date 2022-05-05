@@ -15,21 +15,10 @@ public class CollaborationDao {
 
     private JdbcTemplate jdbcTemplate;
 
-    // Obté el jdbcTemplate a partir del Data Source
     @Autowired
     public void setDataSource(DataSource dataSource) {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
-
-//    private String dniOffer;
-//    private String dniRequest;
-//    private int skillId;
-//    private String place;
-//    private String state;
-//    private int score;
-//    private float hours;
-//    private LocalTime startDate;
-//    private LocalTime endDate;
 
     public void addCollaboration(Collaboration collaboration){
         jdbcTemplate.update(
@@ -52,13 +41,13 @@ public class CollaborationDao {
 
     public void updateCollaboration(Collaboration collaboration){
         jdbcTemplate.update(
-                "UPDATE FROM COLLABORATION SET place=?, score=?, hours=?, starDate=?, endDate=? WHERE dniOffer = ? AND dniRequest = ? AND skillId = ? AND state = ?",
+                "UPDATE COLLABORATION SET place=?, score=?, hours=?, startDate=?, endDate=? WHERE dniOffer = ? AND dniRequest = ? AND skillId = ? AND state = ?",
                 collaboration.getPlace(),collaboration.getScore(), collaboration.getHours(), collaboration.getStartDate(), collaboration.getEndDate(),collaboration.getDniOffer(),collaboration.getDniRequest(), collaboration.getSkillId(), collaboration.getState());
     }
 
     public Collaboration getCollaboration(String dniOffer,String dniRequest,int skillId, String state){
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM Skill WHERE dniOffer = ? AND dniRequest = ? AND skillId = ? AND state = ? ", new CollaborationRowMapper(),dniOffer,dniRequest, skillId, state);
+            return jdbcTemplate.queryForObject("SELECT * FROM COLLABORATION WHERE dniOffer = ? AND dniRequest = ? AND skillId = ? AND state = ? ", new CollaborationRowMapper(),dniOffer,dniRequest, skillId, state);
         }catch(EmptyResultDataAccessException e) {
             return null;
         }
@@ -76,6 +65,13 @@ public class CollaborationDao {
 //        System.out.println("--------------"  + state);
         try {
             return jdbcTemplate.query("SELECT * FROM Collaboration WHERE state=?", new CollaborationRowMapper(), state);
+        }catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Collaboration>();
+        }
+    }
+    public List<Collaboration> getMyCollaboration(String dni){ //  (state in ('notStarted', 'inProgress', 'finished')),
+        try {
+            return jdbcTemplate.query("SELECT * FROM Collaboration WHERE dniOffer=? OR dniRequest=?", new CollaborationRowMapper(),dni,dni);
         }catch(EmptyResultDataAccessException e) {
             return new ArrayList<Collaboration>();
         }
