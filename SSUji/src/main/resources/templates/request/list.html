@@ -9,6 +9,14 @@
 </head>
 <body>
 <div layout:fragment="content"> <!-- insertamos contenido -->
+
+    <div class="loggeduser" th:object="${session}">
+        <p th:if="*{user == null}">
+            <meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/>
+        </p>
+    </div>
+
+
 <!--<h1>Request List</h1>-->
 <!--<table class="table table-striped">-->
 <!--    <thead>-->

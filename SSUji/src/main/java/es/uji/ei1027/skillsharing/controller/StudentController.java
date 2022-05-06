@@ -103,4 +103,9 @@ public class StudentController {
         return "profile/profile";
     }
 
+    @RequestMapping(value="/restricted")
+    public String showRestrictedMessage(HttpSession session, Model model) {
+        return "student/restricted";
+    }
+
 }

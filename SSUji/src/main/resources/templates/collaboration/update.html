@@ -7,6 +7,13 @@
           href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
+
+<div class="loggeduser" th:object="${session}">
+    <p th:if="*{user == null}">
+        <meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/>
+    </p>
+</div>
+
 <h2>Update Collaboration</h2>
 <form action="#" th:action="@{/collaboration/update}"  th:object="${collaboration}" method="post">
     <table>

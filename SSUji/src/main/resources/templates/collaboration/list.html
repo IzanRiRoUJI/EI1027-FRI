@@ -11,6 +11,16 @@
 <div layout:fragment="content">
     <h1>Manage Collaborations</h1>
 
+    <div class="loggeduser" th:object="${session}">
+        <p th:if="*{user == null}">
+            <meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/>
+        </p>
+        <p th:if="*{user != null and user.isSKP == false}"> <!-- Es "Manage Collaborations" del SKP -->
+            <meta http-equiv="refresh" content="0; URL=/student/restricted" th:href="@{/student/restricted}"/>
+        </p>
+    </div>
+
+
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="notStarted-tab" data-toggle="tab" href="#notStarted" role="tab" aria-controls="notStarted" aria-selected="true"><h3>Not started</h3></a>

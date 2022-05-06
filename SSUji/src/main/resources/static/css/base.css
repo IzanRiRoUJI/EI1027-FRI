@@ -148,6 +148,12 @@ h3{
    text-align: left;
 }
 
+h4{
+   color: #062744;
+   font-family: Arimo-Bold;
+   font-size: 120%;
+}
+
 /* ----------- FORMS ----------- */
 .btn-send {
     font-weight: 300;
