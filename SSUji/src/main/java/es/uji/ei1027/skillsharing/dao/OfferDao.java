@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,8 +32,7 @@ public class OfferDao {
     }
 
     public void deleteOffer(Offer offer) {
-        jdbcTemplate.update("DELETE FROM Offer WHERE dniOffer = ? AND skillId = ?",
-                offer.getDniOffer(), offer.getSkillId());
+        jdbcTemplate.update("DELETE FROM Offer WHERE id = ?", offer.getId());
     }
 
 //    public void deleteOffer(String dniOffer, int skillId) {
@@ -44,13 +44,10 @@ public class OfferDao {
         jdbcTemplate.update("DELETE FROM Offer WHERE id = ?", id);
     }
 
-//    public void updateOffer(Offer offer) {
-//        jdbcTemplate.update("UPDATE Offer " +
-//                        "SET name=?, description=?, startDate=?, endDate=?" +
-//                        "WHERE dniOffer=? AND skillId=?",
-//                offer.getName(), offer.getDescription(), offer.getStartDate(),
-//                offer.getEndDate(), offer.getDniOffer(), offer.getSkillId());
-//    }
+    public void deleteBySetFinishDate(int id) {
+        System.out.println("Delete con id");
+        jdbcTemplate.update("UPDATE Offer SET endDate=? WHERE id = ?", LocalDate.now(), id);
+    }
 
     public void updateOffer(Offer offer) {
         jdbcTemplate.update("UPDATE Offer " +
@@ -60,17 +57,6 @@ public class OfferDao {
                 offer.getEndDate(), offer.getDniOffer(), offer.getSkillId(), offer.getId());
     }
 
-
-
-//    public Offer getOffer(String dniOffer, int skillId) {
-//        try {
-//            return jdbcTemplate.queryForObject("SELECT * FROM Offer WHERE dniOffer=? AND skillId = ?",
-//                    new OfferRowMapper(), dniOffer, skillId);
-//        }
-//        catch(EmptyResultDataAccessException e) {
-//            return null;
-//        }
-//    }
 
     public Offer getOffer(int id) {
         try {
@@ -86,7 +72,7 @@ public class OfferDao {
 
     public List<Offer> getOffers() {
         try {
-            return jdbcTemplate.query("SELECT * FROM Offer", new OfferRowMapper());
+            return jdbcTemplate.query("SELECT * FROM Offer WHERE DATE(endDate) > DATE(NOW())", new OfferRowMapper());
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Offer>();

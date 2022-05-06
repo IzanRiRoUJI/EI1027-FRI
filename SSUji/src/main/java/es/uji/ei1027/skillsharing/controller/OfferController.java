@@ -107,11 +107,12 @@ public class OfferController {
 //    }
 
     @RequestMapping(value="/delete/{id}")
-    public String processDelete(@PathVariable String dniOffer, @PathVariable int id, HttpSession session) {
+    public String processDelete(@PathVariable int id, HttpSession session) {
         if (session.getAttribute("nextUrl") == null){
             session.setAttribute("nextUrl", "offer/list");
         }
-        offerDao.deleteOffer(id);
+        offerDao.deleteBySetFinishDate(id);
+        // offerDao.deleteOffer(id);
         return "redirect:/offer/list";
     }
 

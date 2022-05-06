@@ -62,8 +62,8 @@
                 <td th:text="${request.description}"></td>
                 <td th:text="${request.startDate}"></td>
                 <td th:text="${request.endDate}"></td>
-                <td><a th:href="@{/request/update/{dniRequest}/{skillId}(dniRequest=${request.dniRequest},skillId=${request.skillId})}" class="btn buttonEdit">Edit (debug)</a></td>
-                <td><a th:href="@{/request/delete/{dniRequest}/{skillId}(dniRequest=${request.dniRequest},skillId=${request.skillId})}" class="btn buttonWarning">Delete (debug)</a></td>
+                <td><a th:href="@{/request/update/{id}(id=${request.id})}" class="btn buttonEdit">Edit (debug)</a></td>
+                <td><a th:href="@{/request/delete/{id}(id=${request.id})}" class="btn buttonWarning">Delete (debug)</a></td>
 
             </tr>
             </tbody>

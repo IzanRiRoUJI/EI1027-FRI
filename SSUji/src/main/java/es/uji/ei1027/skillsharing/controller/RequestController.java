@@ -58,9 +58,9 @@ public class RequestController {
         return "redirect:list";
     }
 
-    @RequestMapping(value="/update/{dniRequest}/{skillId}", method = RequestMethod.GET)
-    public String updateRequest(Model model, @PathVariable String dniRequest, @PathVariable int skillId) {
-        model.addAttribute("request", requestDao.getRequest(dniRequest,skillId));
+    @RequestMapping(value="/update/{id}", method = RequestMethod.GET)
+    public String updateRequest(Model model, @PathVariable int id) {
+        model.addAttribute("request", requestDao.getRequest(id));
         model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
         return "request/update";
     }
@@ -74,9 +74,10 @@ public class RequestController {
         return "redirect:list";
     }
 
-    @RequestMapping(value="/delete/{dniRequest}/{skillId}")
-    public String processDelete(@PathVariable String dniRequest, @PathVariable int skillId) {
-        requestDao.deleteRequest(dniRequest, skillId);
+    @RequestMapping(value="/delete/{id}")
+    public String processDelete(@PathVariable int id) {
+        //requestDao.deleteRequest(id);
+        requestDao.deleteBySetFinishDate(id);
         return "redirect:../list";
     }
 
