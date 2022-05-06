@@ -22,37 +22,35 @@ public class CollaborationDao {
 
     public void addCollaboration(Collaboration collaboration){
         jdbcTemplate.update(
-                "INSERT INTO Collaboration VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                collaboration.getDniOffer(),collaboration.getDniRequest(), collaboration.getSkillId(),collaboration.getPlace(),
+                "INSERT INTO Collaboration (idRequest, idOffer, place, state, score, hours, startDate, endDate) VALUES(? ,? ,? ,?, ?, ?, ?, ?)",
+                collaboration.getIdRequest(),collaboration.getIdOffer(),collaboration.getPlace(),
                 collaboration.getState(), collaboration.getScore(), collaboration.getHours(), collaboration.getStartDate(), collaboration.getEndDate());
     }
 
     public void deleteCollaboration(Collaboration collaboration){
         jdbcTemplate.update(
-                "DELETE FROM COLLABORATION WHERE dniOffer = ? AND dniRequest = ? AND skillId = ? AND state = ?",
-                collaboration.getDniOffer(),collaboration.getDniRequest(), collaboration.getSkillId(), collaboration.getState());
+                "DELETE FROM COLLABORATION WHERE id = ?",
+                collaboration.getId());
     }
 
-    public void deleteCollaboration(String dniOffer, String dniRequest, int skillId, String state){
+    public void deleteCollaboration(int id){
         jdbcTemplate.update(
-                "DELETE FROM COLLABORATION WHERE dniOffer = ? AND dniRequest = ? AND skillId = ? AND state = ?",
-                dniOffer,dniRequest, skillId, state);
+                "DELETE FROM COLLABORATION WHERE id = ?", id);
     }
 
     public void updateCollaboration(Collaboration collaboration){
         jdbcTemplate.update(
-                "UPDATE COLLABORATION SET place=?, score=?, hours=?, startDate=?, endDate=? WHERE dniOffer = ? AND dniRequest = ? AND skillId = ? AND state = ?",
-                collaboration.getPlace(),collaboration.getScore(), collaboration.getHours(), collaboration.getStartDate(), collaboration.getEndDate(),collaboration.getDniOffer(),collaboration.getDniRequest(), collaboration.getSkillId(), collaboration.getState());
+                "UPDATE COLLABORATION SET place=?, score=?, hours=?, startDate=?, endDate=? WHERE id=?",
+                collaboration.getPlace(),collaboration.getScore(), collaboration.getHours(), collaboration.getStartDate(), collaboration.getEndDate(),collaboration.getId());
     }
 
-    public Collaboration getCollaboration(String dniOffer,String dniRequest,int skillId, String state){
+    public Collaboration getCollaboration(int id){
         try {
-            return jdbcTemplate.queryForObject("SELECT * FROM COLLABORATION WHERE dniOffer = ? AND dniRequest = ? AND skillId = ? AND state = ? ", new CollaborationRowMapper(),dniOffer,dniRequest, skillId, state);
+            return jdbcTemplate.queryForObject("SELECT * FROM COLLABORATION WHERE id = ?", new CollaborationRowMapper(),id);
         }catch(EmptyResultDataAccessException e) {
             return null;
         }
     }
-    /* devuelve todas las habilidades como objetos en una lista */
     public List<Collaboration> getCollaborations(){
         try {
             return jdbcTemplate.query("SELECT * FROM Collaboration", new CollaborationRowMapper());
@@ -60,29 +58,30 @@ public class CollaborationDao {
             return new ArrayList<Collaboration>();
         }
     }
-
     public List<Collaboration> getCollaborationsByState(String state){ //  (state in ('notStarted', 'inProgress', 'finished')),
-//        System.out.println("--------------"  + state);
         try {
             return jdbcTemplate.query("SELECT * FROM Collaboration WHERE state=?", new CollaborationRowMapper(), state);
         }catch(EmptyResultDataAccessException e) {
             return new ArrayList<Collaboration>();
         }
     }
-    public List<Collaboration> getMyCollaboration(String dni){ //  (state in ('notStarted', 'inProgress', 'finished')),
+    public List<Collaboration> getMyCollaboration(int id){ //  (state in ('notStarted', 'inProgress', 'finished')),
         try {
-            return jdbcTemplate.query("SELECT * FROM Collaboration WHERE dniOffer=? OR dniRequest=?", new CollaborationRowMapper(),dni,dni);
+            return jdbcTemplate.query("SELECT * FROM Collaboration WHERE id=?", new CollaborationRowMapper(),id);
         }catch(EmptyResultDataAccessException e) {
             return new ArrayList<Collaboration>();
         }
     }
 
-    public List<Collaboration> getCollaborationsOfStudentByState(String dni, String state){
+    public List<Collaboration> getCollaborationsOfStudentByState( String state){
         try {
-            return jdbcTemplate.query("SELECT * FROM Collaboration WHERE state=? AND (dniRequest=? OR dniOffer=?)", new CollaborationRowMapper(), state, dni, dni);
+            return jdbcTemplate.query("SELECT * FROM Collaboration WHERE state=?)", new CollaborationRowMapper(), state);
         }catch(EmptyResultDataAccessException e) {
             return new ArrayList<Collaboration>();
         }
-
+    }
+    public List<Collaboration> setCollaborationState(Collaboration collaboration, String state){ //  (state in ('notStarted', 'inProgress', 'finished')),
+        return jdbcTemplate.query("UPDATE Collaboration WHERE id=? SET state=?", new CollaborationRowMapper(), collaboration.getId(),state);
     }
 }
+

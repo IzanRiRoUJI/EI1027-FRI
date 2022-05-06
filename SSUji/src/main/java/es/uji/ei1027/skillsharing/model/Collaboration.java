@@ -7,8 +7,6 @@ public class Collaboration {
     private int id;
     private int idRequest;
     private int idOffer;
-    private String dniOffer;
-    private String dniRequest;
     private int skillId;
     private String place;
     private String state;
@@ -42,22 +40,6 @@ public class Collaboration {
 
     public void setIdOffer(int idOffer) {
         this.idOffer = idOffer;
-    }
-
-    public String getDniOffer() {
-        return dniOffer;
-    }
-
-    public void setDniOffer(String dniOffer) {
-        this.dniOffer = dniOffer;
-    }
-
-    public String getDniRequest() {
-        return dniRequest;
-    }
-
-    public void setDniRequest(String dniRequest) {
-        this.dniRequest = dniRequest;
     }
 
     public int getSkillId() {
@@ -122,8 +104,6 @@ public class Collaboration {
                 "id=" + id +
                 ", idRequest=" + idRequest +
                 ", idOffer=" + idOffer +
-                ", dniOffer='" + dniOffer + '\'' +
-                ", dniRequest='" + dniRequest + '\'' +
                 ", skillId=" + skillId +
                 ", place='" + place + '\'' +
                 ", state='" + state + '\'' +

@@ -30,8 +30,6 @@
             <table class="table table-striped table-sm">
                 <thead>
                 <tr>
-                    <th>Offer's DNI</th>
-                    <th>Request's DNI</th>
                     <th>Skill ID (debug)</th>
                     <th>Skill name</th>
                     <th>Skill level</th>
@@ -46,8 +44,6 @@
                 </thead>
                 <tbody>
                 <tr th:each="collaboration: ${collaborationsNotStarted}">
-                    <td th:text="${collaboration.dniOffer}"></td>
-                    <td th:text="${collaboration.dniRequest}"></td>
                     <td th:text="${collaboration.skillId}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).level}"></td>
@@ -57,7 +53,7 @@
                     <td th:text="${collaboration.hours}"></td>
                     <td th:text="${collaboration.startDate}"></td>
                     <td th:text="${collaboration.endDate}"></td>
-                    <td><a th:href="@{/collaboration/edit/{dniOffer}/{dniRequest}/{skillId}/{state}(dniOffer=${collaboration.dniOffer},dniRequest=${collaboration.dniRequest},skillId=${collaboration.skillId},state=${collaboration.state})}" class="btn buttonEdit">Edit</a></td>                    <!--                    <td><a th:href="@{/collaboration/delete/{dniOffer}/{dniRequest}/{skillId}/{state}(dniOffer=${offer.dniOffer},(dniRequest=${collaboration.dniRequest},skillId=${collaboration.skillId},state=${collaboration.state})}" class="btn btn-danger">Delete</a></td>-->
+                    <td><a th:href="@{/collaboration/setInProgress/{id}(id=${collaboration.id})}" class="btn buttonEdit">Start</a></td>                    <!--                    <td><a th:href="@{/collaboration/delete/{dniOffer}/{dniRequest}/{skillId}/{state}(dniOffer=${offer.dniOffer},(dniRequest=${collaboration.dniRequest},skillId=${collaboration.skillId},state=${collaboration.state})}" class="btn btn-danger">Delete</a></td>-->
                 </tr>
                 </tbody>
             </table>
@@ -68,8 +64,6 @@
             <table class="table table-striped table-sm">
                 <thead>
                 <tr>
-                    <th>Offer's DNI</th>
-                    <th>Request's DNI</th>
                     <th>Skill ID (debug)</th>
                     <th>Skill name</th>
                     <th>Skill level</th>
@@ -84,8 +78,6 @@
                 </thead>
                 <tbody>
                 <tr th:each="collaboration: ${collaborationsInProgress}">
-                    <td th:text="${collaboration.dniOffer}"></td>
-                    <td th:text="${collaboration.dniRequest}"></td>
                     <td th:text="${collaboration.skillId}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).level}"></td>
@@ -95,8 +87,7 @@
                     <td th:text="${collaboration.hours}"></td>
                     <td th:text="${collaboration.startDate}"></td>
                     <td th:text="${collaboration.endDate}"></td>
-                    <td><a th:href="@{/collaboration/edit/{dniOffer}/{dniRequest}/{skillId}/{state}(dniOffer=${collaboration.dniOffer},dniRequest=${collaboration.dniRequest},skillId=${collaboration.skillId},state=${collaboration.state})}" class="btn buttonEdit">Edit</a></td>
-                    <!--                    <td><a th:href="@{/collaboration/delete/{dniOffer}/{dniRequest}/{skillId}/{state}(dniOffer=${offer.dniOffer},(dniRequest=${collaboration.dniRequest},skillId=${collaboration.skillId},state=${collaboration.state})}" class="btn btn-danger">Delete</a></td>-->
+                    <td><a th:href="@{/collaboration/setInProgress/{id}(id=${collaboration.id})}" class="btn buttonEdit">Finish</a></td>
                 </tr>
                 </tbody>
             </table>
@@ -109,8 +100,6 @@
             <table class="table table-striped table-sm">
                 <thead>
                 <tr>
-                    <th>Offer's DNI</th>
-                    <th>Request's DNI</th>
                     <th>Skill ID (debug)</th>
                     <th>Skill name</th>
                     <th>Skill level</th>
@@ -125,8 +114,6 @@
                 </thead>
                 <tbody>
                 <tr th:each="collaboration: ${collaborationsFinished}">
-                    <td th:text="${collaboration.dniOffer}"></td>
-                    <td th:text="${collaboration.dniRequest}"></td>
                     <td th:text="${collaboration.skillId}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).level}"></td>
@@ -136,8 +123,7 @@
                     <td th:text="${collaboration.hours}"></td>
                     <td th:text="${collaboration.startDate}"></td>
                     <td th:text="${collaboration.endDate}"></td>
-                    <td><a th:href="@{/collaboration/edit/{dniOffer}/{dniRequest}/{skillId}/{state}(dniOffer=${collaboration.dniOffer},dniRequest=${collaboration.dniRequest},skillId=${collaboration.skillId},state=${collaboration.state})}" class="btn buttonEdit">Edit</a></td>
-                    <!--                    <td><a th:href="@{/collaboration/delete/{dniOffer}/{dniRequest}/{skillId}/{state}(dniOffer=${offer.dniOffer},(dniRequest=${collaboration.dniRequest},skillId=${collaboration.skillId},state=${collaboration.state})}" class="btn btn-danger">Delete</a></td>-->
+                    <td><a th:href="@{/collaboration/edit/{id}(id=${collaboration.id})}" class="btn buttonEdit">Edit</a></td>
                 </tr>
                 </tbody>
             </table>

@@ -90,7 +90,7 @@ public class StudentController {
         return "student/ban";
     }
 
-    @RequestMapping(value="/profile")
+/*    @RequestMapping(value="/profile")
     public String showProfile(HttpSession session, Model model) {
 
         if(session != null){
@@ -100,20 +100,7 @@ public class StudentController {
                 model.addAttribute("sTeacher", collaborationService.getAverageTeacherScores(user.getDni()));
             }
         }
-
-
-        //DEBUG
-//        Student testStudent = new Student();
-//        testStudent.setBalance((float) 9.8);
-//        testStudent.setBanned(false);
-//        testStudent.setDegree("Matematica");
-//        testStudent.setDni("test1234");
-//        testStudent.setEmail("test@uji.es");
-//        testStudent.setName("Pepe Test");
-//        testStudent.setPassword("123");
-//        testStudent.setSKP(false);
-//        model.addAttribute("testStudent", testStudent);
         return "student/profile";
-    }
+    }*/
 
 }

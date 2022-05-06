@@ -13,8 +13,8 @@ public final class CollaborationRowMapper implements RowMapper<Collaboration> {
 
     public Collaboration mapRow(ResultSet rs, int rowNum) throws SQLException {
         Collaboration collaboration = new Collaboration();
-        collaboration.setDniOffer(rs.getString("dniOffer"));
-        collaboration.setDniRequest(rs.getString("dniRequest"));
+        collaboration.setIdOffer(rs.getInt("idOffer"));
+        collaboration.setIdRequest(rs.getInt("idRequest"));
         collaboration.setSkillId(rs.getInt("skillId"));
         collaboration.setPlace(rs.getString("place"));
         collaboration.setState(rs.getString("state"));

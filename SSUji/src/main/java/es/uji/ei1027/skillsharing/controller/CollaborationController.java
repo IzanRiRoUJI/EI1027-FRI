@@ -42,6 +42,7 @@ public class CollaborationController {
         model.addAttribute("collaborationsInProgress", collaborationDao.getCollaborationsByState("inProgress"));
         model.addAttribute("collaborationsFinished", collaborationDao.getCollaborationsByState("finished"));
         model.addAttribute("skillsInfo", collaborationService.getSkillsById());
+        System.out.print(model.getAttribute("collaborationsNotStarted"));
         return "collaboration/list";
     }
 
@@ -60,9 +61,9 @@ public class CollaborationController {
         return "redirect:list";
     }
 
-    @RequestMapping(value="/update/{dniOffer}/{dniRequest}/{skillId}/{state}", method = RequestMethod.GET)
-    public String updateCollaboration(Model model, @PathVariable String dniOffer, @PathVariable String dniRequest, @PathVariable int skillId, @PathVariable String state) {
-        model.addAttribute("collaboration", collaborationDao.getCollaboration(dniOffer, dniRequest, skillId, state));
+    @RequestMapping(value="/update/{id}", method = RequestMethod.GET)
+    public String updateCollaboration(Model model, @PathVariable int id) {
+        model.addAttribute("collaboration", collaborationDao.getCollaboration(id));
         return "collaboration/update";
     }
 
@@ -75,9 +76,9 @@ public class CollaborationController {
         return "redirect:list";
     }
 
-    @RequestMapping(value="/delete/{dniOffer}/{dniRequest}/{skillId}/{state}")
-    public String processDelete( @PathVariable String dniOffer, @PathVariable String dniRequest, @PathVariable int skillId, @PathVariable String state) {
-        collaborationDao.deleteCollaboration(dniOffer, dniRequest, skillId, state);
+    @RequestMapping(value="/delete/{id}")
+    public String processDelete( @PathVariable int id) {
+        collaborationDao.deleteCollaboration(id);
         return "redirect:../list";
     }
 
@@ -85,13 +86,14 @@ public class CollaborationController {
     public String listMyCollaborations(Model model, HttpSession session) {
         Student user = (Student) session.getAttribute("user");
         String dni = user.getDni();
-        model.addAttribute("collaborationsNotStarted", collaborationDao.getMyCollaboration(dni));
+        model.addAttribute("collaborations", collaborationService.getCollaborationsByDni(dni));
         model.addAttribute("skillsInfo", collaborationService.getSkillsById());
         return "profile/mycollaborations";
     }
-    @RequestMapping(value="/edit/{dniOffer}/{dniRequest}/{skillId}/{state}", method = RequestMethod.GET)
-    public String editCollaboration(Model model, @PathVariable String dniOffer, @PathVariable String dniRequest, @PathVariable int skillId, @PathVariable String state) {
-        model.addAttribute("collaboration", collaborationDao.getCollaboration(dniOffer, dniRequest, skillId, state));
+
+    @RequestMapping(value="/edit/{id}", method = RequestMethod.GET)
+    public String editCollaboration(Model model, @PathVariable int id) {
+        model.addAttribute("collaboration", collaborationDao.getCollaboration(id));
         return "collaboration/edit";
     }
 
@@ -102,5 +104,15 @@ public class CollaborationController {
         collaborationDao.updateCollaboration(collaboration);
         System.out.print(collaboration);
         return "redirect:/collaboration/listmycollaborations";
+    }
+    @RequestMapping(value="/setInProgress/{id}")
+    public String setCollaborationInProgress(@PathVariable int id) {
+        collaborationDao.setCollaborationState(collaborationDao.getCollaboration(id),"inProgress");
+        return "redirect:..";
+    }
+    @RequestMapping(value="/setFinished/{id}")
+    public String setCollaborationFinished(@PathVariable int id) {
+        collaborationDao.setCollaborationState(collaborationDao.getCollaboration(id),"finished");
+        return "redirect:..";
     }
 }
