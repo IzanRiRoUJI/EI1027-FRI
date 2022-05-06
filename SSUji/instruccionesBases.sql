@@ -34,13 +34,14 @@ CREATE TABLE Skill (
 );
 
 CREATE TABLE Offer (
+    id          SERIAL,
     name        VARCHAR(50),
     dniOffer    VARCHAR(10),
     skillId     SERIAL,
     description VARCHAR(100),
     startDate   DATE,
     endDate     DATE,
-    CONSTRAINT cp_offer PRIMARY KEY (dniOffer, skillId),
+    CONSTRAINT cp_offer PRIMARY KEY (id),
     CONSTRAINT ca_offer_student FOREIGN KEY (dniOffer) REFERENCES Student(dni) ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT ca_offer_skill FOREIGN KEY (skillId) REFERENCES Skill(id) ON DELETE RESTRICT ON UPDATE CASCADE,
 
@@ -48,13 +49,14 @@ CREATE TABLE Offer (
 );
 
 CREATE TABLE Request (
+    id          SERIAL,
     name        VARCHAR(50),
     dniRequest  VARCHAR(10),
     skillId     SERIAL,
     description VARCHAR(100),
     startDate   DATE,
     endDate     DATE,
-    CONSTRAINT cp_request PRIMARY KEY (dniRequest, skillId),
+    CONSTRAINT cp_request PRIMARY KEY (id),
     CONSTRAINT ca_request_student FOREIGN KEY (dniRequest) REFERENCES Student(dni) ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT ca_request_skill FOREIGN KEY (skillId) REFERENCES Skill(id) ON DELETE RESTRICT ON UPDATE CASCADE,
 
@@ -62,8 +64,9 @@ CREATE TABLE Request (
 );
 
 CREATE TABLE Collaboration (
-    dniOffer    VARCHAR(10),
-    dniRequest  VARCHAR(10),
+    id          SERIAL,
+    idRequest   SERIAL,
+    idOffer     SERIAL,
     skillId     SERIAL,
     place       VARCHAR(100),
     state       VARCHAR(50) DEFAULT 'notStarted',
@@ -71,10 +74,10 @@ CREATE TABLE Collaboration (
     hours       FLOAT,
     startDate   DATE,
     endDate     DATE,
-    CONSTRAINT cp_collaboration PRIMARY KEY (dniOffer, dniRequest, skillId, state),
+    CONSTRAINT cp_collaboration PRIMARY KEY (id),
 
-    CONSTRAINT ca_collaboration_offer FOREIGN KEY (dniOffer, skillId) REFERENCES Offer(dniOffer, skillId) ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT ca_collaboration_request FOREIGN KEY (dniRequest, skillId) REFERENCES Request(dniRequest, skillId) ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT ca_collaboration_offer FOREIGN KEY (idOffer) REFERENCES Offer(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT ca_collaboration_request FOREIGN KEY (idRequest) REFERENCES Request(id) ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT ca_collaboration_skill FOREIGN KEY (skillId) REFERENCES Skill(id) ON DELETE RESTRICT ON UPDATE CASCADE,
 
     CONSTRAINT ri_collaboration_score CHECK (score BETWEEN 0 AND 5),
