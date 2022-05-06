@@ -13,6 +13,7 @@ public final class OfferRowMapper implements RowMapper<Offer> {
 
     public Offer mapRow(ResultSet rs, int rowNum) throws SQLException {
         Offer offer = new Offer();
+        offer.setId(rs.getInt("id"));
         offer.setName(rs.getString("name"));
         offer.setDniOffer(rs.getString("dniOffer"));
         offer.setSkillId(rs.getInt("skillId"));

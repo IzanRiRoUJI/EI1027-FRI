@@ -14,6 +14,7 @@ public final class RequestRowMapper implements RowMapper<Request> {
 
     public Request mapRow(ResultSet rs, int rowNum) throws SQLException {
         Request request = new Request();
+        request.setId(rs.getInt("id"));
         request.setName(rs.getString("name"));
         request.setDniRequest(rs.getString("dniRequest"));
         request.setSkillId(rs.getInt("skillId"));
