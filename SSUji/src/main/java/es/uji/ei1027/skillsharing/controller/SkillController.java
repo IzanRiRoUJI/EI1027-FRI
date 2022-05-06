@@ -59,6 +59,7 @@ public class SkillController {
     public String processUpdateSubmit(@ModelAttribute("skill") Skill skill, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "skill/update";
+        System.out.print(skill);
         skillDao.updateSkill(skill);
         return "redirect:list";
     }
