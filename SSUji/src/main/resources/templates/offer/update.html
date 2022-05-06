@@ -59,6 +59,8 @@
 
                         <div class="form-group"> <label for="form_name">Offer name *</label> <input th:field="*{name}" id="form_name" type="text" name="name" class="form-control" placeholder="Name of the offer (other students will be able to see this)." required="required" data-error="Name is required."> </div>
 
+                        <div class="form-group"> <label for="form_name">Offer id *</label> <input th:field="*{id}" id="form_id" type="number" name="name" class="form-control"  required="required" readonly data-error="Id is required."> </div>
+
                         <div class="loggeduser" th:object="${session}">
                             <!--                                <span th:text="*{user}"></span> Hacer user.dni da error asi que guardo dni en otra variable userDNI-->
                             <!--                                <span th:text="*{userDNI}"></span>-->
