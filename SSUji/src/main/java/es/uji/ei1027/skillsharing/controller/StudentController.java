@@ -90,7 +90,7 @@ public class StudentController {
         return "student/ban";
     }
 
-/*    @RequestMapping(value="/profile")
+    @RequestMapping(value="/profile")
     public String showProfile(HttpSession session, Model model) {
 
         if(session != null){
@@ -100,7 +100,7 @@ public class StudentController {
                 model.addAttribute("sTeacher", collaborationService.getAverageTeacherScores(user.getDni()));
             }
         }
-        return "student/profile";
-    }*/
+        return "profile/profile";
+    }
 
 }

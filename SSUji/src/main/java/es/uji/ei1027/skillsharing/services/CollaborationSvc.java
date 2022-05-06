@@ -64,12 +64,13 @@ public class CollaborationSvc implements CollaborationService{
         return collaborations;
     }
 
-    /*@Override
+    @Override
     public double getAverageGivenScores(String dni){
         List<Collaboration> collaborations = getCollaborationsByDniState(dni, "finished");
         List<Integer> scores = new ArrayList<>();
         for (Collaboration c: collaborations) {
-            if(c.getDniRequest().equals(dni)){
+            //c.getDniRequest().equals(dni))
+            if(requestDao.getRequest(c.getIdRequest()).getDniRequest().equals(dni)){
                 scores.add(c.getScore());
             }
         }
@@ -82,10 +83,11 @@ public class CollaborationSvc implements CollaborationService{
         List<Collaboration> collaborations = getCollaborationsByDniState(dni, "finished");
         List<Integer> scores = new ArrayList<>();
         for (Collaboration c: collaborations) {
-            if(c.getDniOffer().equals(dni)){
+            //c.getDniOffer().equals(dni)
+            if(offerDao.getOffer(c.getIdRequest()).getDniOffer().equals(dni)){
                 scores.add(c.getScore());
             }
         }
         return scores.stream().mapToInt(val -> val).average().orElse(0.0);
-    }*/
+    }
 }
