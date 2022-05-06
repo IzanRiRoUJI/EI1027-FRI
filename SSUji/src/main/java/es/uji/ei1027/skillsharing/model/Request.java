@@ -21,6 +21,19 @@ public class Request {
         return id;
     }
 
+    @Override
+    public String toString() {
+        return "Request{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", dniRequest='" + dniRequest + '\'' +
+                ", skillId=" + skillId +
+                ", description='" + description + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                '}';
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -73,15 +86,4 @@ public class Request {
         this.endDate = endDate;
     }
 
-    @Override
-    public String toString() {
-        return "Request{" +
-                "name='" + name + '\'' +
-                ", dniRequest='" + dniRequest + '\'' +
-                ", skillId=" + skillId +
-                ", description='" + description + '\'' +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                '}';
-    }
 }

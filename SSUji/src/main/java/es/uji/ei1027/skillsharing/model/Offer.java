@@ -65,6 +65,19 @@ public class Offer {
         this.startDate = startDate;
     }
 
+    @Override
+    public String toString() {
+        return "Offer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", dniOffer='" + dniOffer + '\'' +
+                ", skillId=" + skillId +
+                ", description='" + description + '\'' +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                '}';
+    }
+
     public LocalDate getEndDate() {
         return endDate;
     }
@@ -73,15 +86,4 @@ public class Offer {
         this.endDate = endDate;
     }
 
-    @Override
-    public String toString() {
-        return "Offer{" +
-                "name='" + name + '\'' +
-                ", dniOffer='" + dniOffer + '\'' +
-                ", skillId=" + skillId +
-                ", description='" + description + '\'' +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                '}';
-    }
 }
