@@ -37,7 +37,7 @@
                             <a class="dropdown-item" href="#">My Offers</a>
                             <a class="dropdown-item" href="#">My Requests</a>
                             <a class="dropdown-item" href="/profile/myCollaborations" th:href="@{/collaboration/listmycollaborations}">My Collaborations</a>
-                            <a class="dropdown-item" href="/student/profile" th:href="@{/student/profile}">Profile</a>
+                            <a class="dropdown-item" href="/profile/profile" th:href="@{/profile/profile}">Profile</a>
                         </div>
                     </li>
 
@@ -69,6 +69,7 @@
                     <p th:if="*{user == null}">
                         <a href="/login" th:href="@{/login}">No autenticat Entrar</a>
                     </p>
+
                     <p th:unless="*{user == null}">
                         <a href="/logout" th:href="@{/logout}">Autenticat com <span th:text="*{user.name}"></span> Eixir</a>
                     </p>

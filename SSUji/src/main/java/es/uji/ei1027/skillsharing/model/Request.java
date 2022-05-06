@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Request {
+    private int id;
     private String name;
     private String dniRequest;
     private int skillId;
@@ -14,6 +15,15 @@ public class Request {
     private LocalDate startDate;
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate endDate;
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
