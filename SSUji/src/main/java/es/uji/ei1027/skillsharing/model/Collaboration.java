@@ -4,6 +4,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 
 public class Collaboration {
+    private int id;
+    private int idRequest;
+    private int idOffer;
     private String dniOffer;
     private String dniRequest;
     private int skillId;
@@ -15,6 +18,31 @@ public class Collaboration {
     private LocalDate startDate;
     @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
     private LocalDate endDate;
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getIdRequest() {
+        return idRequest;
+    }
+
+    public void setIdRequest(int idRequest) {
+        this.idRequest = idRequest;
+    }
+
+    public int getIdOffer() {
+        return idOffer;
+    }
+
+    public void setIdOffer(int idOffer) {
+        this.idOffer = idOffer;
+    }
 
     public String getDniOffer() {
         return dniOffer;
@@ -91,7 +119,10 @@ public class Collaboration {
     @Override
     public String toString() {
         return "Collaboration{" +
-                "dniOffer='" + dniOffer + '\'' +
+                "id=" + id +
+                ", idRequest=" + idRequest +
+                ", idOffer=" + idOffer +
+                ", dniOffer='" + dniOffer + '\'' +
                 ", dniRequest='" + dniRequest + '\'' +
                 ", skillId=" + skillId +
                 ", place='" + place + '\'' +
