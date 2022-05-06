@@ -26,10 +26,11 @@
 
                                     <!-- Nombre -->
                                     <div class="row justify-content-center"><h1 style="font-family:Bellota-Bold;">Hello! <span style="font-family:Arimo-Bold;" th:text="*{user.name}"></span></h1>
-                                        <img src="../static/images/UserProfile.png"
-                                             th:src="@{/images/UserProfile.png}" width="344" height="272" class="d-inline-block align-top" alt="user profile photo">
                                     </div>
-
+                                    <div class="row justify-content-center">
+                                    <img src="../static/images/UserProfile.png"
+                                         th:src="@{/images/UserProfile.png}" width="344" height="272" class="d-inline-block align-top" alt="user profile photo">
+                                    </div>
                                     <!-- Role -->
                                     <div th:unless="${user == null}"  class="row justify-content-center">
                                         <p th:if="*{user.isSKP == true}" class="role">[SKP]</p>
@@ -46,7 +47,7 @@
                                         <br>
 
                                         <!-- balance -->
-                                        <p class="center">Balance</p>
+                                        <h1 style="font-family:Bellota-Bold;">Balance</h1>
                                         <div class="row justify-content-center"> <h2><span th:text="*{user.balance}"></span></h2></div>
 
                                         <br>

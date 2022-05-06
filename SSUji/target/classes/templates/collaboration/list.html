@@ -15,7 +15,7 @@
         <p th:if="*{user == null}">
             <meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/>
         </p>
-        <p th:if="*{user != null and user.isSKP == false}">
+        <p th:if="*{user != null and user.isSKP == false}"> <!-- Es "Manage Collaborations" del SKP -->
             <meta http-equiv="refresh" content="0; URL=/student/restricted" th:href="@{/student/restricted}"/>
         </p>
     </div>

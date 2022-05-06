@@ -21,9 +21,14 @@ public class StudentDao implements UserDao{
     }
 
     public void addStudent(Student student) {
-        jdbcTemplate.update("INSERT INTO Student VALUES (?,?,?,?,?,?,?)",
-                student.getDni(), student.getName(), student.getEmail(),
-                student.getDegree(), student.getBalance(), student.isSKP(), student.getPassword());
+//        jdbcTemplate.update("INSERT INTO Student VALUES (?,?,?,?,?,?,?)",
+//                student.getDni(), student.getName(), student.getEmail(),
+//                student.getDegree(), student.getBalance(), student.isSKP(), student.getPassword());
+
+
+        jdbcTemplate.update("INSERT INTO Student (dni, name, email, degree, password)" +
+                        "VALUES (?,?,?,?,?)",
+                student.getDni(), student.getName(), student.getEmail(), student.getDegree(), student.getPassword());
     }
 
     public void deleteStudent(Student student) {

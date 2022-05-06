@@ -12,6 +12,16 @@
 <div layout:fragment="content">
     <h1>Create Skill</h1>
 
+    <div class="loggeduser" th:object="${session}">
+        <p th:if="*{user == null}">
+            <meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/>
+        </p>
+        <p th:if="*{user != null and user.isSKP == false}">
+            <meta http-equiv="refresh" content="0; URL=/student/restricted" th:href="@{/student/restricted}"/>
+        </p>
+    </div>
+
+
         <div class="col-lg-7 mx-auto">
             <div class="card mt-2 mx-auto p-4 bg-light">
                 <div class="card-body bg-light">
