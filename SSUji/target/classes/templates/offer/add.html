@@ -11,39 +11,40 @@
 <div layout:fragment="content">
     <h1>Create Offer</h1>
 
-<!--<form action="#" th:action="@{/offer/add}" th:object="${offer}" method="post">-->
-<!--    <table>-->
-<!--        <tr>-->
-<!--            <td><label>Name</label></td>-->
-<!--            <td><input type="text" th:field="*{name}" /></td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--            <td><label>Offer's DNI</label></td>-->
-<!--            <td><input type="text" th:field="*{dniOffer}" /></td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--            <td><label>Skill ID</label></td>-->
-<!--            <td><input type="number" th:field="*{skillId}" /></td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--            <td><label>Description</label></td>-->
-<!--            <td><input type="text" th:field="*{description}" /></td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--            <td><label>Starting day</label></td>-->
-<!--            <td><input type="date" th:field="*{startDate}"/></td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--            <td><label>Ending day</label></td>-->
-<!--            <td><input type="date" th:field="*{endDate}"/></td>-->
-<!--        </tr>-->
-<!--        <tr>-->
-<!--            <td colspan="2"><input type="submit" value="Create new Offer" /></td>-->
-<!--        </tr>-->
-<!--    </table>-->
-<!--</form>-->
+    <!--<form action="#" th:action="@{/offer/add}" th:object="${offer}" method="post">-->
+    <!--    <table>-->
+    <!--        <tr>-->
+    <!--            <td><label>Name</label></td>-->
+    <!--            <td><input type="text" th:field="*{name}" /></td>-->
+    <!--        </tr>-->
+    <!--        <tr>-->
+    <!--            <td><label>Offer's DNI</label></td>-->
+    <!--            <td><input type="text" th:field="*{dniOffer}" /></td>-->
+    <!--        </tr>-->
+    <!--        <tr>-->
+    <!--            <td><label>Skill ID</label></td>-->
+    <!--            <td><input type="number" th:field="*{skillId}" /></td>-->
+    <!--        </tr>-->
+    <!--        <tr>-->
+    <!--            <td><label>Description</label></td>-->
+    <!--            <td><input type="text" th:field="*{description}" /></td>-->
+    <!--        </tr>-->
+    <!--        <tr>-->
+    <!--            <td><label>Starting day</label></td>-->
+    <!--            <td><input type="date" th:field="*{startDate}"/></td>-->
+    <!--        </tr>-->
+    <!--        <tr>-->
+    <!--            <td><label>Ending day</label></td>-->
+    <!--            <td><input type="date" th:field="*{endDate}"/></td>-->
+    <!--        </tr>-->
+    <!--        <tr>-->
+    <!--            <td colspan="2"><input type="submit" value="Create new Offer" /></td>-->
+    <!--        </tr>-->
+    <!--    </table>-->
+    <!--</form>-->
 
     <div class="loggeduser" th:object="${session}">
+        <p><span th:text="*{user}"></span> </p>
         <p th:if="*{user == null}">
             <meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/>
         </p>
@@ -60,9 +61,9 @@
                             <div class="form-group"> <label for="form_name">Offer name *</label> <input th:field="*{name}" id="form_name" type="text" name="name" class="form-control" placeholder="Name of the offer (other students will be able to see this)." required="required" data-error="Name is required."> </div>
 
                             <div class="loggeduser" th:object="${session}">
-<!--                                <span th:text="*{user}"></span> Hacer user.dni da error asi que guardo dni en otra variable userDNI-->
-<!--                                <span th:text="*{userDNI}"></span>-->
-                                <div class="form-group"> <label for="form_dni">DNI *</label> <input th:name="dniOffer" th:id="dniOffer" th:value="*{userDNI}" id="form_dni" type="text" name="dniOffer" class="form-control" required="required" data-error="Your DNI is required." readonly> </div>
+                                <!--                                <span th:text="*{user}"></span> Hacer user.dni da error asi que guardo dni en otra variable userDNI-->
+                                <!--                                <span th:text="*{userDNI}"></span>-->
+                                <p class="form-group" th:unless="*{user == null}"> <label for="form_dni">DNI *</label> <input th:name="dniOffer" th:id="dniOffer" th:value="*{user.dni}" id="form_dni" type="text" name="dniOffer" class="form-control" required="required" data-error="Your DNI is required." readonly> </p>
                             </div>
 
                             <div class="form-group"> <label for="form_description">Description *</label> <textarea th:field="*{description}" id="form_description" name="description" class="form-control" placeholder="Write the description of the skill here." rows="4" required="required" data-error="A description is required."></textarea> </div>
@@ -86,7 +87,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <input type="submit" class="btn buttonAddA btn-send pt-2 btn-block" value="Create Offer">
-<!--                                    <input href="/student/ban/{name}/{skillName}/{skillLevel}/{start}/{end}(name=${form.name},banned=${student.banned})" th:href="@{/student/ban/{dni}/{banned}(dni=${student.dni},banned=${student.banned})}" class="btn buttonWarning">Ban</input>-->
+                                    <!--                                    <input href="/student/ban/{name}/{skillName}/{skillLevel}/{start}/{end}(name=${form.name},banned=${student.banned})" th:href="@{/student/ban/{dni}/{banned}(dni=${student.dni},banned=${student.banned})}" class="btn buttonWarning">Ban</input>-->
 
                                 </div>
                             </div>
@@ -98,4 +99,3 @@
     </div> <!-- /.row-->
 </div>
 </body>
-</html>

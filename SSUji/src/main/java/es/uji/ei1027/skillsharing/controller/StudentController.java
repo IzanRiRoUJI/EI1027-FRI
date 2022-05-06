@@ -2,6 +2,7 @@ package es.uji.ei1027.skillsharing.controller;
 
 import es.uji.ei1027.skillsharing.dao.StudentDao;
 import es.uji.ei1027.skillsharing.model.Student;
+import es.uji.ei1027.skillsharing.services.CollaborationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/student")
@@ -21,6 +25,14 @@ public class StudentController {
     public void setStudentDao(StudentDao studentDao){
         this.studentDao=studentDao;
     }
+
+    private CollaborationService collaborationService;
+
+    @Autowired
+    public void setCollaborationService(CollaborationService collaborationService) {
+        this.collaborationService = collaborationService;
+    }
+
 
     @RequestMapping("/list")
     public String listStudents(Model model) {
@@ -50,12 +62,12 @@ public class StudentController {
     }
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(
-            @ModelAttribute("student") Student student,
-            BindingResult bindingResult) {
+    public String processUpdateSubmit(@ModelAttribute("student") Student student, HttpSession session, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "student/update";
-        studentDao.updateStudent(student);
+
+        studentDao.updateStudentProfile(student);
+        session.setAttribute("user", studentDao.getStudent(student.getDni()));
         return "redirect:list";
     }
 
@@ -76,6 +88,32 @@ public class StudentController {
         model.addAttribute("studentsNotBanned", studentDao.getStudentsByBanStatus(false));
         model.addAttribute("studentsBanned", studentDao.getStudentsByBanStatus(true));
         return "student/ban";
+    }
+
+    @RequestMapping(value="/profile")
+    public String showProfile(HttpSession session, Model model) {
+
+        if(session != null){
+            Student user = (Student) session.getAttribute("user");
+            if(user != null){
+                model.addAttribute("sGiven", collaborationService.getAverageGivenScores(user.getDni()));
+                model.addAttribute("sTeacher", collaborationService.getAverageTeacherScores(user.getDni()));
+            }
+        }
+
+
+        //DEBUG
+//        Student testStudent = new Student();
+//        testStudent.setBalance((float) 9.8);
+//        testStudent.setBanned(false);
+//        testStudent.setDegree("Matematica");
+//        testStudent.setDni("test1234");
+//        testStudent.setEmail("test@uji.es");
+//        testStudent.setName("Pepe Test");
+//        testStudent.setPassword("123");
+//        testStudent.setSKP(false);
+//        model.addAttribute("testStudent", testStudent);
+        return "student/profile";
     }
 
 }

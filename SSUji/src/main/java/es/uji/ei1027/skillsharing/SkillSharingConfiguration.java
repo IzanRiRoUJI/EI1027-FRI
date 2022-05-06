@@ -15,8 +15,5 @@ public class SkillSharingConfiguration {
         return DataSourceBuilder.create().build();
     }
 
-//    @Bean
-//    public Categoria categoria(){        // Convenció de nom
-//        return new CategoriaWorldCup();
-//    }
+
 }

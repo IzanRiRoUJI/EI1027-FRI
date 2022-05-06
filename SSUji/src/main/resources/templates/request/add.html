@@ -44,10 +44,14 @@
 </form>
 
 <div class="loggeduser" th:object="${session}">
-    <p th:if="*{user == null}">
-        <meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/>
-    </p>
+    <p th:if="*{user == null}"><meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/></p>
 </div>
+    <span th:if="*{user == null}">
+        <meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/>
+
+
+    </span>
+
 
 
 <div class="col-lg-7 mx-auto">
@@ -62,7 +66,7 @@
                         <div class="loggeduser" th:object="${session}">
                             <!--                                <span th:text="*{user}"></span> Hacer user.dni da error asi que guardo dni en otra variable userDNI-->
                             <!--                                <span th:text="*{userDNI}"></span>-->
-                            <div class="form-group"> <label for="form_dni">DNI *</label> <input th:name="dniRequest" th:id="dniRequest" th:value="*{userDNI}" id="form_dni" type="text" name="dniReuqest" class="form-control" required="required" data-error="Your DNI is required." readonly> </div>
+                            <div class="form-group"> <label for="form_dni">DNI *</label> <input th:name="dniRequest" th:id="dniRequest" th:value="*{user.dni}" id="form_dni" type="text" name="dniReuqest" class="form-control" required="required" data-error="Your DNI is required." readonly> </div>
                         </div>
 
                         <div class="form-group"> <label for="form_description">Description *</label> <textarea th:field="*{description}" id="form_description" name="description" class="form-control" placeholder="Write the description of the skill here." rows="4" required="required" data-error="A description is required."></textarea> </div>

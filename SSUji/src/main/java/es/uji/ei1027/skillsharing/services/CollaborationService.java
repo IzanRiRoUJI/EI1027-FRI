@@ -7,4 +7,6 @@ import java.util.Map;
 
 public interface CollaborationService{
     public Map<Integer, Skill> getSkillsById();
+    public double getAverageGivenScores(String dni);
+    public double getAverageTeacherScores(String dni);
 }

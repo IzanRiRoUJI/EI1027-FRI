@@ -44,6 +44,13 @@ public class StudentDao implements UserDao{
                 student.getBalance(), student.isSKP(), student.getDni(), student.getPassword());
     }
 
+    public void updateStudentProfile(Student student) {
+        jdbcTemplate.update("UPDATE Student " +
+                        "SET name=?, email=?, degree=?" +
+                        "WHERE dni=?",
+                student.getName(), student.getEmail(), student.getDegree(), student.getDni());
+    }
+
     public Student getStudent(String dniStudent) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM Student WHERE dni=?",

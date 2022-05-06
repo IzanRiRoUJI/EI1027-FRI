@@ -76,4 +76,13 @@ public class CollaborationDao {
             return new ArrayList<Collaboration>();
         }
     }
+
+    public List<Collaboration> getCollaborationsOfStudentByState(String dni, String state){
+        try {
+            return jdbcTemplate.query("SELECT * FROM Collaboration WHERE state=? AND (dniRequest=? OR dniOffer=?)", new CollaborationRowMapper(), state, dni, dni);
+        }catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Collaboration>();
+        }
+
+    }
 }

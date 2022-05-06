@@ -40,9 +40,9 @@
                                     <input th:field="*{place}" id="form_Place" type="text" name="name" class="form-control" placeholder="Where did you meet? (Only both of you can see this)"> </div>
                                 <div class="form-group"> <label for="form_State">State</label>
                                     <select id="form_State" name="state">
-                                        <option value="notStarted">Not started</option>
-                                        <option value="inProgress">Started</option>
-                                        <option value="finished">Finished</option>
+                                        <option th:value="notStarted">Not started</option>
+                                        <option th:value="inProgress">Started</option>
+                                        <option th:value="finished">Finished</option>
                                     </select>
                                 </div>
                                 <div class="form-group"> <label for="form_Score">Score</label>
