@@ -80,8 +80,8 @@ public class CollaborationDao {
             return new ArrayList<Collaboration>();
         }
     }
-    public List<Collaboration> setCollaborationState(Collaboration collaboration, String state){ //  (state in ('notStarted', 'inProgress', 'finished')),
-        return jdbcTemplate.query("UPDATE Collaboration WHERE id=? SET state=?", new CollaborationRowMapper(), collaboration.getId(),state);
+    public void setCollaborationState(Collaboration collaboration, String state){
+        jdbcTemplate.query("UPDATE Collaboration WHERE id=? SET state=?", new CollaborationRowMapper(), collaboration.getId(),state);
     }
 }
 

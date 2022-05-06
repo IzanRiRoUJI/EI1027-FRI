@@ -86,7 +86,9 @@ public class CollaborationController {
     public String listMyCollaborations(Model model, HttpSession session) {
         Student user = (Student) session.getAttribute("user");
         String dni = user.getDni();
-        model.addAttribute("collaborations", collaborationService.getCollaborationsByDni(dni));
+        model.addAttribute("collaborationsNotStarted", collaborationService.getCollaborationsByDniState(dni,"notStarted"));
+        model.addAttribute("collaborationsInProgress", collaborationService.getCollaborationsByDniState(dni,"inProgress"));
+        model.addAttribute("collaborationsFinished", collaborationService.getCollaborationsByDniState(dni,"finished"));
         model.addAttribute("skillsInfo", collaborationService.getSkillsById());
         return "profile/mycollaborations";
     }

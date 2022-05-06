@@ -43,12 +43,12 @@ public class CollaborationSvc implements CollaborationService{
         List<Request> requests = requestDao.getRequests();
         List<Offer> offers = offerDao.getOffers();
         for (Offer offer : offers)
-            if (offer.getDniOffer() == dni) {
-                collaborations = collaborationDao.getMyCollaboration(offer.getSkillId());
+            if (Objects.equals(offer.getDniOffer(), dni)) {
+                collaborations.add(collaborationDao.getCollaboration(offer.getSkillId()));
             }
         for (Request request : requests)
-            if (request.getDniRequest() == dni) {
-                collaborations = collaborationDao.getMyCollaboration(request.getSkillId());
+            if (Objects.equals(request.getDniRequest(), dni)) {
+                collaborations.add(collaborationDao.getCollaboration(request.getSkillId()));
             }
         return collaborations;
     }
@@ -57,9 +57,10 @@ public class CollaborationSvc implements CollaborationService{
         List<Collaboration> collaborations = getCollaborationsByDni(dni);
 
         for (Collaboration coll : collaborations)
-            if (coll.getState() == state) {
+            if (!Objects.equals(coll.getState(), state)) {
                 collaborations = collaborationDao.getMyCollaboration(coll.getId());
             }
+        System.out.print(collaborations);
         return collaborations;
     }
 
