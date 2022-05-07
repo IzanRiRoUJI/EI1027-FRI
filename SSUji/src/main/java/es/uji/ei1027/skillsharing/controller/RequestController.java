@@ -3,6 +3,7 @@ package es.uji.ei1027.skillsharing.controller;
 import es.uji.ei1027.skillsharing.dao.RequestDao;
 import es.uji.ei1027.skillsharing.dao.SkillDao;
 import es.uji.ei1027.skillsharing.model.Request;
+import es.uji.ei1027.skillsharing.services.CollaborationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +33,12 @@ public class RequestController {
         this.skillDao = skillDao;
     }
 
+    private CollaborationService collaborationService;
+
+    @Autowired
+    public void setCollaborationService(CollaborationService collaborationService) {
+        this.collaborationService = collaborationService;
+    }
 
     @RequestMapping("/list")
     public String listRequests(Model model, HttpSession session) {
@@ -39,6 +46,7 @@ public class RequestController {
             session.setAttribute("nextUrl", "request/list");
         }
         model.addAttribute("requests", requestDao.getRequests());
+        model.addAttribute("skillsInfo", collaborationService.getSkillsById());
         return "request/list";
     }
 

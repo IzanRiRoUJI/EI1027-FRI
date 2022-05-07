@@ -54,7 +54,11 @@
             <tr>
                 <th>Name</th>
                 <th>Request's DNI</th>
-                <th>Skill ID</th>
+<!--                <th>Skill ID</th>-->
+
+                <th>Skill name</th>
+                <th>Skill level</th>
+
                 <th>Description</th>
                 <th>Starting day</th>
                 <th>Ending day</th>
@@ -66,7 +70,11 @@
             <tr th:each="request: ${requests}">
                 <td th:text="${request.name}"></td>
                 <td th:text="${request.dniRequest}"></td>
-                <td th:text="${request.skillId}"></td>
+<!--                <td th:text="${request.skillId}"></td>-->
+
+                <td th:text="${skillsInfo.get(request.skillId).name}"></td>
+                <td th:text="${skillsInfo.get(request.skillId).level}"></td>
+
                 <td th:text="${request.description}"></td>
                 <td th:text="${request.startDate}"></td>
                 <td th:text="${request.endDate}"></td>

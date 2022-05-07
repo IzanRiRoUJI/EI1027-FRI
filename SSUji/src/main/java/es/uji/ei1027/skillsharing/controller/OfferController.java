@@ -33,9 +33,17 @@ public class OfferController {
         this.skillDao = skillDao;
     }
 
+    private CollaborationService collaborationService;
+
+    @Autowired
+    public void setCollaborationService(CollaborationService collaborationService) {
+        this.collaborationService = collaborationService;
+    }
+
     @RequestMapping("/list")
     public String listOffers(Model model) {
         model.addAttribute("offers", offerDao.getOffers());
+        model.addAttribute("skillsInfo", collaborationService.getSkillsById());
         return "offer/list";
     }
 

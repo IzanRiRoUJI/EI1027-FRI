@@ -1,44 +1,76 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/base}">
 <head>
-    <title>Create new Student</title>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link type="text/css" th:href="@{static/css/base.css}" href="static/css/base.css" rel="stylesheet"/>
 </head>
 <body>
-<h2>New student</h2>
-<form action="#" th:action="@{/student/add}"
-      th:object="${student}" method="post">
-    <table>
-        <tr>
-            <td><label>DNI</label></td>
-            <td><input type="text" th:field="*{dni}" /></td>
-        </tr>
-        <tr>
-            <td><label>Name</label></td>
-            <td><input type="text" th:field="*{name}" /></td>
-        </tr>
-        <tr>
-            <td><label>email</label></td>
-            <td><input type="text" th:field="*{email}" /></td>
-        </tr>
-        <tr>
-            <td><label>Degree</label></td>
-            <td><input type="text" th:field="*{degree}" /></td>
-        </tr>
-        <tr>
-            <td><label>Balance</label></td>
-            <td><input type="number" th:field="*{balance}" /></td>
-        </tr>
-        <tr>
-            <td><label>isSKP</label></td>
-            <td><input type="checkbox" th:checked="*{isSKP}" /></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Create new Student" /></td>
-        </tr>
-    </table>
-</form>
+<div layout:fragment="content">
+<h1>Register to SkillSharing!</h1>
+<!--<form action="#" th:action="@{/student/add}" th:object="${student}" method="post">-->
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <td><label>DNI</label></td>-->
+<!--            <td><input type="text" th:field="*{dni}" /></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td><label>Name</label></td>-->
+<!--            <td><input type="text" th:field="*{name}" /></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td><label>email</label></td>-->
+<!--            <td><input type="text" th:field="*{email}" /></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td><label>Degree</label></td>-->
+<!--            <td><input type="text" th:field="*{degree}" /></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td><label>Balance</label></td>-->
+<!--            <td><input type="number" th:field="*{balance}" /></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td><label>isSKP</label></td>-->
+<!--            <td><input type="checkbox" th:checked="*{isSKP}" /></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <td colspan="2"><input type="submit" value="Create new Student" /></td>-->
+<!--        </tr>-->
+<!--    </table>-->
+<!--</form>-->
+
+    <div class="col-lg-7 mx-auto">
+        <div class="card mt-2 mx-auto p-4 bg-light">
+            <div class="card-body bg-light">
+                <div class="container">
+                    <form action="#" th:action="@{/student/add}" th:object="${student}" method="post">
+                        <div class="controls">
+
+                            <div class="form-group"> <label for="form_dni">DNI *</label> <input th:field="*{dni}" id="form_dni" type="text" name="dni" class="form-control" placeholder="Your DNI." required="required" data-error="DNI is required."> </div>
+
+                            <div class="form-group"> <label for="form_name">Name * (this can be changed in your profile)</label> <input th:field="*{name}" id="form_name" type="text" name="name" class="form-control" placeholder="Your name." rows="4" required="required" data-error="A name is required."> </div>
+
+                            <div class="form-group"> <label for="form_email">Email * (this can be changed in your profile)</label> <input th:field="*{email}" id="form_email" type="text" name="email" class="form-control" placeholder="Your UJI email." rows="4" required="required" data-error="A UJI mail is required."> </div>
+                            <div class="form-group"> <label for="form_degree">Degree * (this can be changed in your profile)</label> <input th:field="*{degree}" id="form_degree" type="text" name="degree" class="form-control" placeholder="The name of your degree here." rows="4" required="required" data-error="A degree is required."> </div>
+
+                            <div class="form-group"> <label for="form_degree">Password *</label> <input th:field="*{password}" id="form_password" type="password" name="degree" class="form-control" placeholder="Your secret password." rows="4" required="required" data-error="A password is required."> </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="submit" class="btn buttonAddA btn-send pt-2 btn-block" value="Register">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> <!-- /.8 -->
+    </div> <!-- /.row-->
+</div>
+
+
 </body>
 </html>
