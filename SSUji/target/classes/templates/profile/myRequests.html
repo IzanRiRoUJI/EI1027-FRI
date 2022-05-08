@@ -38,6 +38,11 @@
     <!--</table>-->
     <!--<a href="add" class="btn btn-success">Add request</a>-->
 
+    <div class="loggeduser" th:object="${session}">
+        <p th:if="*{user == null}">
+            <meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/>
+        </p>
+    </div>
     <h1>Requests List</h1>
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
@@ -46,7 +51,8 @@
             <tr>
                 <th>Name</th>
                 <th>Request's DNI</th>
-                <th>Skill ID</th>
+                <th>Skill name</th>
+                <th>Skill level</th>
                 <th>Description</th>
                 <th>Starting day</th>
                 <th>Ending day</th>
@@ -58,7 +64,10 @@
             <tr th:each="request: ${requests}">
                 <td th:text="${request.name}"></td>
                 <td th:text="${request.dniRequest}"></td>
-                <td th:text="${request.skillId}"></td>
+
+                <td th:text="${skillsInfo.get(request.skillId).name}"></td>
+                <td th:text="${skillsInfo.get(request.skillId).level}"></td>
+
                 <td th:text="${request.description}"></td>
                 <td th:text="${request.startDate}"></td>
                 <td th:text="${request.endDate}"></td>
