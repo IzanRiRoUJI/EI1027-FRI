@@ -57,13 +57,12 @@ public class CollaborationSvc implements CollaborationService{
 
     public List<Collaboration> getCollaborationsByDniState(String dni, String state) {
         List<Collaboration> collaborations = getCollaborationsByDni(dni);
-
+        List<Collaboration> collaborationsbn = new ArrayList<>();
         for (Collaboration coll : collaborations)
-            if (!Objects.equals(coll.getState(), state)) {
-                collaborations = collaborationDao.getMyCollaboration(coll.getId());
+            if (coll.getState().equals(state)) {
+                collaborationsbn.add(coll);
             }
-
-        return collaborations;
+        return collaborationsbn;
     }
 
     @Override
@@ -71,7 +70,6 @@ public class CollaborationSvc implements CollaborationService{
         List<Collaboration> collaborations = getCollaborationsByDniState(dni, "finished");
         List<Integer> scores = new ArrayList<>();
         for (Collaboration c: collaborations) {
-            //c.getDniRequest().equals(dni))
             if(requestDao.getRequest(c.getIdRequest()).getDniRequest().equals(dni)){
                 scores.add(c.getScore());
             }

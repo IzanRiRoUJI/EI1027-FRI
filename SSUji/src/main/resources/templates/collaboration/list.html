@@ -11,6 +11,8 @@
 <div layout:fragment="content">
     <h1>Manage Collaborations</h1>
 
+    <p> <span th:text="*{offersInfo}"></span> </p>
+
     <div class="loggeduser" th:object="${session}">
         <p th:if="*{user == null}">
             <meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/>
@@ -19,7 +21,6 @@
             <meta http-equiv="refresh" content="0; URL=/student/restricted" th:href="@{/student/restricted}"/>
         </p>
     </div>
-
 
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
@@ -48,7 +49,6 @@
                 </thead>
                 <tbody>
                 <tr th:each="collaboration: ${collaborationsNotStarted}">
-<!--                    <td th:text="${collaboration.skillId}"></td>-->
                     <td th:text="${skillsInfo.get(collaboration.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).level}"></td>
                     <td th:text="${collaboration.state}"></td>
@@ -72,7 +72,6 @@
                 </thead>
                 <tbody>
                 <tr th:each="collaboration: ${collaborationsInProgress}">
-<!--                    <td th:text="${collaboration.skillId}"></td>-->
                     <td th:text="${skillsInfo.get(collaboration.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).level}"></td>
                     <td th:text="${collaboration.state}"></td>
@@ -90,6 +89,8 @@
             <table class="table table-striped table-sm">
                 <thead>
                 <tr>
+                    <th>Offer's name</th>
+                    <th>Requests's name</th>
                     <th>Skill name</th>
                     <th>Skill level</th>
                     <th>State (debug)</th>
@@ -102,7 +103,8 @@
                 </thead>
                 <tbody>
                 <tr th:each="collaboration: ${collaborationsFinished}">
-<!--                    <td th:text="${collaboration.skillId}"></td>-->
+                    <td th:text="${offersInfo.get(collaboration.offerId)}"></td>
+                    <!--<td th:text="${requestsInfo.get(collaboration.requestId).name}"></td>-->
                     <td th:text="${skillsInfo.get(collaboration.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).level}"></td>
                     <td th:text="${collaboration.state}"></td>
