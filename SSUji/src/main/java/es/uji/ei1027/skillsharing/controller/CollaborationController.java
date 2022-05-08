@@ -37,12 +37,14 @@ public class CollaborationController {
 
 
     @RequestMapping("/list")
-    public String listCollaborations(Model model) {
+    public String listCollaborations(Model model, HttpSession session) {
+
+
+
         model.addAttribute("collaborationsNotStarted", collaborationDao.getCollaborationsByState("notStarted"));
         model.addAttribute("collaborationsInProgress", collaborationDao.getCollaborationsByState("inProgress"));
         model.addAttribute("collaborationsFinished", collaborationDao.getCollaborationsByState("finished"));
         model.addAttribute("skillsInfo", collaborationService.getSkillsById());
-        System.out.print(model.getAttribute("collaborationsNotStarted"));
         return "collaboration/list";
     }
 
@@ -66,10 +68,9 @@ public class CollaborationController {
         model.addAttribute("collaboration", collaborationDao.getCollaboration(id));
         return "collaboration/update";
     }
-
-    public String processUpdateSubmit(
-            @ModelAttribute("collaboration") Collaboration collaboration,
-            BindingResult bindingResult) {
+    
+    @RequestMapping(value="/update", method = RequestMethod.POST)
+    public String processUpdateSubmit(@ModelAttribute("collaboration") Collaboration collaboration, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "collaboration/update";
         collaborationDao.updateCollaboration(collaboration);
@@ -85,6 +86,12 @@ public class CollaborationController {
     @RequestMapping("/listmycollaborations")
     public String listMyCollaborations(Model model, HttpSession session) {
         Student user = (Student) session.getAttribute("user");
+//        if (user == null){
+//            return "redirect:../login" ;
+//        }
+//        if (session.getAttribute("nextUrl") == null){
+//            session.setAttribute("nextUrl", "request/list");
+//        }
         String dni = user.getDni();
         model.addAttribute("collaborationsNotStarted", collaborationService.getCollaborationsByDniState(dni,"notStarted"));
         model.addAttribute("collaborationsInProgress", collaborationService.getCollaborationsByDniState(dni,"inProgress"));
@@ -104,17 +111,16 @@ public class CollaborationController {
         if (bindingResult.hasErrors())
             return "collaboration/edit";
         collaborationDao.updateCollaboration(collaboration);
-        System.out.print(collaboration);
         return "redirect:/collaboration/listmycollaborations";
     }
     @RequestMapping(value="/setInProgress/{id}")
     public String setCollaborationInProgress(@PathVariable int id) {
         collaborationDao.setCollaborationState(collaborationDao.getCollaboration(id),"inProgress");
-        return "redirect:..";
+        return "redirect:../listmycollaborations";
     }
     @RequestMapping(value="/setFinished/{id}")
     public String setCollaborationFinished(@PathVariable int id) {
         collaborationDao.setCollaborationState(collaborationDao.getCollaboration(id),"finished");
-        return "redirect:..";
+        return "redirect:../listmycollaborations";
     }
 }

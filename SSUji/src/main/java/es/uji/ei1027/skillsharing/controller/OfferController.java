@@ -47,6 +47,19 @@ public class OfferController {
         return "offer/list";
     }
 
+    @RequestMapping("/mylist")
+    public String listMyOffers(Model model, HttpSession session) {
+        if (session.getAttribute("nextUrl") == null){
+            session.setAttribute("nextUrl", "request/list");
+        }
+
+        Student user = (Student) session.getAttribute("user");
+        String dni = user.getDni();
+        model.addAttribute("offers", offerDao.getMyOffers(dni));
+        model.addAttribute("skillsInfo", collaborationService.getSkillsById());
+        return "profile/myOffers";
+    }
+
     @RequestMapping(value="/add")
     public String addOffer(Model model, HttpSession session) {
         if (session.getAttribute("nextUrl") == null){

@@ -7,8 +7,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Repository
 public class CollaborationDao {
@@ -81,7 +83,10 @@ public class CollaborationDao {
         }
     }
     public void setCollaborationState(Collaboration collaboration, String state){
-        jdbcTemplate.query("UPDATE Collaboration WHERE id=? SET state=?", new CollaborationRowMapper(), collaboration.getId(),state);
+        if(Objects.equals(collaboration.getState(), "notStarted"))
+            jdbcTemplate.update("UPDATE Collaboration SET state=?, startDate=? WHERE id=?", state,LocalDate.now(),collaboration.getId());
+        if(Objects.equals(collaboration.getState(), "inProgress"))
+            jdbcTemplate.update("UPDATE Collaboration SET state=?, endDate=? WHERE id=?", state,LocalDate.now(),collaboration.getId());
     }
 }
 

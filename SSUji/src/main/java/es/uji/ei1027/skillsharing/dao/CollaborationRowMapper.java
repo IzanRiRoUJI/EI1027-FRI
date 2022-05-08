@@ -13,6 +13,7 @@ public final class CollaborationRowMapper implements RowMapper<Collaboration> {
 
     public Collaboration mapRow(ResultSet rs, int rowNum) throws SQLException {
         Collaboration collaboration = new Collaboration();
+        collaboration.setId(rs.getInt("id"));
         collaboration.setIdOffer(rs.getInt("idOffer"));
         collaboration.setIdRequest(rs.getInt("idRequest"));
         collaboration.setSkillId(rs.getInt("skillId"));
@@ -22,7 +23,6 @@ public final class CollaborationRowMapper implements RowMapper<Collaboration> {
         collaboration.setHours(rs.getFloat("hours"));
         collaboration.setStartDate(rs.getObject("startDate", LocalDate.class));
         collaboration.setEndDate(rs.getObject("endDate", LocalDate.class));
-
         return collaboration;
 
 //                dniOffer    VARCHAR(10),
