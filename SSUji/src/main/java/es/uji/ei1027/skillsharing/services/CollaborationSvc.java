@@ -39,25 +39,31 @@ public class CollaborationSvc implements CollaborationService{
     }
 
     public List<Collaboration> getCollaborationsByDni(String dni) {
-        List<Collaboration> collaborations = collaborationDao.getCollaborations() ;
-        for(Collaboration coll : collaborations){
-            if (Objects.equals(offerDao.getOffer(coll.getIdOffer()).getDniOffer(), dni))
-                collaborations.add(coll);
-            if (Objects.equals(requestDao.getRequest(coll.getIdRequest()).getDniRequest(), dni) && !collaborations.contains(coll))
-                collaborations.add(coll);
+        List<Collaboration> result = new ArrayList<>();
+        List<Collaboration> collaborations = collaborationDao.getCollaborations();
+
+        for (Collaboration c : collaborations) {
+            Offer offer = offerDao.getOffer(c.getIdOffer());
+            Request request = requestDao.getRequest(c.getIdRequest());
+
+            if(offer.getDniOffer().equals(dni) || request.getDniRequest().equals(dni)){
+                result.add(c);
+            }
         }
-        return collaborations;
+
+//        System.out.print("getCollaborationsByDni " + collaborations);
+        return result;
     }
 
     public List<Collaboration> getCollaborationsByDniState(String dni, String state) {
         List<Collaboration> collaborations = getCollaborationsByDni(dni);
-        List<Collaboration> collaborationsaux = new ArrayList<>();
-        for (Collaboration coll : collaborations) {
-            if (Objects.equals(coll.getState(), state)) {
-                collaborationsaux.add(coll);
+
+        for (Collaboration coll : collaborations)
+            if (!Objects.equals(coll.getState(), state)) {
+                collaborations = collaborationDao.getMyCollaboration(coll.getId());
             }
-        }
-        return collaborationsaux;
+
+        return collaborations;
     }
 
     @Override
@@ -70,7 +76,6 @@ public class CollaborationSvc implements CollaborationService{
                 scores.add(c.getScore());
             }
         }
-
         return scores.stream().mapToInt(val -> val).average().orElse(0.0);
     }
 
@@ -85,5 +90,25 @@ public class CollaborationSvc implements CollaborationService{
             }
         }
         return scores.stream().mapToInt(val -> val).average().orElse(0.0);
+    }
+
+    @Override
+    public Map<Integer, Offer> getOffersById() {
+        List<Offer> offerList = offerDao.getOffers();
+        Map<Integer, Offer> result = new HashMap<>();
+        for (Offer offer : offerList) {
+            result.putIfAbsent(offer.getId(), offer);
+        }
+        return result;
+    }
+
+    @Override
+    public Map<Integer, Request> getRequestsById() {
+        List<Request> requestsList = requestDao.getRequests();
+        Map<Integer, Request> result = new HashMap<>();
+        for (Request request : requestsList) {
+            result.putIfAbsent(request.getId(), request);
+        }
+        return result;
     }
 }

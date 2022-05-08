@@ -32,7 +32,7 @@
                                          th:src="@{/images/UserProfile.png}" width="344" height="272" class="d-inline-block align-top" alt="user profile photo">
                                     </div>
                                     <!-- Role -->
-                                    <div th:unless="${user == null}"  class="row justify-content-center">
+                                    <div class="row justify-content-center">
                                         <p th:if="*{user.isSKP == true}" class="role">[SKP]</p>
                                         <p th:if="*{user.isSKP == false}" class="role">[Student]</p>
                                     </div>

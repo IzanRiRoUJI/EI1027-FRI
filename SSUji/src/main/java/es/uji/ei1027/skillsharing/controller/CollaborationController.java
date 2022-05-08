@@ -68,10 +68,9 @@ public class CollaborationController {
         model.addAttribute("collaboration", collaborationDao.getCollaboration(id));
         return "collaboration/update";
     }
-
-    public String processUpdateSubmit(
-            @ModelAttribute("collaboration") Collaboration collaboration,
-            BindingResult bindingResult) {
+    
+    @RequestMapping(value="/update", method = RequestMethod.POST)
+    public String processUpdateSubmit(@ModelAttribute("collaboration") Collaboration collaboration, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "collaboration/update";
         collaborationDao.updateCollaboration(collaboration);

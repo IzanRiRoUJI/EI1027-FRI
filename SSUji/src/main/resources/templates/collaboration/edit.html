@@ -4,8 +4,7 @@
       layout:decorate="~{fragments/base}">
 <head>
     <title>Edit Collaboration</title>
-    <meta charset="UTF-8" />
-    link type="text/css" th:href="@{static/css/base.css}" href="static/css/base.css" rel="stylesheet"/>
+    <meta charset="UTF-8" link type="text/css" th:href="@{static/css/base.css}" href="static/css/base.css" rel="stylesheet"/>
 </head>
 <body>
 <div layout:fragment="content">
@@ -43,11 +42,7 @@
                                 <div class="form-group"> <label for="form_Place">Place</label>
                                     <input th:field="*{place}" id="form_Place" type="text" name="name" class="form-control" placeholder="Where did you meet? (Only both of you can see this)"> </div>
                                 <div class="form-group"> <label for="form_State">State</label>
-                                    <select id="form_State" name="state">
-                                        <option th:value="notStarted">Not started</option>
-                                        <option th:value="inProgress">Started</option>
-                                        <option th:value="finished">Finished</option>
-                                    </select>
+                                    <td><input hidden type="text" id="form_State" th:field="*{state}" readonly/></td>
                                 </div>
                                 <div class="form-group"> <label for="form_Score">Score</label>
                                     <input th:field="*{score}" id="form_Score" type="number" min="1" max="5"> </div>

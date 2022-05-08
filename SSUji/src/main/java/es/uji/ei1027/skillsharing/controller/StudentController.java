@@ -65,7 +65,6 @@ public class StudentController {
     public String processUpdateSubmit(@ModelAttribute("student") Student student, HttpSession session, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "student/update";
-
         studentDao.updateStudentProfile(student);
         session.setAttribute("user", studentDao.getStudent(student.getDni()));
         return "redirect:list";
