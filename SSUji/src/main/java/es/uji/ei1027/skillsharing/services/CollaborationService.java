@@ -1,5 +1,7 @@
 package es.uji.ei1027.skillsharing.services;
 
+import es.uji.ei1027.skillsharing.model.Offer;
+import es.uji.ei1027.skillsharing.model.Request;
 import es.uji.ei1027.skillsharing.model.Skill;
 import java.util.List;
 import java.util.Map;
@@ -11,4 +13,6 @@ public interface CollaborationService{
     public double getAverageTeacherScores(String dni);
     public List<Collaboration> getCollaborationsByDni(String dni);
     public List<Collaboration> getCollaborationsByDniState(String dni,String notStarted);
+    public Map<Integer, Offer> getOffersById();
+    public Map<Integer, Request> getRequestsById();
 }

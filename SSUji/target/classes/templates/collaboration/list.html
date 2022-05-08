@@ -40,7 +40,7 @@
             <table class="table table-striped table-sm">
                 <thead>
                 <tr>
-                    <th>Skill ID</th>
+<!--                    <th>Skill ID</th>-->
                     <th>Skill name</th>
                     <th>Skill level</th>
                     <th>State (debug)</th>
@@ -49,7 +49,7 @@
                 </thead>
                 <tbody>
                 <tr th:each="collaboration: ${collaborationsNotStarted}">
-                    <td th:text="${collaboration.skillId}"></td>
+<!--                    <td th:text="${collaboration.skillId}"></td>-->
                     <td th:text="${skillsInfo.get(collaboration.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).level}"></td>
                     <td th:text="${collaboration.state}"></td>
@@ -64,7 +64,7 @@
             <table class="table table-striped table-sm">
                 <thead>
                 <tr>
-                    <th>Skill ID (debug)</th>
+<!--                    <th>Skill ID (debug)</th>-->
                     <th>Skill name</th>
                     <th>Skill level</th>
                     <th>State (debug)</th>
@@ -74,7 +74,7 @@
                 </thead>
                 <tbody>
                 <tr th:each="collaboration: ${collaborationsInProgress}">
-                    <td th:text="${collaboration.skillId}"></td>
+<!--                    <td th:text="${collaboration.skillId}"></td>-->
                     <td th:text="${skillsInfo.get(collaboration.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).level}"></td>
                     <td th:text="${collaboration.state}"></td>
@@ -92,7 +92,7 @@
             <table class="table table-striped table-sm">
                 <thead>
                 <tr>
-                    <th>Skill ID (debug)</th>
+<!--                    <th>Skill ID (debug)</th>-->
                     <th>Skill name</th>
                     <th>Skill level</th>
                     <th>State (debug)</th>
@@ -105,7 +105,7 @@
                 </thead>
                 <tbody>
                 <tr th:each="collaboration: ${collaborationsFinished}">
-                    <td th:text="${collaboration.skillId}"></td>
+<!--                    <td th:text="${collaboration.skillId}"></td>-->
                     <td th:text="${skillsInfo.get(collaboration.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).level}"></td>
                     <td th:text="${collaboration.state}"></td>
