@@ -19,7 +19,9 @@
             <tr>
                 <th>Name</th>
                 <th>Offer's DNI</th>
-                <th>Skill ID</th>
+<!--                <th>Skill ID (debug)</th>-->
+                <th>Skill name</th>
+                <th>Skill level</th>
                 <th>Description</th>
                 <th>Starting day</th>
                 <th>Ending day</th>
@@ -31,7 +33,11 @@
             <tr th:each="offer: ${offers}">
                 <td th:text="${offer.name}"></td>
                 <td th:text="${offer.dniOffer}"></td>
-                <td th:text="${offer.skillId}"></td>
+<!--                <td th:text="${offer.skillId}"></td>-->
+
+                <td th:text="${skillsInfo.get(offer.skillId).name}"></td>
+                <td th:text="${skillsInfo.get(offer.skillId).level}"></td>
+
                 <td th:text="${offer.description}"></td>
                 <td th:text="${offer.startDate}"></td>
                 <td th:text="${offer.endDate}"></td>

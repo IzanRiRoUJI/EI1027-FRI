@@ -54,7 +54,41 @@
                     <td th:text="${skill.active}"></td>
 
                     <td><a th:href="@{/skill/update/{id}(id=${skill.id})}" class="btn buttonEdit">Edit</a></td>
-                    <td><a th:href="@{/skill/list/{id}/{active}(id=${skill.id},active=${skill.active})}" class="btn buttonWarning">Inactivate</a></td>
+                    <td>
+
+<!--                        <a th:href="@{/skill/list/{id}/{active}(id=${skill.id},active=${skill.active})}" class="btn buttonWarning">Inactivate</a>-->
+                        <a data-toggle="modal" th:attr="data-target='#popup'+${skill.id}" class="btn buttonWarning">Inactivate</a>
+
+                        <!-- Pop up -->
+                        <div class="modal fade" th:id="'popup' + ${skill.id}" tabindex="-1" role="dialog" aria-labelledby="inactivateModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 id="inactivateModalLabel">Are you sure?</h3>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="popUpBody">
+
+                                        Are you sure you want to inactivate <b th:text="${skill.name}"></b> (<b th:text="${skill.level}"></b>) ? <br>
+                                        (This action can be reversed)
+                                        <br>
+                                        <br>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn buttonEdit" href="#" data-dismiss="modal">Cancel</a>
+<!--                                        <a href="/student/ban/{dni}/{banned}(dni=${student.dni},banned=${student.banned})" th:href="@{/student/ban/{dni}/{banned}(dni=${student.dni},banned=${student.banned})}" class="btn buttonWarning">Ban</a>-->
+                                        <a th:href="@{/skill/list/{id}/{active}(id=${skill.id},active=${skill.active})}" class="btn buttonWarning">Inactivate</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- END Pop up -->
+
+
+
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -86,7 +120,51 @@
                     <td th:text="${skill.active}"></td>
 
                     <td><a th:href="@{/skill/update/{id}(id=${skill.id})}" class="btn buttonEdit">Edit</a></td>
-                    <td><a th:href="@{/skill/list/{id}/{active}(id=${skill.id},active=${skill.active})}" class="btn buttonWarning">Activate</a></td>
+                    <td>
+<!--                        <a th:href="@{/skill/list/{id}/{active}(id=${skill.id},active=${skill.active})}" class="btn buttonWarning">Activate</a>-->
+
+
+                        <a data-toggle="modal" th:attr="data-target='#popup'+${skill.id}" class="btn buttonWarning">Activate</a>
+
+                        <!-- Pop up -->
+                        <div class="modal fade" th:id="'popup' + ${skill.id}" tabindex="-1" role="dialog" aria-labelledby="activateModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 id="activateModalLabel">Are you sure?</h3>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="popUpBody">
+
+                                        Are you sure you want to activate <b th:text="${skill.name}"></b> (<b th:text="${skill.level}"></b>) ? <br>
+                                        (This action can be reversed)
+                                        <br>
+                                        <br>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn buttonEdit" href="#" data-dismiss="modal">Cancel</a>
+                                        <!--                                        <a href="/student/ban/{dni}/{banned}(dni=${student.dni},banned=${student.banned})" th:href="@{/student/ban/{dni}/{banned}(dni=${student.dni},banned=${student.banned})}" class="btn buttonWarning">Ban</a>-->
+                                        <a th:href="@{/skill/list/{id}/{active}(id=${skill.id},active=${skill.active})}" class="btn buttonWarning">Activate</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- END Pop up -->
+
+
+
+
+
+
+
+
+
+
+
+
+                    </td>
                 </tr>
                 </tbody>
             </table>

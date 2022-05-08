@@ -39,29 +39,25 @@ public class CollaborationSvc implements CollaborationService{
     }
 
     public List<Collaboration> getCollaborationsByDni(String dni) {
-        List<Collaboration> collaborations = new ArrayList<>();
-        List<Request> requests = requestDao.getRequests();
-        List<Offer> offers = offerDao.getOffers();
-        for (Offer offer : offers)
-            if (Objects.equals(offer.getDniOffer(), dni)) {
-                collaborations.add(collaborationDao.getCollaboration(offer.getSkillId()));
-            }
-        for (Request request : requests)
-            if (Objects.equals(request.getDniRequest(), dni)) {
-                collaborations.add(collaborationDao.getCollaboration(request.getSkillId()));
-            }
+        List<Collaboration> collaborations = collaborationDao.getCollaborations() ;
+        for(Collaboration coll : collaborations){
+            if (Objects.equals(offerDao.getOffer(coll.getIdOffer()).getDniOffer(), dni))
+                collaborations.add(coll);
+            if (Objects.equals(requestDao.getRequest(coll.getIdRequest()).getDniRequest(), dni) && !collaborations.contains(coll))
+                collaborations.add(coll);
+        }
         return collaborations;
     }
 
     public List<Collaboration> getCollaborationsByDniState(String dni, String state) {
         List<Collaboration> collaborations = getCollaborationsByDni(dni);
-
-        for (Collaboration coll : collaborations)
-            if (!Objects.equals(coll.getState(), state)) {
-                collaborations = collaborationDao.getMyCollaboration(coll.getId());
+        List<Collaboration> collaborationsaux = new ArrayList<>();
+        for (Collaboration coll : collaborations) {
+            if (Objects.equals(coll.getState(), state)) {
+                collaborationsaux.add(coll);
             }
-        System.out.print(collaborations);
-        return collaborations;
+        }
+        return collaborationsaux;
     }
 
     @Override
