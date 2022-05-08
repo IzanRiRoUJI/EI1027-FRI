@@ -3,6 +3,7 @@ package es.uji.ei1027.skillsharing.controller;
 import es.uji.ei1027.skillsharing.dao.RequestDao;
 import es.uji.ei1027.skillsharing.dao.SkillDao;
 import es.uji.ei1027.skillsharing.model.Request;
+import es.uji.ei1027.skillsharing.model.Student;
 import es.uji.ei1027.skillsharing.services.CollaborationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,6 +49,23 @@ public class RequestController {
         model.addAttribute("requests", requestDao.getRequests());
         model.addAttribute("skillsInfo", collaborationService.getSkillsById());
         return "request/list";
+    }
+    @RequestMapping("/mylist")
+    public String listMyOffers(Model model, HttpSession session) {
+        if (session.getAttribute("nextUrl") == null){
+            session.setAttribute("nextUrl", "request/mylist");
+        }
+
+        if(session != null){
+            Student user = (Student) session.getAttribute("user");
+            if(user != null){
+                String dni = user.getDni();
+                model.addAttribute("requests", requestDao.getMyRequests(dni));
+            }
+        }
+
+        model.addAttribute("skillsInfo", collaborationService.getSkillsById());
+        return "profile/myRequests";
     }
 
     @RequestMapping(value="/add")

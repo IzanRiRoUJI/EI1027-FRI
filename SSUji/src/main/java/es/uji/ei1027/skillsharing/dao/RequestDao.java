@@ -1,5 +1,6 @@
 package es.uji.ei1027.skillsharing.dao;
 
+import es.uji.ei1027.skillsharing.model.Offer;
 import es.uji.ei1027.skillsharing.model.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -89,6 +90,15 @@ public class RequestDao {
     public List<Request> getRequests() {
         try {
             return jdbcTemplate.query("SELECT * FROM Request WHERE DATE(endDate) > DATE(NOW())", new RequestRowMapper());
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Request>();
+        }
+    }
+
+    public List<Request> getMyRequests(String dni) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Request WHERE DATE(endDate) > DATE(NOW()) and dniRequest = ?", new RequestRowMapper(), dni);
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Request>();
