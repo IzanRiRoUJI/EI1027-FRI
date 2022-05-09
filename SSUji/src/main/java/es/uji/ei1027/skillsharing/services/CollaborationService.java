@@ -1,11 +1,9 @@
 package es.uji.ei1027.skillsharing.services;
 
-import es.uji.ei1027.skillsharing.model.Offer;
-import es.uji.ei1027.skillsharing.model.Request;
-import es.uji.ei1027.skillsharing.model.Skill;
+import es.uji.ei1027.skillsharing.model.*;
+
 import java.util.List;
 import java.util.Map;
-import es.uji.ei1027.skillsharing.model.Collaboration;
 
 public interface CollaborationService{
     public Map<Integer, Skill> getSkillsById();
@@ -15,4 +13,5 @@ public interface CollaborationService{
     public List<Collaboration> getCollaborationsByDniState(String dni,String notStarted);
     public Map<Integer, Offer> getOffersById();
     public Map<Integer, Request> getRequestsById();
+    public Map<String, Student> getStudentsByDni();
 }

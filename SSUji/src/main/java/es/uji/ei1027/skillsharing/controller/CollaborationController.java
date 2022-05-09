@@ -94,7 +94,10 @@ public class CollaborationController {
         String dni = user.getDni();
         model.addAttribute("offersInfo", collaborationService.getOffersById());
         model.addAttribute("requestsInfo", collaborationService.getRequestsById());
+        model.addAttribute("studentsInfo", collaborationService.getStudentsByDni());
+
         System.out.println(model.getAttribute("offersInfo"));
+        System.out.println(model.getAttribute("studentsInfo"));
         model.addAttribute("collaborationsNotStarted", collaborationService.getCollaborationsByDniState(dni,"notStarted"));
         model.addAttribute("collaborationsInProgress", collaborationService.getCollaborationsByDniState(dni,"inProgress"));
         model.addAttribute("collaborationsFinished", collaborationService.getCollaborationsByDniState(dni,"finished"));

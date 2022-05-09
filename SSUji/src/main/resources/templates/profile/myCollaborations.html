@@ -112,6 +112,13 @@
                 <thead>
                 <tr>
                     <th>Collaboration id</th>
+
+<!--                    <th>Offer id</th>-->
+<!--                    <th>Request id</th>-->
+
+                    <th>Student Offer</th>
+                    <th>Student Request</th>
+
                     <th>Skill name</th>
                     <th>Skill level</th>
                     <th>Place</th>
@@ -126,6 +133,17 @@
                 <tbody>
                 <tr th:each="collaboration: ${collaborationsFinished}">
                     <td th:text="${collaboration.id}"></td>
+
+<!--                    <td th:text="${collaboration.idOffer}"></td>-->
+<!--                    <td th:text="${collaboration.idRequest}"></td>-->
+
+
+<!--                    <td th:text="${offersInfo.get(collaboration.idOffer)}"></td>-->
+<!--                    <td th:text="${requestsInfo.get(collaboration.idRequest)}"></td>-->
+
+                    <td th:text="${studentsInfo.get(offersInfo.get(collaboration.idOffer).dniOffer).name}"></td>
+                    <td th:text="${studentsInfo.get(requestsInfo.get(collaboration.idRequest).dniRequest).name}"></td>
+
                     <td th:text="${skillsInfo.get(collaboration.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).level}"></td>
                     <td th:text="${collaboration.place}"></td>

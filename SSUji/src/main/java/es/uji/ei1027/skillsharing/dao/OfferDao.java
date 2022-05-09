@@ -68,11 +68,19 @@ public class OfferDao {
         }
     }
 
-
+    public List<Offer> getOffersUnexpired() {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Offer WHERE DATE(endDate) > DATE(NOW())", new OfferRowMapper());
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Offer>();
+        }
+    }
 
     public List<Offer> getOffers() {
         try {
-            return jdbcTemplate.query("SELECT * FROM Offer WHERE DATE(endDate) > DATE(NOW())", new OfferRowMapper());
+//            return jdbcTemplate.query("SELECT * FROM Offer WHERE DATE(endDate) > DATE(NOW())", new OfferRowMapper());
+            return jdbcTemplate.query("SELECT * FROM Offer", new OfferRowMapper());
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Offer>();

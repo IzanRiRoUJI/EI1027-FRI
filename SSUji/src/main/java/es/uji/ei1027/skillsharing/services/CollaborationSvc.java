@@ -1,10 +1,7 @@
 package es.uji.ei1027.skillsharing.services;
 
 import es.uji.ei1027.skillsharing.dao.*;
-import es.uji.ei1027.skillsharing.model.Collaboration;
-import es.uji.ei1027.skillsharing.model.Offer;
-import es.uji.ei1027.skillsharing.model.Request;
-import es.uji.ei1027.skillsharing.model.Skill;
+import es.uji.ei1027.skillsharing.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -106,6 +103,16 @@ public class CollaborationSvc implements CollaborationService{
         Map<Integer, Request> result = new HashMap<>();
         for (Request request : requestsList) {
             result.putIfAbsent(request.getId(), request);
+        }
+        return result;
+    }
+
+    @Override
+    public Map<String, Student> getStudentsByDni() {
+        List<Student> requestsList = studentDao.getStudents();
+        Map<String, Student> result = new HashMap<>();
+        for (Student student : requestsList) {
+            result.putIfAbsent(student.getDni(), student);
         }
         return result;
     }

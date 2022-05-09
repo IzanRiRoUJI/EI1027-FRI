@@ -46,7 +46,7 @@ public class RequestController {
         if (session.getAttribute("nextUrl") == null){
             session.setAttribute("nextUrl", "request/list");
         }
-        model.addAttribute("requests", requestDao.getRequests());
+        model.addAttribute("requests", requestDao.getRequestsUnexpired());
         model.addAttribute("skillsInfo", collaborationService.getSkillsById());
         return "request/list";
     }

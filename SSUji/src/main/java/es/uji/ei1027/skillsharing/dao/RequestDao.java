@@ -86,10 +86,18 @@ public class RequestDao {
         }
     }
 
+    public List<Request> getRequestsUnexpired() {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Request WHERE DATE(endDate) > DATE(NOW())", new RequestRowMapper());
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Request>();
+        }
+    }
 
     public List<Request> getRequests() {
         try {
-            return jdbcTemplate.query("SELECT * FROM Request WHERE DATE(endDate) > DATE(NOW())", new RequestRowMapper());
+            return jdbcTemplate.query("SELECT * FROM Request", new RequestRowMapper());
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Request>();

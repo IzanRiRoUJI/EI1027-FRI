@@ -42,7 +42,7 @@ public class OfferController {
 
     @RequestMapping("/list")
     public String listOffers(Model model) {
-        model.addAttribute("offers", offerDao.getOffers());
+        model.addAttribute("offers", offerDao.getOffersUnexpired());
         model.addAttribute("skillsInfo", collaborationService.getSkillsById());
         return "offer/list";
     }
