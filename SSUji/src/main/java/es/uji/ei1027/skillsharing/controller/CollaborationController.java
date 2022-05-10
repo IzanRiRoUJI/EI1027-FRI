@@ -44,6 +44,7 @@ public class CollaborationController {
         model.addAttribute("offersInfo", collaborationService.getOffersById());
         model.addAttribute("requestsInfo", collaborationService.getRequestsById());
         model.addAttribute("skillsInfo", collaborationService.getSkillsById());
+        model.addAttribute("studentsInfo", collaborationService.getStudentsByDni());
         return "collaboration/list";
     }
 
