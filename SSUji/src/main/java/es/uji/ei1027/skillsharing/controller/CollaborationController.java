@@ -85,7 +85,7 @@ public class CollaborationController {
         if (bindingResult.hasErrors())
             return "collaboration/add";
         collaborationDao.addCollaboration(collaboration);
-        System.out.println("COLLABORATION " + collaboration);
+        // System.out.println("COLLABORATION " + collaboration);
         return "redirect:list";
     }
 
@@ -124,13 +124,13 @@ public class CollaborationController {
         model.addAttribute("requestsInfo", collaborationService.getRequestsById());
         model.addAttribute("studentsInfo", collaborationService.getStudentsByDni());
 
-        System.out.println(model.getAttribute("offersInfo"));
-        System.out.println(model.getAttribute("studentsInfo"));
+        // System.out.println(model.getAttribute("offersInfo"));
+        //System.out.println(model.getAttribute("studentsInfo"));
         model.addAttribute("collaborationsNotStarted", collaborationService.getCollaborationsByDniState(dni,"notStarted"));
         model.addAttribute("collaborationsInProgress", collaborationService.getCollaborationsByDniState(dni,"inProgress"));
         model.addAttribute("collaborationsFinished", collaborationService.getCollaborationsByDniState(dni,"finished"));
         model.addAttribute("skillsInfo", collaborationService.getSkillsById());
-        return "profile/mycollaborations";
+        return "collaboration/mycollaborations";
     }
 
     @RequestMapping(value="/edit/{id}", method = RequestMethod.GET)

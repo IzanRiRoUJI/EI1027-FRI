@@ -59,7 +59,7 @@ public class LoginController {
 
         session.setAttribute("user", user);
         // session.setAttribute("userDNI", user.getDni()); // Hacer user.dni en el html da error asi que guardo dni en otra variable
-        System.out.println("INICIO SESIION " + user);
+        // System.out.println("INICIO SESIION " + user);
 
 
         if(user.isBanned()){
@@ -79,7 +79,7 @@ public class LoginController {
 
     @RequestMapping("/logout")
     public String logout(HttpSession session) {
-        System.out.println("FIN SESIION " + session.getAttribute("user"));
+        // System.out.println("FIN SESIION " + session.getAttribute("user"));
         session.invalidate();
         return "redirect:/";
     }

@@ -92,7 +92,7 @@ public class RequestController {
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
     public String processUpdateSubmit(@ModelAttribute("request") Request request, BindingResult bindingResult) {
-        System.out.println("---------" + request);
+        // System.out.println("---------" + request);
         if (bindingResult.hasErrors())
             return "request/update";
         requestDao.updateRequest(request);
