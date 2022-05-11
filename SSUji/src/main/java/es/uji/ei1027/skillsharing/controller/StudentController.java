@@ -107,4 +107,9 @@ public class StudentController {
         return "student/restricted";
     }
 
+    @RequestMapping(value="/banned")
+    public String showBannedMessage(HttpSession session, Model model) {
+        return "student/banned";
+    }
+
 }

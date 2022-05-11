@@ -3,7 +3,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/base}">
 <head>
-    <title>List Offers</title>
+    <title>Manage Your Offers</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 </head>
@@ -15,7 +15,7 @@
         </p>
     </div>
 
-    <h1>Offers List</h1>
+    <h1>Your Offers</h1>
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
             <table class="table table-striped table-sm">
@@ -28,8 +28,7 @@
                     <th>Description</th>
                     <th>Starting day</th>
                     <th>Ending day</th>
-                    <th></th>
-                    <th></th>
+                    <th colspan="2"><a th:href="@{/request/add}" class="btn buttonAddA">Add Offer</a></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -43,15 +42,49 @@
                     <td th:text="${offer.description}"></td>
                     <td th:text="${offer.startDate}"></td>
                     <td th:text="${offer.endDate}"></td>
-                    <td><a th:href="@{/offer/update/{dniOffer}/{skillId}(dniOffer=${offer.dniOffer},skillId=${offer.skillId})}" class="btn buttonEdit">Edit (debug)</a></td>
-                    <td><a th:href="@{/offer/delete/{dniOffer}/{skillId}(dniOffer=${offer.dniOffer},skillId=${offer.skillId})}" class="btn buttonWarning">Delete (debug)</a></td>
+                    <td><a th:href="@{/offer/update/{dniOffer}/{skillId}(dniOffer=${offer.dniOffer},skillId=${offer.skillId})}" class="btn buttonEdit">Edit</a></td>
+                    <td>
+<!--                        <a th:href="@{/offer/delete/{dniOffer}/{skillId}(dniOffer=${offer.dniOffer},skillId=${offer.skillId})}" class="btn buttonWarning">Delete</a>-->
+
+                        <a data-toggle="modal" th:attr="data-target='#popup'+${offer.id}" class="btn buttonWarning">Delete</a>
+
+                        <!-- Pop up -->
+                        <div class="modal fade" th:id="'popup' + ${offer.id}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 id="deleteModalLabel">Are you sure?</h3>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="popUpBody">
+
+                                        Are you sure you want to delete <b th:text="${offer.name}"></b> (<b th:text="${offer.id}"></b>) ? <br>
+                                        (This action can NOT be reversed)
+                                        <br>
+                                        <br>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn buttonEdit" href="#" data-dismiss="modal">Cancel</a>
+                                        <a th:href="@{/offer/delete/{id}(id=${offer.id})}" class="btn buttonWarning">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- END Pop up -->
+
+                    </td>
 
                 </tr>
                 </tbody>
             </table>
 
         </div>
-    <a href="add" class="btn buttonAddA">Add offer (debug)</a>
+    <br>
+<!--    <div class="center">-->
+<!--        <a href="add" class="btn buttonAddA">Add offer</a>-->
+<!--    </div>-->
 </div>
 </body>
 </html>

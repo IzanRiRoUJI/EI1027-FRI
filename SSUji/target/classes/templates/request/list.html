@@ -62,8 +62,6 @@
                 <th>Description</th>
                 <th>Starting day</th>
                 <th>Ending day</th>
-                <th></th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -78,15 +76,15 @@
                 <td th:text="${request.description}"></td>
                 <td th:text="${request.startDate}"></td>
                 <td th:text="${request.endDate}"></td>
-                <td><a th:href="@{/request/update/{id}(id=${request.id})}" class="btn buttonEdit">Edit (debug)</a></td>
-                <td><a th:href="@{/request/delete/{id}(id=${request.id})}" class="btn buttonWarning">Delete (debug)</a></td>
+<!--                <td><a th:href="@{/request/update/{id}(id=${request.id})}" class="btn buttonEdit">Edit (debug)</a></td>-->
+<!--                <td><a th:href="@{/request/delete/{id}(id=${request.id})}" class="btn buttonWarning">Delete (debug)</a></td>-->
 
             </tr>
             </tbody>
         </table>
 
     </div>
-    <a href="add" class="btn buttonAddA">Add request (debug)</a>
+<!--    <a href="add" class="btn buttonAddA">Add request (debug)</a>-->
 </div>
 </body>
 </html>

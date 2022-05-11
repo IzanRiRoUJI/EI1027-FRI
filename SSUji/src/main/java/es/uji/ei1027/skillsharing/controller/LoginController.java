@@ -58,8 +58,14 @@ public class LoginController {
         }
 
         session.setAttribute("user", user);
-        session.setAttribute("userDNI", user.getDni()); // Hacer user.dni en el html da error asi que guardo dni en otra variable
+        // session.setAttribute("userDNI", user.getDni()); // Hacer user.dni en el html da error asi que guardo dni en otra variable
         System.out.println("INICIO SESIION " + user);
+
+
+        if(user.isBanned()){
+            session.setAttribute("user", null);
+            return "student/banned";
+        }
 
         if(session.getAttribute("nextUrl") == null){
             return "redirect:/";
