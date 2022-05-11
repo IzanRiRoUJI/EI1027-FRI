@@ -129,6 +129,6 @@ public class CollaborationSvc implements CollaborationService{
 
         String dniRequest= requestDao.getRequest(collaboration.getIdRequest()).getDniRequest();
         Student studentRequest = studentDao.getStudent(dniRequest);
-        studentRequest.setBalance(studentOffer.getBalance() + collaboration.getHours());
+        studentRequest.setBalance(studentRequest.getBalance() + collaboration.getHours());
     }
 }

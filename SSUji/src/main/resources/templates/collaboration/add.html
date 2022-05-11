@@ -42,8 +42,8 @@
                         <br>
                         <div class="form-group"> <label for="form_skill">Skill *</label>
                             <td> <select class="mdb-select md-form" id="form_skill" type="text" th:field="*{skillId}" searchable="Search here.." required="required" data-error="Please specify the skill.">
-                                <option th:each="skill : ${skillsActive}" th:value="${skill.id}" th:text="${skill.name} + ' (' + ${skill.level} + ')'"></option>
-                            </select>
+                                    <option th:each="skill : ${skillsActive}" th:value="${skill.id}" th:text="${skill.name} + ' (' + ${skill.level} + ')'"></option>
+                                </select>
                             </td>
                         </div>
 

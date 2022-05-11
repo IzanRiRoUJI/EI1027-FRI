@@ -111,10 +111,9 @@ public class StudentDao implements UserDao{
         // Contrasenya
         if(password.equals(user.getPassword())){
             return user;
-        } else{
+        } else {
             return null;
         }
-
 //        BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor();
 //        if (passwordEncryptor.checkPassword(password, user.getPassword())) { //ERROR
 //            // Es deuria esborrar de manera segura el camp password abans de tornar-lo

@@ -84,9 +84,9 @@ public class CollaborationController {
     public String processAddSubmit(@ModelAttribute("collaboration") Collaboration collaboration, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "collaboration/add";
+        System.out.println("----------------------------COLLABORATION " + collaboration);
         collaborationDao.addCollaboration(collaboration);
-        // System.out.println("COLLABORATION " + collaboration);
-        return "redirect:list";
+        return "redirect:../collaboration/listmycollaborations";
     }
 
     @RequestMapping(value="/update/{id}", method = RequestMethod.GET)
@@ -114,7 +114,7 @@ public class CollaborationController {
     public String listMyCollaborations(Model model, HttpSession session) {
         Student user = (Student) session.getAttribute("user");
         if (session.getAttribute("nextUrl") == null){
-            session.setAttribute("nextUrl", "profile/listmycollaborations");
+            session.setAttribute("nextUrl", "collaboration/listmycollaborations");
         }
         if (user == null){
            return "redirect:../login" ;
@@ -130,7 +130,7 @@ public class CollaborationController {
         model.addAttribute("collaborationsInProgress", collaborationService.getCollaborationsByDniState(dni,"inProgress"));
         model.addAttribute("collaborationsFinished", collaborationService.getCollaborationsByDniState(dni,"finished"));
         model.addAttribute("skillsInfo", collaborationService.getSkillsById());
-        return "collaboration/mycollaborations";
+        return "profile/mycollaborations";
     }
 
     @RequestMapping(value="/edit/{id}", method = RequestMethod.GET)

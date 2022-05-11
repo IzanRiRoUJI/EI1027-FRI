@@ -24,8 +24,8 @@ public class CollaborationDao {
 
     public void addCollaboration(Collaboration collaboration){
         jdbcTemplate.update(
-                "INSERT INTO Collaboration (idRequest, idOffer, place, state, score, hours, startDate, endDate) VALUES(? ,? ,? ,?, ?, ?, ?, ?)",
-                collaboration.getIdRequest(),collaboration.getIdOffer(),collaboration.getPlace(),
+                "INSERT INTO Collaboration (idRequest, idOffer, skillId, place, state, score, hours, startDate, endDate) VALUES(? ,? ,? ,?, ?, ?, ?, ?, ?)",
+                collaboration.getIdRequest(),collaboration.getIdOffer(),collaboration.getSkillId(), collaboration.getPlace(),
                 collaboration.getState(), collaboration.getScore(), collaboration.getHours(), collaboration.getStartDate(), collaboration.getEndDate());
     }
 
