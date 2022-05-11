@@ -55,21 +55,20 @@ public class RequestController {
         if (session.getAttribute("nextUrl") == null){
             session.setAttribute("nextUrl", "request/mylist");
         }
-
-        if(session != null){
-            Student user = (Student) session.getAttribute("user");
-            if(user != null){
-                String dni = user.getDni();
-                model.addAttribute("requests", requestDao.getMyRequests(dni));
-            }
+        Student user = (Student) session.getAttribute("user");
+        if(user != null){
+            String dni = user.getDni();
+            model.addAttribute("requests", requestDao.getMyRequests(dni));
         }
-
         model.addAttribute("skillsInfo", collaborationService.getSkillsById());
         return "profile/myRequests";
     }
 
     @RequestMapping(value="/add")
-    public String addRequest(Model model) {
+    public String addRequest(Model model, HttpSession session) {
+        if (session.getAttribute("nextUrl") == null){
+            session.setAttribute("nextUrl", "/offer/add");
+        }
         model.addAttribute("request", new Request());
         model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
         return "request/add";
@@ -81,7 +80,7 @@ public class RequestController {
         if (bindingResult.hasErrors())
             return "request/add";
         requestDao.addRequest(request);
-        return "redirect:list";
+        return "redirect:mylist";
     }
 
     @RequestMapping(value="/update/{id}", method = RequestMethod.GET)
@@ -97,14 +96,14 @@ public class RequestController {
         if (bindingResult.hasErrors())
             return "request/update";
         requestDao.updateRequest(request);
-        return "redirect:list";
+        return "redirect:mylist";
     }
 
     @RequestMapping(value="/delete/{id}")
     public String processDelete(@PathVariable int id) {
         //requestDao.deleteRequest(id);
         requestDao.deleteBySetFinishDate(id);
-        return "redirect:../list";
+        return "redirect:../mylist";
     }
 
 

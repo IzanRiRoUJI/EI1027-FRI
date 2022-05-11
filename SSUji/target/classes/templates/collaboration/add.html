@@ -8,19 +8,14 @@
     <link type="text/css" th:href="@{static/css/base.css}" href="static/css/base.css" rel="stylesheet"/>
 </head>
 <body>
-<div layout:fragment="content">
-    <h1>Create Collaboration</h1>
-<div class="loggeduser" th:object="${session}">
-    <p><span th:text="*{user}"></span> </p>
-    <p th:if="*{user == null}">
-        <meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/>
-    </p>
-</div>
-<!--<div class="loggeduser" th:object="${session}">-->
-<!--    <p th:if="*{user == null}">-->
-<!--        <meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/>-->
-<!--    </p>-->
-<!--</div>-->
+    <div layout:fragment="content">
+        <h1>Create Collaboration</h1>
+        <div class="loggeduser" th:object="${session}">
+            <p><span th:text="*{user}"></span> </p>
+            <p th:if="*{user == null}">
+                <meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/>
+            </p>
+        </div>
 
 <!--<h2>New collaboration</h2>-->
 <!--<form action="#" th:action="@{/collaboration/add}"-->
@@ -91,7 +86,7 @@
                 </form>
             </div>
         </div>
-    </div> 
+    </div>
 </div>
 
 

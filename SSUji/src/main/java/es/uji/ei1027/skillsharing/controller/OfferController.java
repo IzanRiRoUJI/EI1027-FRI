@@ -77,32 +77,12 @@ public class OfferController {
 
     @RequestMapping(value="/add", method= RequestMethod.POST)
     public String processAddSubmit(@ModelAttribute("offer") Offer offer, BindingResult bindingResult) {
-        System.out.println("---------" + offer);
-
         if (bindingResult.hasErrors()){
             return "offer/add";
         }
-
         offerDao.addOffer(offer);
-        return "redirect:list";
+        return "redirect:mylist";
     }
-
-//    @RequestMapping(value="/add/{name}/{skillName}/{skillLevel}/{start}/{end}", method= RequestMethod.POST)
-//    public String processAddSubmit(@PathVariable String name, @PathVariable String skillName, @PathVariable String skillLevel, Date start, Date end) {
-//        System.out.println("---------" + name + " - " + skillName + " - " + skillLevel + " - " + start + " - " + end);
-//        return "redirect:list";
-//    }
-
-
-//    @RequestMapping(value="/update/{dniOffer}/{skillId}", method = RequestMethod.GET)
-//    public String updateOffer(Model model, @PathVariable String dniOffer, @PathVariable int skillId, HttpSession session) {
-//        if (session.getAttribute("nextUrl") == null){
-//            session.setAttribute("nextUrl", "/offer/update");
-//        }
-//        model.addAttribute("offer", offerDao.getOffer(dniOffer,skillId));
-//        model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
-//        return "offer/update";
-//    }
 
     @RequestMapping(value="/update/{id}", method = RequestMethod.GET)
     public String updateOffer(Model model, @PathVariable int id, HttpSession session) {
@@ -120,7 +100,7 @@ public class OfferController {
             return "offer/update";
 
         offerDao.updateOffer(offer);
-        return "redirect:list";
+        return "redirect:mylist";
     }
 
 //    @RequestMapping(value="/delete/{dniOffer}/{skillId}")
@@ -139,7 +119,7 @@ public class OfferController {
         }
         offerDao.deleteBySetFinishDate(id);
         // offerDao.deleteOffer(id);
-        return "redirect:/offer/list";
+        return "redirect:/offer/mylist";
     }
 
 
