@@ -116,4 +116,19 @@ public class CollaborationSvc implements CollaborationService{
         }
         return result;
     }
+
+    // Problema: se pueden hacer multiples updates (balance infinito)
+    // Solucion: solo aparece el boton de edit una vez (cuando el hour es 0)
+        // redirigir del update a my collaborations si no es 0
+        // solo mostrar en la tabla si es 0
+    @Override
+    public void updateStudentsBalance(Collaboration collaboration) {
+        String dniOffer = offerDao.getOffer(collaboration.getIdOffer()).getDniOffer();
+        Student studentOffer = studentDao.getStudent(dniOffer);
+        studentOffer.setBalance(studentOffer.getBalance() + collaboration.getHours());
+
+        String dniRequest= requestDao.getRequest(collaboration.getIdRequest()).getDniRequest();
+        Student studentRequest = studentDao.getStudent(dniRequest);
+        studentRequest.setBalance(studentOffer.getBalance() + collaboration.getHours());
+    }
 }

@@ -44,7 +44,7 @@
 <!--</form>-->
 
     <div class="loggeduser" th:object="${session}">
-        <p><span th:text="*{user}"></span> </p>
+<!--        <p><span th:text="*{user}"></span> </p>-->
         <p th:if="*{user == null}">
             <meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/>
         </p>

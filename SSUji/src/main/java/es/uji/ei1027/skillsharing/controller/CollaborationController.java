@@ -100,6 +100,7 @@ public class CollaborationController {
         if (bindingResult.hasErrors())
             return "collaboration/update";
         collaborationDao.updateCollaboration(collaboration);
+        collaborationService.updateStudentsBalance(collaboration);
         return "redirect:list";
     }
 

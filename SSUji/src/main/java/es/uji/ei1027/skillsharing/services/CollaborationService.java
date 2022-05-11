@@ -14,4 +14,5 @@ public interface CollaborationService{
     public Map<Integer, Offer> getOffersById();
     public Map<Integer, Request> getRequestsById();
     public Map<String, Student> getStudentsByDni();
+    public void updateStudentsBalance(Collaboration collaboration);
 }
