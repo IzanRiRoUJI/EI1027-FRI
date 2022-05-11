@@ -29,43 +29,56 @@
                     </li>
 
                     <!-- info usuario -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle bar" href="#" id="navbarDropdownMenuLinkUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Profile
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkUser">
-                            <a class="dropdown-item" href="/profile/myOffers" th:href="@{/offer/mylist}">My Offers</a>
-                            <a class="dropdown-item" href="/profile/myRequests" th:href="@{/request/mylist}">My Requests</a>
-                            <a class="dropdown-item" href="/profile/myCollaborations" th:href="@{/collaboration/listmycollaborations}">My Collaborations</a>
-                            <a class="dropdown-item" href="/profile/profile" th:href="@{/student/profile}">Profile</a>
-                        </div>
-                    </li>
+                    <p th:if="*{user != null}">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle bar" href="#" id="navbarDropdownMenuLinkUser" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Profile
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkUser">
+                                <a class="dropdown-item" href="/profile/myOffers" th:href="@{/offer/mylist}">My Offers</a>
+                                <a class="dropdown-item" href="/profile/myRequests" th:href="@{/request/mylist}">My Requests</a>
+                                <a class="dropdown-item" href="/profile/myCollaborations" th:href="@{/collaboration/listmycollaborations}">My Collaborations</a>
+                                <a class="dropdown-item" href="/profile/profile" th:href="@{/student/profile}">Profile</a>
+                            </div>
+                        </li>
+                    </p>
 
                     <!-- info SKP -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle bar" href="#" id="navbarDropdownMenuLinkSKP" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            SKP
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkSKP">
-                            <a class="dropdown-item" href="/skill/list" th:href="@{/skill/list}">Manage Skills</a>
-                            <a class="dropdown-item" href="statistics">Statistics</a>
-                            <a class="dropdown-item" href="/student/list" th:href="@{/student/ban}">Manage Students</a>
-                            <a class="dropdown-item" href="/collaboration/list" th:href="@{/collaboration/list}">Manage Collaborations</a>
-                        </div>
-                    </li>
+                    <p th:if="*{user != null and user.isSKP == true}">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle bar" href="#" id="navbarDropdownMenuLinkSKP" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                SKP
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkSKP">
+                                <a class="dropdown-item" href="/skill/list" th:href="@{/skill/list}">Manage Skills</a>
+                                <a class="dropdown-item" href="statistics">Statistics</a>
+                                <a class="dropdown-item" href="/student/list" th:href="@{/student/ban}">Manage Students</a>
+                                <a class="dropdown-item" href="/collaboration/list" th:href="@{/collaboration/list}">Manage Collaborations</a>
+                            </div>
+                        </li>
+                    </p>
                 </ul>
 
                 <ul class="navbar-nav ml-auto" > <!-- botones der -->
-                    <li class="nav-item">
-                        <a class="nav-link bar" href="/login" th:href="@{/login}">Log in<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link bar" href="/logout" th:href="@{/logout}">Log out</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link bar" href="/student/add" th:href="@{/student/add}">Register</a>
-                    </li>
+                    <p th:if="*{user == null}">
+                        <li class="nav-item">
+                            <a class="nav-link bar" href="/login" th:href="@{/login}">Log in<span class="sr-only">(current)</span></a>
+                        </li>
+                    </p>
 
+                    <p th:if="*{user != null}">
+                        <li class="nav-item">
+                            <a class="nav-link bar" href="/logout" th:href="@{/logout}">Log out</a>
+                        </li>
+                    </p>
+
+                    <p th:if="*{user == null}">
+                        <li class="nav-item">
+                            <a class="nav-link bar" href="/student/add" th:href="@{/student/add}">Register</a>
+                        </li>
+                    </p>
+
+                    <!--
                     <p th:if="*{user == null}">
                         <a href="/login" th:href="@{/login}">No autenticat Entrar</a>
                     </p>
@@ -73,6 +86,7 @@
                     <p th:unless="*{user == null}">
                         <a href="/logout" th:href="@{/logout}">Autenticat com <span th:text="*{user.name}"></span> Eixir</a>
                     </p>
+                    -->
                 </ul>
 
             </div>
