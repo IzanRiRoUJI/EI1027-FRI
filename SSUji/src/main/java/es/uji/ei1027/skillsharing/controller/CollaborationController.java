@@ -1,6 +1,8 @@
 package es.uji.ei1027.skillsharing.controller;
 
 import es.uji.ei1027.skillsharing.dao.CollaborationDao;
+import es.uji.ei1027.skillsharing.dao.OfferDao;
+import es.uji.ei1027.skillsharing.dao.RequestDao;
 import es.uji.ei1027.skillsharing.dao.SkillDao;
 import es.uji.ei1027.skillsharing.model.Collaboration;
 import es.uji.ei1027.skillsharing.model.Skill;
@@ -28,6 +30,20 @@ public class CollaborationController {
         this.collaborationDao=collaborationDao;
     }
 
+    private OfferDao offerDao;
+
+    @Autowired
+    public void setOfferDao(OfferDao offerDao) {
+        this.offerDao = offerDao;
+    }
+
+    private RequestDao requestDao;
+
+    @Autowired
+    public void setRequestDao(RequestDao requestDao) {
+        this.requestDao = requestDao;
+    }
+
     private CollaborationService collaborationService;
 
     @Autowired
@@ -35,6 +51,12 @@ public class CollaborationController {
         this.collaborationService = collaborationService;
     }
 
+    private SkillDao skillDao;
+
+    @Autowired
+    public void setSkillDao(SkillDao skillDao) {
+        this.skillDao = skillDao;
+    }
 
     @RequestMapping("/list")
     public String listCollaborations(Model model, HttpSession session) {
@@ -51,15 +73,19 @@ public class CollaborationController {
     @RequestMapping(value="/add")
     public String addCollaboration(Model model) {
         model.addAttribute("collaboration", new Collaboration());
+        model.addAttribute("skillsInfo", collaborationService.getSkillsById());
+        model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
+        model.addAttribute("offers", offerDao.getOffersUnexpired());
+        model.addAttribute("requests", requestDao.getRequestsUnexpired());
         return "collaboration/add";
     }
 
     @RequestMapping(value="/add", method= RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("collaboration") Collaboration collaboration,
-                                   BindingResult bindingResult) {
+    public String processAddSubmit(@ModelAttribute("collaboration") Collaboration collaboration, BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "collaboration/add";
         collaborationDao.addCollaboration(collaboration);
+        System.out.println("COLLABORATION " + collaboration);
         return "redirect:list";
     }
 
