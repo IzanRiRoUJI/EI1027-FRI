@@ -28,7 +28,7 @@
                     <th>Description</th>
                     <th>Starting day</th>
                     <th>Ending day</th>
-                    <th colspan="2"><a th:href="@{/request/add}" class="btn buttonAddA">Add Offer</a></th>
+                    <th colspan="2"><a th:href="@{/offer/add}" class="btn buttonAddA">Add Offer</a></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -44,7 +44,6 @@
                     <td th:text="${offer.endDate}"></td>
                     <td><a th:href="@{/offer/update/{dniOffer}/{skillId}(dniOffer=${offer.dniOffer},skillId=${offer.skillId})}" class="btn buttonEdit">Edit</a></td>
                     <td>
-<!--                        <a th:href="@{/offer/delete/{dniOffer}/{skillId}(dniOffer=${offer.dniOffer},skillId=${offer.skillId})}" class="btn buttonWarning">Delete</a>-->
 
                         <a data-toggle="modal" th:attr="data-target='#popup'+${offer.id}" class="btn buttonWarning">Delete</a>
 

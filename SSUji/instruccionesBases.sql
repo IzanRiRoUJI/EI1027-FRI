@@ -43,9 +43,8 @@ CREATE TABLE Offer (
     endDate     DATE,
     CONSTRAINT cp_offer PRIMARY KEY (id),
     CONSTRAINT ca_offer_student FOREIGN KEY (dniOffer) REFERENCES Student(dni) ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT ca_offer_skill FOREIGN KEY (skillId) REFERENCES Skill(id) ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT ca_offer_skill FOREIGN KEY (skillId) REFERENCES Skill(id) ON DELETE RESTRICT ON UPDATE CASCADE
 
-    CONSTRAINT ri_offer_endDate CHECK (endDate >= startDate)
 );
 
 CREATE TABLE Request (
@@ -58,9 +57,7 @@ CREATE TABLE Request (
     endDate     DATE,
     CONSTRAINT cp_request PRIMARY KEY (id),
     CONSTRAINT ca_request_student FOREIGN KEY (dniRequest) REFERENCES Student(dni) ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT ca_request_skill FOREIGN KEY (skillId) REFERENCES Skill(id) ON DELETE RESTRICT ON UPDATE CASCADE,
-
-    CONSTRAINT ri_request_endDate CHECK (endDate >= startDate)
+    CONSTRAINT ca_request_skill FOREIGN KEY (skillId) REFERENCES Skill(id) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
 CREATE TABLE Collaboration (
@@ -81,8 +78,7 @@ CREATE TABLE Collaboration (
     CONSTRAINT ca_collaboration_skill FOREIGN KEY (skillId) REFERENCES Skill(id) ON DELETE RESTRICT ON UPDATE CASCADE,
 
     CONSTRAINT ri_collaboration_score CHECK (score BETWEEN 0 AND 5),
-    CONSTRAINT ri_collaboration_state CHECK (state in ('notStarted', 'inProgress', 'finished')),
-    CONSTRAINT ri_collaboration_endDate CHECK (endDate >= startDate)
+    CONSTRAINT ri_collaboration_state CHECK (state in ('notStarted', 'inProgress', 'finished'))
     -- No sea el mismo estudante
     --  CONSTRAINT ri_collaboration_sameSkill CHECK (offer.skillId == request.skillId), -- Mismas skills
     -- Las fechas dentro del mismo rango
