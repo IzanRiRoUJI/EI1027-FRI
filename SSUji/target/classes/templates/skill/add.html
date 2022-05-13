@@ -25,11 +25,10 @@
                     <div class="container">
                         <form action="#" th:action="@{/skill/add}" th:object="${skill}" method="post">
                             <div class="controls">
-
                                 <div class="form-group"> <label for="form_name">Name *</label>
-                                    <input th:field="*{name}" id="form_name" type="text" name="name" class="form-control" placeholder="Please enter the name of the skill." required="required" data-error="Name is required."> </div>
+                                    <input th:field="*{name}" id="form_name" type="text" name="name" class="form-control" placeholder="Please enter the name of the skill." required="required" data-error="Name is required." maxlength="50"> </div>
                                 <div class="form-group"> <label for="form_description">Description *</label>
-                                    <textarea th:field="*{description}" id="form_description" name="description" class="form-control" placeholder="Write the description of the skill here." rows="4" required="required" data-error="A description is required."></textarea> </div>
+                                    <textarea th:field="*{description}" id="form_description" name="description" class="form-control" placeholder="Write the description of the skill here." rows="4" required="required" data-error="A description is required." maxlength="100"></textarea> </div>
                                 <div class="form-group"> <label for="form_level">Level *</label>
                                     <select th:field="*{level}" id="form_level" name="level" class="form-control" required="required" data-error="Please specify the level.">
                                         <option value="" selected disabled>--Select the level of the skill--</option>

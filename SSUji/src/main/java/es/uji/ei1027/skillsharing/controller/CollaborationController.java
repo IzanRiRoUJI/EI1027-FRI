@@ -154,6 +154,6 @@ public class CollaborationController {
     @RequestMapping(value="/setFinished/{id}")
     public String setCollaborationFinished(@PathVariable int id) {
         collaborationDao.setCollaborationState(collaborationDao.getCollaboration(id),"finished");
-        return "redirect:../listmycollaborations";
+        return "redirect:../edit/"+ id;
     }
 }

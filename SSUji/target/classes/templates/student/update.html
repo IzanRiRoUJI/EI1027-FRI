@@ -25,9 +25,9 @@
                             <div class="controls">
                                 <div class="loggeduser" th:object="${session}">
                                     <div class="form-group"> <label for="form_dni">DNI *</label> <input th:name="dni" th:id="dni" th:value="*{user.dni}" id="form_dni" type="text" name="dni" class="form-control" required="required" data-error="Your DNI is required." readonly> </div>
-                                    <div class="form-group"> <label for="form_name">Name *</label> <input th:name="name" th:id="name" th:value="*{user.name}" id="form_name" type="text" name="name" class="form-control" required="required" data-error="Your name is required."> </div>
-                                    <div class="form-group"> <label for="form_email">Email *</label> <input th:name="email" th:id="email" th:value="*{user.email}" id="form_email" type="text" name="email" class="form-control" required="required" data-error="Your email is required."> </div>
-                                    <div class="form-group"> <label for="form_degree">Degree *</label> <input th:name="degree" th:id="degree" th:value="*{user.degree}" id="form_degree" type="text" name="degree" class="form-control" required="required" data-error="Your degree is required."> </div>
+                                    <div class="form-group"> <label for="form_name">Name *</label> <input th:name="name" th:id="name" th:value="*{user.name}" id="form_name" type="text" name="name" class="form-control" required="required" data-error="Your name is required." maxlength="50"> </div>
+                                    <div class="form-group"> <label for="form_email">Email *</label> <input th:name="email" th:id="email" th:value="*{user.email}" id="form_email" type="text" name="email" class="form-control" required="required" data-error="Your email is required." maxlength="50"> </div>
+                                    <div class="form-group"> <label for="form_degree">Degree *</label> <input th:name="degree" th:id="degree" th:value="*{user.degree}" id="form_degree" type="text" name="degree" class="form-control" required="required" data-error="Your degree is required." maxlength="50"> </div>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <input type="submit" class="btn buttonAddA btn-send pt-2 btn-block" value="Update">
