@@ -11,7 +11,6 @@
 <body>
 <div layout:fragment="content">
     <h1>Manage Skills</h1>
-
     <div class="loggeduser" th:object="${session}">
         <p th:if="*{user == null}">
             <meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/>
@@ -20,7 +19,6 @@
             <meta http-equiv="refresh" content="0; URL=/student/restricted" th:href="@{/student/restricted}"/>
         </p>
     </div>
-
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><h3>Active</h3></a>
@@ -33,7 +31,6 @@
 
         <!-- ACTIVE -->
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-
             <table class="table table-striped table-sm">
                 <thead>
                 <tr>
@@ -52,13 +49,9 @@
                     <td th:text="${skill.description}"></td>
                     <td th:text="${skill.level}"></td>
                     <td th:text="${skill.active}"></td>
-
                     <td><a th:href="@{/skill/update/{id}(id=${skill.id})}" class="btn buttonEdit">Edit</a></td>
                     <td>
-
-<!--                        <a th:href="@{/skill/list/{id}/{active}(id=${skill.id},active=${skill.active})}" class="btn buttonWarning">Inactivate</a>-->
                         <a data-toggle="modal" th:attr="data-target='#popup'+${skill.id}" class="btn buttonWarning">Inactivate</a>
-
                         <!-- Pop up -->
                         <div class="modal fade" th:id="'popup' + ${skill.id}" tabindex="-1" role="dialog" aria-labelledby="inactivateModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -70,34 +63,25 @@
                                         </button>
                                     </div>
                                     <div class="popUpBody">
-
                                         Are you sure you want to inactivate <b th:text="${skill.name}"></b> (<b th:text="${skill.level}"></b>) ? <br>
                                         (This action can be reversed)
                                         <br>
                                         <br>
-
                                     </div>
                                     <div class="modal-footer">
                                         <a class="btn buttonEdit" href="#" data-dismiss="modal">Cancel</a>
-<!--                                        <a href="/student/ban/{dni}/{banned}(dni=${student.dni},banned=${student.banned})" th:href="@{/student/ban/{dni}/{banned}(dni=${student.dni},banned=${student.banned})}" class="btn buttonWarning">Ban</a>-->
                                         <a th:href="@{/skill/list/{id}/{active}(id=${skill.id},active=${skill.active})}" class="btn buttonWarning">Inactivate</a>
                                     </div>
                                 </div>
                             </div>
                         </div> <!-- END Pop up -->
-
-
-
                     </td>
                 </tr>
                 </tbody>
             </table>
-
         </div>
-
         <!-- INACTIVE -->
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-
             <table class="table table-striped table-sm">
                 <thead>
                 <tr>
@@ -106,8 +90,6 @@
                     <th>Description</th>
                     <th>Level</th>
                     <th>Active</th>
-<!--                    <th></th>-->
-<!--                    <th></th>-->
                     <th colspan="2"><a th:href="@{/skill/add}" class="btn buttonAddA">Add Skill</a></th>
                 </tr>
                 </thead>
@@ -118,14 +100,9 @@
                     <td th:text="${skill.description}"></td>
                     <td th:text="${skill.level}"></td>
                     <td th:text="${skill.active}"></td>
-
                     <td><a th:href="@{/skill/update/{id}(id=${skill.id})}" class="btn buttonEdit">Edit</a></td>
                     <td>
-<!--                        <a th:href="@{/skill/list/{id}/{active}(id=${skill.id},active=${skill.active})}" class="btn buttonWarning">Activate</a>-->
-
-
                         <a data-toggle="modal" th:attr="data-target='#popup'+${skill.id}" class="btn buttonWarning">Activate</a>
-
                         <!-- Pop up -->
                         <div class="modal fade" th:id="'popup' + ${skill.id}" tabindex="-1" role="dialog" aria-labelledby="activateModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -137,42 +114,24 @@
                                         </button>
                                     </div>
                                     <div class="popUpBody">
-
                                         Are you sure you want to activate <b th:text="${skill.name}"></b> (<b th:text="${skill.level}"></b>) ? <br>
                                         (This action can be reversed)
                                         <br>
                                         <br>
-
                                     </div>
                                     <div class="modal-footer">
                                         <a class="btn buttonEdit" href="#" data-dismiss="modal">Cancel</a>
-                                        <!--                                        <a href="/student/ban/{dni}/{banned}(dni=${student.dni},banned=${student.banned})" th:href="@{/student/ban/{dni}/{banned}(dni=${student.dni},banned=${student.banned})}" class="btn buttonWarning">Ban</a>-->
                                         <a th:href="@{/skill/list/{id}/{active}(id=${skill.id},active=${skill.active})}" class="btn buttonWarning">Activate</a>
                                     </div>
                                 </div>
                             </div>
                         </div> <!-- END Pop up -->
-
-
-
-
-
-
-
-
-
-
-
-
                     </td>
                 </tr>
                 </tbody>
             </table>
-
         </div>
-
     </div>
-
 </div>
 </body>
 </html>

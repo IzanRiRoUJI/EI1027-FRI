@@ -3,11 +3,11 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/base}">
 <head>
-    <title>Update Collaboration</title>
+    <title>Edit Collaborations</title>
     <meta charset="UTF-8"link type="text/css" th:href="@{static/css/base.css}" href="static/css/base.css" rel="stylesheet"/>
 </head>
 <div layout:fragment="content">
-    <h1>Edit my collaboration</h1>
+    <h1>Edit collaborations</h1>
     <div class="loggeduser" th:object="${session}">
         <p th:if="*{user == null}">
             <meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/>

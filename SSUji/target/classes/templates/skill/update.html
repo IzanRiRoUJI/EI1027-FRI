@@ -4,13 +4,12 @@
       layout:decorate="~{fragments/base}">
 <head>
     <meta charset="UTF-8">
-    <title>Create Skill</title>
+    <title>Update Skill</title>
     <link type="text/css" th:href="@{static/css/base.css}" href="static/css/base.css" rel="stylesheet"/>
 </head>
 <body>
 <div layout:fragment="content">
     <h1>Update Skill</h1>
-
     <div class="loggeduser" th:object="${session}">
         <p th:if="*{user == null}">
             <meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/>
@@ -19,28 +18,26 @@
             <meta http-equiv="refresh" content="0; URL=/student/restricted" th:href="@{/student/restricted}"/>
         </p>
     </div>
-
-
-
-
-
     <div class="col-lg-7 mx-auto">
         <div class="card mt-2 mx-auto p-4 bg-light">
             <div class="card-body bg-light">
                 <div class="container">
                     <form action="#" th:action="@{/skill/update}" th:object="${skill}" method="post">
                         <div class="controls">
+                            <div class="form-group"> <label for="form_name">Skill name</label>
+                                <input th:field="*{name}" id="form_name" type="text" name="name" class="form-control" placeholder="Name of the skill" required="required" data-error="Name is required." readonly> </div>
 
-                            <div class="form-group"> <label for="form_name">Skill name</label> <input th:field="*{name}" id="form_name" type="text" name="name" class="form-control" placeholder="Name of the skill" required="required" data-error="Name is required." readonly> </div>
+                            <div class="form-group"> <label for="form_level">Level</label>
+                                <input th:field="*{level}" id="form_level" type="text" name="level" class="form-control" placeholder="Level of the skill" required="required" data-error="Level is required." readonly> </div>
 
-                            <div class="form-group"> <label for="form_level">Level</label> <input th:field="*{level}" id="form_level" type="text" name="level" class="form-control" placeholder="Level of the skill" required="required" data-error="Level is required." readonly> </div>
+                            <div class="form-group"> <label for="form_id">Id</label>
+                                <input th:field="*{id}" id="form_id" type="text" name="id" class="form-control" placeholder="Id of the skill" required="required" data-error="Id is required." readonly> </div>
 
-                            <div class="form-group"> <label for="form_id">Id</label> <input th:field="*{id}" id="form_id" type="text" name="id" class="form-control" placeholder="Id of the skill" required="required" data-error="Id is required." readonly> </div>
+                            <div class="form-group"> <label for="form_active">State (Can be changed in "Manage Skills")</label>
+                                <input th:field="*{active}" id="form_active" type="text" name="active" class="form-control" placeholder="State of the skill" required="required" data-error="State is required." readonly> </div>
 
-                            <div class="form-group"> <label for="form_active">State (Can be changed in "Manage Skills")</label> <input th:field="*{active}" id="form_active" type="text" name="active" class="form-control" placeholder="State of the skill" required="required" data-error="State is required." readonly> </div>
-
-                            <div class="form-group"> <label for="form_description">Description *</label> <textarea th:field="*{description}" id="form_description" name="description" class="form-control" placeholder="Write the description of the skill here." rows="4" required="required" data-error="A description is required."></textarea> </div>
-
+                            <div class="form-group"> <label for="form_description">Description *</label>
+                                <textarea th:field="*{description}" id="form_description" name="description" class="form-control" placeholder="Write the description of the skill here." rows="4" required="required" data-error="A description is required."></textarea> </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <input type="submit" class="btn buttonAddA btn-send pt-2 btn-block" value="Update Skill">
