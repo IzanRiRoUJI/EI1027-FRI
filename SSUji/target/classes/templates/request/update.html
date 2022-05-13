@@ -31,7 +31,7 @@
                             <div class="form-group"> <label for="form_description">Description *</label>
                                 <textarea th:field="*{description}" id="form_description" name="description" class="form-control" placeholder="Write the description of the skill here." rows="4" required="required" data-error="A description is required."></textarea> </div>
                             <div class="form-group"> <label>Skill *</label>
-                               <input th:name="skillName" th:text="${skillsActive.get(request.skillId).name}" readonly>
+<!--                               <input th:name="skillName" th:text="${skillsActive.get(request.skillId).name}" readonly>-->
                             </div>
                             <div class="form-group"> <label for="form_start">Start date</label>
                                 <input id="form_start" type="date" name="start" th:field="*{startDate}" required="required" data-error="Select a date"/>

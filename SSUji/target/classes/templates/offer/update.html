@@ -32,11 +32,10 @@
                                 <input th:name="dniOffer" th:id="dniOffer" th:value="*{userDNI}" id="form_dni" type="text" name="dniOffer" class="form-control" required="required" data-error="Your DNI is required." readonly> </div></div>
                         <div class="form-group"> <label for="form_description">Description *</label>
                             <textarea th:field="*{description}" id="form_description" name="description" class="form-control" placeholder="Write the description of the skill here." rows="4" required="required" data-error="A description is required."></textarea> </div>
-                        <div class="form-group"> <label for="form_skill">Skill *</label>
-                            <td> <select class="mdb-select md-form" id="form_skill" type="text" th:field="*{skillId}" searchable="Search here.." required="required" data-error="Please specify the skill.">
-                                <option th:each="skill : ${skillsActive}" th:value="${skill.id}" th:text="${skill.name} + ' (' + ${skill.level} + ')'"></option>
-                                </select>
-                            </td>
+                        <div class="form-group"> <label >Skill *</label>
+                            <div class="form-group"> <label>Skill *</label>
+                                <!--                               <input th:name="skillName" th:text="${skillsActive.get(request.skillId).name}" readonly>-->
+                            </div>
                         </div>
                         <div class="form-group"> <label for="form_start">Start date</label>
                             <input id="form_start" type="date" name="start" th:field="*{startDate}" required="required" data-error="Select a date"/></div>

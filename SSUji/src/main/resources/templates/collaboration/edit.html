@@ -40,7 +40,7 @@
                                     </tr>
                                 </table>
                                 <div class="form-group"> <label for="form_Place">Place</label>
-                                    <input th:field="*{place}" id="form_Place" type="text" name="name" class="form-control" placeholder="Where did you meet? (Only both of you can see this)"> </div>
+                                    <input th:field="*{place}" id="form_Place" type="text" name="name" class="form-control" placeholder="Where did you meet? (Only both of you can see this)" maxlength="100"> </div>
                                 <div hidden class="form-group"> <label for="form_State">State</label>
                                     <td><input hidden type="text" id="form_State" th:field="*{state}" readonly/></td>
                                 </div>
