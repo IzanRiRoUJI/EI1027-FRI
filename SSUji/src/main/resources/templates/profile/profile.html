@@ -4,26 +4,22 @@
       layout:decorate="~{fragments/base}">
 <head>
     <meta charset="UTF-8">
-    <title>Create Skill</title>
+    <title>Edit profile</title>
     <link type="text/css" th:href="@{static/css/base.css}" href="static/css/base.css" rel="stylesheet"/>
 </head>
 <body>
 <div layout:fragment="content">
-
     <div class="loggeduser" th:object="${session}">
-<!--        <p><span th:text="*{user}"></span> </p>-->
         <p th:if="*{user == null}">
             <meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/>
         </p>
     </div>
-
         <div class="col-lg-7 mx-auto">
             <div class="card mt-2 mx-auto p-4 bg-light">
                 <div class="card-body bg-light">
                         <div class="controls">
                             <div class="loggeduser" th:object="${session}">
                                 <div th:if="*{user != null}">
-
                                     <!-- Nombre -->
                                     <div class="row justify-content-center"><h1 style="font-family:Bellota-Bold;">Hello! <span style="font-family:Arimo-Bold;" th:text="*{user.name}"></span></h1>
                                     </div>
@@ -36,20 +32,15 @@
                                         <p th:if="*{user.isSKP == true}" class="role">[SKP]</p>
                                         <p th:if="*{user.isSKP == false}" class="role">[Student]</p>
                                     </div>
-
                                     <br>
-
                                     <div class="stats">
                                         <!-- Datos personales -->
                                         <div class="row justify-content-center"><p>Your email is <span style="font-family:Arimo-Bold;" th:text="*{user.email}"></span></p> </div>
                                         <div class="row justify-content-center"><p>Currently studying <span style="font-family:Arimo-Bold;" th:text="*{user.degree}"></span></p> </div>
-
                                         <br>
-
                                         <!-- balance -->
                                         <h1 style="font-family:Bellota-Bold;">Balance</h1>
                                         <div class="row justify-content-center"> <h2><span th:text="*{user.balance}"></span></h2></div>
-
                                         <br>
                                         <hr />
                                         <h1 style="font-family:Bellota-Bold;">Scores</h1>
@@ -70,11 +61,9 @@
                                             </div>
                                         </div>
                                     </div>  <!--  / stats -->
-
                                     <div class="row justify-content-center">
                                         <a th:href="@{/student/update/{dni}(dni=*{user.dni})}" class="btn buttonAddA btn-send">Update profile</a>
                                     </div>
-
                                 </div> <!--  / if not null -->
                             </div>
                         </div>

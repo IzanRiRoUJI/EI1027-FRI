@@ -9,19 +9,8 @@
 </head>
 <body>
 
-<!--
-<div layout:fragment="content"> &lt;!&ndash; insertamos contenido &ndash;&gt;
-
-    <div class="loggeduser" th:object="${session}">
-        <p th:if="*{user == null}">
-            <meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/>
-        </p>
-    </div>
--->
-
 <div layout:fragment="content">
     <h1>Your Collaborations</h1>
-
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="notStarted-tab" data-toggle="tab" href="#notStarted" role="tab" aria-controls="notStarted" aria-selected="true"><h3>Not started</h3></a>
@@ -65,11 +54,7 @@
                     <td th:text="${collaboration.startDate}"></td>
                     <td th:text="${collaboration.endDate}"></td>
                     <td>
-<!--                        <a th:href="@{/collaboration/setInProgress/{id}(id=${collaboration.id})}" class="btn buttonEdit">Start</a>-->
-
-
                         <a data-toggle="modal" th:attr="data-target='#popup'+${collaboration.id}" class="btn buttonEdit">Start</a>
-
                         <!-- Pop up -->
                         <div class="modal fade" th:id="'popup' + ${collaboration.id}" tabindex="-1" role="dialog" aria-labelledby="startModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -81,12 +66,10 @@
                                         </button>
                                     </div>
                                     <div class="popUpBody">
-
                                         Are you sure you want start this collaborations </b> (<b th:text="${collaboration.id}"></b>) ? <br>
                                         (This action can NOT be reversed)
                                         <br>
                                         <br>
-
                                     </div>
                                     <div class="modal-footer">
                                         <a class="btn buttonEdit" href="#" data-dismiss="modal">Cancel</a>
@@ -95,8 +78,7 @@
                                 </div>
                             </div>
                         </div> <!-- END Pop up -->
-
-                    </td>                    <!--                    <td><a th:href="@{/collaboration/delete/{dniOffer}/{dniRequest}/{skillId}/{state}(dniOffer=${offer.dniOffer},(dniRequest=${collaboration.dniRequest},skillId=${collaboration.skillId},state=${collaboration.state})}" class="btn btn-danger">Delete</a></td>-->
+                    </td>
                 </tr>
                 </tbody>
             </table>
@@ -131,9 +113,7 @@
                     <td th:text="${collaboration.startDate}"></td>
                     <td th:text="${collaboration.endDate}"></td>
                     <td>
-
                         <a data-toggle="modal" th:attr="data-target='#popup'+${collaboration.id}" class="btn buttonEdit">Finish</a>
-
                         <!-- Pop up -->
                         <div class="modal fade" th:id="'popup' + ${collaboration.id}" tabindex="-1" role="dialog" aria-labelledby="finishModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -145,12 +125,10 @@
                                         </button>
                                     </div>
                                     <div class="popUpBody">
-
                                         Are you sure you want finish this collaborations (<b th:text="${collaboration.id}"></b>) ? <br>
                                         (This action can NOT be reversed)
                                         <br>
                                         <br>
-
                                     </div>
                                     <div class="modal-footer">
                                         <a class="btn buttonEdit" href="#" data-dismiss="modal">Cancel</a>
@@ -159,28 +137,19 @@
                                 </div>
                             </div>
                         </div> <!-- END Pop up -->
-
                     </td>
                 </tr>
                 </tbody>
             </table>
-
         </div>
-
         <!-- FINISHED -->
         <div class="tab-pane fade" id="finished" role="tabpanel" aria-labelledby="finished-tab">
-
             <table class="table table-striped table-sm">
                 <thead>
                 <tr>
                     <th>Collaboration id</th>
-
-<!--                    <th>Offer id</th>-->
-<!--                    <th>Request id</th>-->
-
                     <th>Student Offer</th>
                     <th>Student Request</th>
-
                     <th>Skill name</th>
                     <th>Skill level</th>
                     <th>Place</th>
@@ -195,17 +164,8 @@
                 <tbody>
                 <tr th:each="collaboration: ${collaborationsFinished}">
                     <td th:text="${collaboration.id}"></td>
-
-<!--                    <td th:text="${collaboration.idOffer}"></td>-->
-<!--                    <td th:text="${collaboration.idRequest}"></td>-->
-
-
-<!--                    <td th:text="${offersInfo.get(collaboration.idOffer)}"></td>-->
-<!--                    <td th:text="${requestsInfo.get(collaboration.idRequest)}"></td>-->
-
                     <td th:text="${studentsInfo.get(offersInfo.get(collaboration.idOffer).dniOffer).name}"></td>
                     <td th:text="${studentsInfo.get(requestsInfo.get(collaboration.idRequest).dniRequest).name}"></td>
-
                     <td th:text="${skillsInfo.get(collaboration.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).level}"></td>
                     <td th:text="${collaboration.place}"></td>
@@ -214,15 +174,12 @@
                     <td th:text="${collaboration.hours}"></td>
                     <td th:text="${collaboration.startDate}"></td>
                     <td th:text="${collaboration.endDate}"></td>
-
                     <p th:if="*{collaboration.hours == 0.0}">
                         <td><a th:href="@{/collaboration/edit/{id}(id=${collaboration.id})}" class="btn buttonEdit">Edit</a></td>
                     </p>
-
                     <p th:if="*{collaboration.hours > 0.0}">
                         <td><b> Complete </b></td>
                     </p>
-
                 </tr>
                 </tbody>
             </table>

@@ -20,9 +20,6 @@
             <meta http-equiv="refresh" content="0; URL=/student/restricted" th:href="@{/student/restricted}"/>
         </p>
     </div>
-
-
-    <!-- tabs -->
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><h3>Not banned</h3></a>
@@ -32,7 +29,6 @@
         </li>
     </ul>
     <div class="tab-content" id="myTabContent">
-
         <!-- NO BANNED -->
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
@@ -56,10 +52,8 @@
                     <td th:text="${student.degree}"></td>
                     <td th:text="${student.balance}"></td>
                     <td th:text="${student.banned}"></td>
-
                     <td>
                         <a data-toggle="modal" th:attr="data-target='#popup'+${student.dni}" class="btn buttonWarning">Ban</a>
-
                         <!-- Pop up -->
                         <div class="modal fade" th:id="'popup' + ${student.dni}" tabindex="-1" role="dialog" aria-labelledby="banModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -71,17 +65,14 @@
                                         </button>
                                     </div>
                                     <div class="popUpBody">
-
                                         Are you sure you want to ban <b th:text="${student.name}"></b> (<b th:text="${student.dni}"></b>) ? <br>
                                         (This action can be reversed)
                                         <br>
                                         <br>
-
                                         <div class="textBox">
                                             Reason (this will be sent to the student):
                                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                         </div>
-
                                     </div>
                                     <div class="modal-footer">
                                         <a class="btn buttonEdit" href="#" data-dismiss="modal">Cancel</a>
@@ -90,17 +81,13 @@
                                 </div>
                             </div>
                         </div> <!-- END Pop up -->
-
                     </td>
                 </tr>
                 </tbody>
             </table>
-
         </div>
-
         <!-- BANNED -->
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-
             <table class="table table-striped table-sm">
                 <thead>
                 <tr>
@@ -122,11 +109,7 @@
                     <td th:text="${student.balance}"></td>
                     <td th:text="${student.banned}"></td>
                     <td>
-
-<!--                        <a th:href="@{/student/ban/{dni}/{banned}(dni=${student.dni},banned=${student.banned})}" class="btn buttonWarning"> Unban</a>-->
-
                         <a data-toggle="modal" th:attr="data-target='#popup'+${student.dni}" class="btn buttonWarning">Unban</a>
-
                         <!-- Pop up -->
                         <div class="modal fade" th:id="'popup' + ${student.dni}" tabindex="-1" role="dialog" aria-labelledby="unbanModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
@@ -149,18 +132,12 @@
                                 </div>
                             </div>
                         </div> <!-- END Pop up -->
-
-
                     </td>
                 </tr>
                 </tbody>
             </table>
-
         </div>
-
     </div>
-
-
 </div>
 </body>
 </html>

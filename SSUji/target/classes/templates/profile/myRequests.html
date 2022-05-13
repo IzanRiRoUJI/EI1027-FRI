@@ -37,16 +37,12 @@
 
                 <td th:text="${skillsInfo.get(request.skillId).name}"></td>
                 <td th:text="${skillsInfo.get(request.skillId).level}"></td>
-
                 <td th:text="${request.description}"></td>
                 <td th:text="${request.startDate}"></td>
                 <td th:text="${request.endDate}"></td>
-                <td><a th:href="@{/request/update/{dniRequest}/{skillId}(dniRequest=${request.dniRequest},skillId=${request.skillId})}" class="btn buttonEdit">Edit</a></td>
+                <td><a th:href="@{/request/update/{idRequest}(idRequest=${request.id})}" class="btn buttonEdit">Edit</a></td>
                 <td>
-<!--                    <a th:href="@{/request/delete/{dniRequest}/{skillId}(dniRequest=${request.dniRequest},skillId=${request.skillId})}" class="btn buttonWarning">Delete</a>-->
-
                     <a data-toggle="modal" th:attr="data-target='#popup'+${request.id}" class="btn buttonWarning">Delete</a>
-
                     <!-- Pop up -->
                     <div class="modal fade" th:id="'popup' + ${request.id}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -58,12 +54,10 @@
                                     </button>
                                 </div>
                                 <div class="popUpBody">
-
                                     Are you sure you want to delete <b th:text="${request.name}"></b> (<b th:text="${request.id}"></b>) ? <br>
                                     (This action can NOT be reversed)
                                     <br>
                                     <br>
-
                                 </div>
                                 <div class="modal-footer">
                                     <a class="btn buttonEdit" href="#" data-dismiss="modal">Cancel</a>
@@ -72,20 +66,13 @@
                             </div>
                         </div>
                     </div> <!-- END Pop up -->
-
-
                 </td>
-
             </tr>
             </tbody>
         </table>
 
     </div>
     <br>
-<!--    <div class="center">-->
-<!--        <a href="add" class="btn buttonAddA">Add request</a>-->
-<!--    </div>-->
-
 </div>
 </body>
 </html>

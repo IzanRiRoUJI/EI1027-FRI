@@ -3,12 +3,12 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/base}">
 <head>
-    <title>Update my Collaboration</title>
+    <title>Update Collaboration</title>
     <meta charset="UTF-8" link type="text/css" th:href="@{static/css/base.css}" href="static/css/base.css" rel="stylesheet"/>
 </head>
 <body>
 <div layout:fragment="content">
-    <h1>Update my collaboration</h1>
+    <h1>Update collaboration</h1>
     <div class="loggeduser" th:object="${session}">
         <p th:if="*{user == null}">
             <meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/>
@@ -23,40 +23,37 @@
                             <div class="controls">
                                 <table hidden>
                                     <tr>
-                                        <td><label hidden>Id</label></td>
-                                        <td><input hidden type="text" th:field="*{id}" readonly/></td>
+                                        <td><label>Id</label></td>
+                                        <td><input type="text" th:field="*{id}" readonly/></td>
                                     </tr>
                                     <tr>
-                                        <td><label hidden>Offer's id</label></td>
-                                        <td><input hidden type="text" th:field="*{idOffer}" readonly/></td>
+                                        <td><label>Offer's id</label></td>
+                                        <td><input type="text" th:field="*{idOffer}" readonly/></td>
                                     </tr>
                                     <tr>
-                                        <td><label hidden>Request's id</label></td>
-                                        <td><input hidden type="text" th:field="*{idRequest}" readonly/></td>
+                                        <td><label>Request's id</label></td>
+                                        <td><input type="text" th:field="*{idRequest}" readonly/></td>
                                     </tr>
                                     <tr>
-                                        <td><label hidden>Skill ID</label></td>
-                                        <td><input hidden type="number" th:field="*{skillId}" readonly/></td>
+                                        <td><label>Skill ID</label></td>
+                                        <td><input type="number" th:field="*{skillId}" readonly/></td>
                                     </tr>
                                 </table>
                                 <div class="form-group"> <label for="form_Place">Place</label>
                                     <input th:field="*{place}" id="form_Place" type="text" name="name" class="form-control" placeholder="Where did you meet? (Only both of you can see this)"> </div>
-                                <div class="form-group"> <label for="form_State">State</label>
+                                <div hidden class="form-group"> <label for="form_State">State</label>
                                     <td><input hidden type="text" id="form_State" th:field="*{state}" readonly/></td>
                                 </div>
                                 <div class="form-group"> <label for="form_Score">Score</label>
                                     <input th:field="*{score}" id="form_Score" type="number" min="1" max="5"> </div>
                                 <div class="form-group"> <label for="form_Hours">Hours spent</label>
                                     <input th:field="*{hours}" id="form_Hours" type="number"> </div>
-                                <div class="form-group"> <label for="form_startDate">Starting date</label>
-                                    <input th:field="*{startDate}" id="form_startDate" type="date"> </div>
-                                <div class="form-group"> <label for="form_endDate">Ending date</label>
-                                    <input th:field="*{endDate}" id="form_endDate" type="date"> </div>
-
-
+                                <div hidden class="form-group"> <label for="form_startDate">Starting date</label>
+                                    <input hidden th:field="*{startDate}" id="form_startDate" type="date"> </div>
+                                <div hidden class="form-group"> <label for="form_endDate">Ending date</label>
+                                    <input hidden th:field="*{endDate}" id="form_endDate" type="date"> </div>
                                 <div class="row">
                                     <div class="col-md-12">
-
                                         <input type="submit" class="btn buttonAddA btn-send pt-2 btn-block" value="Edit Collaboration">
                                     </div>
                                 </div>
