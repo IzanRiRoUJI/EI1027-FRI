@@ -150,7 +150,6 @@ public class CollaborationController {
             return "collaboration/edit";
         collaborationDao.updateCollaboration(collaboration);
         collaborationService.updateStudentsBalance(collaboration);
-        System.out.println(session);
 
         //actualizamos valores en session
         Student currentInfo = (Student) session.getAttribute("user");
