@@ -63,7 +63,7 @@ public class CollaborationSvc implements CollaborationService{
     }
 
     @Override
-    public double getAverageGivenScores(String dni){
+    public String getAverageGivenScores(String dni){
         List<Collaboration> collaborations = getCollaborationsByDniState(dni, "finished");
         List<Integer> scores = new ArrayList<>();
         for (Collaboration c: collaborations) {
@@ -71,20 +71,22 @@ public class CollaborationSvc implements CollaborationService{
                 scores.add(c.getScore());
             }
         }
-        return scores.stream().mapToInt(val -> val).average().orElse(0.0);
+        double result = scores.stream().mapToInt(val -> val).average().orElse(0.0);
+        return String.format("%.2f", result);
     }
 
     @Override
-    public double getAverageTeacherScores(String dni){
+    public String getAverageTeacherScores(String dni){
         List<Collaboration> collaborations = getCollaborationsByDniState(dni, "finished");
         List<Integer> scores = new ArrayList<>();
         for (Collaboration c: collaborations) {
             //c.getDniOffer().equals(dni)
-            if(offerDao.getOffer(c.getIdRequest()).getDniOffer().equals(dni)){
+            if(offerDao.getOffer(c.getIdOffer()).getDniOffer().equals(dni)){
                 scores.add(c.getScore());
             }
         }
-        return scores.stream().mapToInt(val -> val).average().orElse(0.0);
+        double result = scores.stream().mapToInt(val -> val).average().orElse(0.0);
+        return String.format("%.2f", result);
     }
 
     @Override
@@ -117,18 +119,16 @@ public class CollaborationSvc implements CollaborationService{
         return result;
     }
 
-    // Problema: se pueden hacer multiples updates (balance infinito)
-    // Solucion: solo aparece el boton de edit una vez (cuando el hour es 0)
-        // redirigir del update a my collaborations si no es 0
-        // solo mostrar en la tabla si es 0
     @Override
     public void updateStudentsBalance(Collaboration collaboration) {
+        //mas balance para el estudiante de offer
         String dniOffer = offerDao.getOffer(collaboration.getIdOffer()).getDniOffer();
         Student studentOffer = studentDao.getStudent(dniOffer);
-        studentOffer.setBalance(studentOffer.getBalance() + collaboration.getHours());
+        studentDao.updateStudentBalance(studentOffer.getDni(), studentOffer.getBalance() + collaboration.getHours());
 
-        String dniRequest= requestDao.getRequest(collaboration.getIdRequest()).getDniRequest();
+        //menos balance para el estudiante de request
+        String dniRequest = requestDao.getRequest(collaboration.getIdRequest()).getDniRequest();
         Student studentRequest = studentDao.getStudent(dniRequest);
-        studentRequest.setBalance(studentRequest.getBalance() + collaboration.getHours());
+        studentDao.updateStudentBalance(studentRequest.getDni(), studentRequest.getBalance() - collaboration.getHours());
     }
 }

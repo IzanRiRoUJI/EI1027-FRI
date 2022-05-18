@@ -99,6 +99,12 @@ public class StudentDao implements UserDao{
                         "SET banned=? WHERE dni=?", newStatus, dni);
     }
 
+    public void updateStudentBalance(String dni, float newBalance) {
+        jdbcTemplate.update("UPDATE Student " +
+                "SET balance=? WHERE dni=?", newBalance, dni);
+    }
+
+
     @java.lang.Override
     public Student loadUserByUsername(String email, String password) {
 

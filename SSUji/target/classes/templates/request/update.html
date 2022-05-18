@@ -27,12 +27,17 @@
                                 <input th:field="*{name}" id="form_name" type="text" name="name" class="form-control" placeholder="Name of the offer (other students will be able to see this)." required="required" data-error="Name is required." maxlength="50"> </div>
                             <div class="loggeduser" th:object="${session}">
                                 <div class="form-group"> <label for="form_dni">DNI *</label>
-                                    <input th:name="dniRequest" th:id="dniRequest" th:value="*{userDNI}" id="form_dni" type="text" name="dniRequest" class="form-control" required="required" data-error="Your DNI is required." readonly> </div></div>
+                                    <input th:name="dniRequest" th:id="dniRequest" th:value="*{user.dni}" id="form_dni" type="text" name="dniRequest" class="form-control" required="required" data-error="Your DNI is required." readonly> </div></div>
                             <div class="form-group"> <label for="form_description">Description *</label>
                                 <textarea th:field="*{description}" id="form_description" name="description" class="form-control" placeholder="Write the description of the skill here." rows="4" required="required" data-error="A description is required." maxlength="100"></textarea> </div>
+
+
                             <div class="form-group"> <label>Skill *</label>
 <!--                               <input th:name="skillName" th:text="${skillsActive.get(request.skillId).name}" readonly>-->
+                                <input th:name="skillId" th:id="skillId" th:value="*{skillId}"  th:text="${skillId}" id="form_skillId" type="text" name="skillId" class="form-control" required="required" data-error="The skill is required." readonly hidden>
                             </div>
+
+
                             <div class="form-group"> <label for="form_start">Start date</label>
                                 <input id="form_start" type="date" name="start" th:field="*{startDate}" required="required" data-error="Select a date"/>
                             </div>

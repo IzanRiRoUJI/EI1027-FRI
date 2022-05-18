@@ -1,9 +1,6 @@
 package es.uji.ei1027.skillsharing.controller;
 
-import es.uji.ei1027.skillsharing.dao.CollaborationDao;
-import es.uji.ei1027.skillsharing.dao.OfferDao;
-import es.uji.ei1027.skillsharing.dao.RequestDao;
-import es.uji.ei1027.skillsharing.dao.SkillDao;
+import es.uji.ei1027.skillsharing.dao.*;
 import es.uji.ei1027.skillsharing.model.Collaboration;
 import es.uji.ei1027.skillsharing.model.Skill;
 import es.uji.ei1027.skillsharing.model.Student;
@@ -57,6 +54,14 @@ public class CollaborationController {
     public void setSkillDao(SkillDao skillDao) {
         this.skillDao = skillDao;
     }
+
+    private StudentDao studentDao;
+
+    @Autowired
+    public void setStudentDao(StudentDao studentDao) {
+        this.studentDao = studentDao;
+    }
+
 
     @RequestMapping("/list")
     public String listCollaborations(Model model, HttpSession session) {
@@ -140,10 +145,16 @@ public class CollaborationController {
     }
 
     @RequestMapping(value="/edit", method = RequestMethod.POST)
-    public String processEditSubmit( @ModelAttribute("collaboration") Collaboration collaboration, BindingResult bindingResult) {
+    public String processEditSubmit( @ModelAttribute("collaboration") Collaboration collaboration, BindingResult bindingResult, HttpSession session) {
         if (bindingResult.hasErrors())
             return "collaboration/edit";
         collaborationDao.updateCollaboration(collaboration);
+        collaborationService.updateStudentsBalance(collaboration);
+        System.out.println(session);
+
+        //actualizamos valores en session
+        Student currentInfo = (Student) session.getAttribute("user");
+        currentInfo.setBalance(studentDao.getStudent(currentInfo.getDni()).getBalance());
         return "redirect:/collaboration/listmycollaborations";
     }
     @RequestMapping(value="/setInProgress/{id}")

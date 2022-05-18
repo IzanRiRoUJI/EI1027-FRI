@@ -10,6 +10,7 @@
 <body>
 <div layout:fragment="content">
     <div class="loggeduser" th:object="${session}">
+<!--        <p><span th:text="*{user}"></span> </p>-->
         <p th:if="*{user == null}">
             <meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/>
         </p>
