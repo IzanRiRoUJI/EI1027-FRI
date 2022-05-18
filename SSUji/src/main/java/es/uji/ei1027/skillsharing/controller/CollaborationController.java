@@ -167,4 +167,18 @@ public class CollaborationController {
         collaborationDao.setCollaborationState(collaborationDao.getCollaboration(id),"finished");
         return "redirect:../edit/"+ id;
     }
+
+    @RequestMapping("/statistics")
+    public String listStatistics(Model model, HttpSession session) {
+        model.addAttribute("offersNumber", collaborationService.getOffersNumber());
+        model.addAttribute("requestNumber", collaborationService.getRequestsNumber());
+        model.addAttribute("collaborationsNumber", collaborationService.getCollaborationsNumber());
+        model.addAttribute("skillNumber", collaborationService.getSkillNumber());
+        model.addAttribute("collaborationAverage", collaborationService.getAverageCollaborations());
+        model.addAttribute("collaborationPercentage", collaborationService.getUsePercentageSkillsInCollaborations());
+        model.addAttribute("offerPercentage", collaborationService.getUsePercentageSkillsInOffers());
+        model.addAttribute("requestPercentage", collaborationService.getUsePercentageSkillsInRequests());
+        model.addAttribute("skillsInfo", collaborationService.getSkillsById());
+        return "statistics";
+    }
 }

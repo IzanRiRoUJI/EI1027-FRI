@@ -15,4 +15,12 @@ public interface CollaborationService{
     public Map<Integer, Request> getRequestsById();
     public Map<String, Student> getStudentsByDni();
     public void updateStudentsBalance(Collaboration collaboration);
+    public int getOffersNumber();
+    public int getRequestsNumber();
+    public int getCollaborationsNumber();
+    public int getSkillNumber();
+    public int getAverageCollaborations();
+    public Map<Integer, Float> getUsePercentageSkillsInOffers();
+    public Map<Integer, Float> getUsePercentageSkillsInRequests();
+    public Map<Integer, Float> getUsePercentageSkillsInCollaborations();
 }

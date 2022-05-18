@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <body>
 <head>
     <link type="text/css" th:href="@{/css/base.css}" href="/css/base.css" rel="stylesheet"/>
@@ -24,9 +24,11 @@
                     <li class="nav-item">
                         <a class="nav-link bar" th:href="@{/offer/list}">Offers <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link bar" href="/request/list" th:href="@{/request/list}">Requests</a>
-                    </li>
+                    <p th:if="*{user != null}">
+                        <li class="nav-item">
+                            <a class="nav-link bar" href="/request/list" th:href="@{/request/list}">Requests</a>
+                        </li>
+                    </p>
 
                     <!-- info usuario -->
                     <p th:if="*{user != null}">
@@ -51,7 +53,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLinkSKP">
                                 <a class="dropdown-item" href="/skill/list" th:href="@{/skill/list}">Manage Skills</a>
-                                <a class="dropdown-item" href="statistics">Statistics</a>
+                                <a class="dropdown-item" href="statistics" th:href="@{/collaboration/statistics}">Statistics</a>
                                 <a class="dropdown-item" href="/student/list" th:href="@{/student/ban}">Manage Students</a>
                                 <a class="dropdown-item" href="/collaboration/list" th:href="@{/collaboration/list}">Manage Collaborations</a>
                             </div>

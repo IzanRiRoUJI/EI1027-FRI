@@ -131,4 +131,103 @@ public class CollaborationSvc implements CollaborationService{
         Student studentRequest = studentDao.getStudent(dniRequest);
         studentDao.updateStudentBalance(studentRequest.getDni(), studentRequest.getBalance() - collaboration.getHours());
     }
+
+    @Override
+    public int getOffersNumber() {
+        int num = offerDao.getOffers().size();
+        return num;
+    }
+
+    @Override
+    public int getRequestsNumber() {
+        int num = requestDao.getRequests().size();
+        return num;
+    }
+
+    @Override
+    public int getCollaborationsNumber() {
+        int num = collaborationDao.getCollaborations().size();
+        return num;
+    }
+
+    @Override
+    public int getSkillNumber() {
+        int num = skillDao.getSkills().size();
+        return num;
+    }
+
+    @Override
+    public int getAverageCollaborations() {
+        List<Collaboration> collaborations = collaborationDao.getCollaborationsByState("finished");
+        int avr = 0;
+        for(Collaboration collaboration : collaborations) {
+            int num = collaboration.getScore();
+            avr = avr + num;
+        }
+
+        if (collaborations.size() != 0){
+            avr = avr / collaborations.size();
+        }
+
+        return avr;
+    }
+
+    @Override
+    public Map<Integer, Float> getUsePercentageSkillsInOffers() {
+        Map<Integer, Float> porcentajes = new HashMap<Integer, Float>();
+        List<Offer> offers = offerDao.getOffersUnexpired();
+        List<Skill> skills = skillDao.getSkillByActiveStatus(true);
+
+        for (Skill skill : skills){
+            int cnt = 0;
+            for (Offer offer : offers){
+                if (offer.getSkillId() == skill.getId()){
+                    cnt ++;
+                }
+            }
+            porcentajes.put(skill.getId(),(float) ((float)cnt / (float) offers.size()) * 100);
+        }
+        //System.out.println(porcentajes);
+        return porcentajes;
+    }
+
+    @Override
+    public Map<Integer, Float> getUsePercentageSkillsInRequests() {
+        Map<Integer, Float> porcentajes = new HashMap<Integer, Float>();
+        List<Request> requests = requestDao.getRequestsUnexpired();
+        List<Skill> skills = skillDao.getSkillByActiveStatus(true);
+
+        for (Skill skill : skills){
+            int cnt = 0;
+            for (Request request : requests){
+                if (request.getSkillId() == skill.getId()){
+                    cnt ++;
+                }
+            }
+
+            porcentajes.put(skill.getId(),(float) ((float)cnt / (float) requests.size()) * 100);
+        }
+        //System.out.println(porcentajes);
+        return porcentajes;
+    }
+
+    @Override
+    public Map<Integer, Float> getUsePercentageSkillsInCollaborations() {
+        Map<Integer, Float> porcentajes = new HashMap<Integer, Float>();
+        List<Collaboration> collaborations = collaborationDao.getCollaborations();
+        List<Skill> skills = skillDao.getSkillByActiveStatus(true);
+
+        for (Skill skill : skills){
+            int cnt = 0;
+            for (Collaboration collaboration : collaborations){
+                if (collaboration.getSkillId() == skill.getId()){
+                    cnt ++;
+                }
+            }
+            System.out.println(cnt);
+            porcentajes.put(skill.getId(),(float) ((float)cnt / (float) collaborations.size()) * 100);
+        }
+        System.out.println( "Collaborations: "+ porcentajes);
+        return porcentajes;
+    }
 }
