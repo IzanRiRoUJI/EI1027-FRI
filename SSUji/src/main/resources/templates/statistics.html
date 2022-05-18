@@ -8,18 +8,60 @@
     <link type="text/css" th:href="@{static/css/base.css}" href="static/css/base.css" rel="stylesheet"/>
 </head>
 <body>
+<div layout:fragment="content">
+    <div class="loggeduser" th:object="${session}">
+        <p th:if="*{user == null}">
+            <meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/>
+        </p>
+        <p th:if="*{user != null and user.isSKP == false}">
+            <meta http-equiv="refresh" content="0; URL=/student/restricted" th:href="@{/student/restricted}"/>
+        </p>
 
-<div class="loggeduser" th:object="${session}">
-    <p th:if="*{user == null}">
-        <meta http-equiv="refresh" content="0; URL=/login" th:href="@{/login}"/>
-    </p>
-    <p th:if="*{user != null and user.isSKP == false}">
-        <meta http-equiv="refresh" content="0; URL=/student/restricted" th:href="@{/student/restricted}"/>
-    </p>
+        <h1>Statistics</h1>
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
+            <table class="table table-striped table-sm">
+                <thead>
+                <tr>
+                    <th>Offers Number</th>
+                    <th>Requests Number</th>
+                    <th>Collaborations Number</th>
+                    <th>Skills Number</th>
+                    <th>Average score of the collaborations</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td th:text="${offersNumber}"></td>
+                    <td th:text="${requestNumber}"></td>
+                    <td th:text="${collaborationsNumber}"></td>
+                    <td th:text="${skillNumber}"></td>
+                    <td th:text="${collaborationAverage}"></td>
+                </tr>
+                </tbody>
+            </table>
 
+            <table class="table table-striped table-sm">
+                <thead>
+                <tr>
+                    <th>Skill</th>
+                    <th>% collaborations</th>
+                    <th>% offers</th>
+                    <th>% requests</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="skillId : ${offerPercentage.keySet()}">
+                    <td th:text="${skillsInfo.get(skillId).name} + ' (' + ${skillsInfo.get(skillId).level} + ')'"></td>
+                    <td th:text="${collaborationPercentage.get(skillId)}"></td>
+                    <td th:text="${offerPercentage.get(skillId)}"></td>
+                    <td th:text="${requestPercentage.get(skillId)}"></td>
+                </tr>
+                </tbody>
+            </table>
 
+        </div>
+    </div>
 </div>
-
 </body>
 </html>
