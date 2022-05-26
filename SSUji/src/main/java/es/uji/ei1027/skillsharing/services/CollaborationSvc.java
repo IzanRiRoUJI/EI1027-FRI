@@ -52,11 +52,21 @@ public class CollaborationSvc implements CollaborationService{
         return result;
     }
 
+    public boolean isBannedStudentInCollaboration(Collaboration c){
+        Offer offer = offerDao.getOffer(c.getIdOffer());
+        Request request = requestDao.getRequest(c.getIdRequest());
+
+        Student studentOffer = studentDao.getStudent(offer.getDniOffer());
+        Student studentRequest = studentDao.getStudent(request.getDniRequest());
+
+        return studentOffer.isBanned() || studentRequest.isBanned();
+    }
+
     public List<Collaboration> getCollaborationsByDniState(String dni, String state) {
         List<Collaboration> collaborations = getCollaborationsByDni(dni);
         List<Collaboration> collaborationsbn = new ArrayList<>();
         for (Collaboration coll : collaborations)
-            if (coll.getState().equals(state)) {
+            if (coll.getState().equals(state) && !isBannedStudentInCollaboration(coll)) {
                 collaborationsbn.add(coll);
             }
         return collaborationsbn;
@@ -68,11 +78,13 @@ public class CollaborationSvc implements CollaborationService{
         List<Integer> scores = new ArrayList<>();
         for (Collaboration c: collaborations) {
             if(requestDao.getRequest(c.getIdRequest()).getDniRequest().equals(dni)){
-                scores.add(c.getScore());
+                if(c.getScore() > 0){
+                    scores.add(c.getScore());
+                }
             }
         }
         double result = scores.stream().mapToInt(val -> val).average().orElse(0.0);
-        return String.format("%.2f", result);
+        return String.format("%.1f", result);
     }
 
     @Override
@@ -82,11 +94,14 @@ public class CollaborationSvc implements CollaborationService{
         for (Collaboration c: collaborations) {
             //c.getDniOffer().equals(dni)
             if(offerDao.getOffer(c.getIdOffer()).getDniOffer().equals(dni)){
-                scores.add(c.getScore());
+                if(c.getScore() > 0){
+                    scores.add(c.getScore());
+                }
+
             }
         }
         double result = scores.stream().mapToInt(val -> val).average().orElse(0.0);
-        return String.format("%.2f", result);
+        return String.format("%.1f", result);
     }
 
     @Override
@@ -162,7 +177,10 @@ public class CollaborationSvc implements CollaborationService{
         int avr = 0;
         for(Collaboration collaboration : collaborations) {
             int num = collaboration.getScore();
-            avr = avr + num;
+            if(num > 0){
+                avr = avr + num;
+            }
+
         }
 
         if (collaborations.size() != 0){
@@ -229,5 +247,21 @@ public class CollaborationSvc implements CollaborationService{
         }
         System.out.println( "Collaborations: "+ porcentajes);
         return porcentajes;
+    }
+
+    @Override
+    public void finishAllOffersStudent(String dni) {
+        List<Offer> offers = offerDao.getMyOffers(dni);
+        for (Offer offer : offers) {
+            offerDao.deleteBySetFinishDate(offer.getId());
+        }
+    }
+
+    @Override
+    public void finishAllRequestStudent(String dni) {
+        List<Request> requests = requestDao.getMyRequests(dni);
+        for (Request request : requests) {
+            requestDao.deleteBySetFinishDate(request.getId());
+        }
     }
 }

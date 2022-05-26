@@ -31,28 +31,32 @@
                 <thead>
                 <tr>
                     <th>Collaboration id</th>
-                    <th>Skill name</th>
-                    <th>Skill level</th>
-                    <th>Place</th>
-                    <th>State (debug)</th>
-                    <th>Score</th>
-                    <th>Hours</th>
-                    <th>Start day</th>
-                    <th>End day</th>
+                    <th>Offer Origin</th>
+                    <th>Request Origin</th>
+                    <th>Skill</th>
+                    <th>Level</th>
+<!--                    <th>Place</th>-->
+<!--                    <th>State (debug)</th>-->
+<!--                    <th>Score</th>-->
+<!--                    <th>Hours</th>-->
+<!--                    <th>Start day</th>-->
+<!--                    <th>End day</th>-->
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="collaboration: ${collaborationsNotStarted}">
                     <td th:text="${collaboration.id}"></td>
+                    <td th:text="${studentsInfo.get(offersInfo.get(collaboration.idOffer).dniOffer).name}"></td>
+                    <td th:text="${studentsInfo.get(requestsInfo.get(collaboration.idRequest).dniRequest).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).level}"></td>
-                    <td th:text="${collaboration.place}"></td>
-                    <td th:text="${collaboration.state}"></td>
-                    <td th:text="${collaboration.score}"></td>
-                    <td th:text="${collaboration.hours}"></td>
-                    <td th:text="${collaboration.startDate}"></td>
-                    <td th:text="${collaboration.endDate}"></td>
+<!--                    <td th:text="${collaboration.place}"></td>-->
+<!--                    <td th:text="${collaboration.state}"></td>-->
+<!--                    <td th:text="${collaboration.score}"></td>-->
+<!--                    <td th:text="${collaboration.hours}"></td>-->
+<!--                    <td th:text="${collaboration.startDate}"></td>-->
+<!--                    <td th:text="${collaboration.endDate}"></td>-->
                     <td>
                         <a data-toggle="modal" th:attr="data-target='#popup'+${collaboration.id}" class="btn buttonEdit">Start</a>
                         <!-- Pop up -->
@@ -90,28 +94,32 @@
                 <thead>
                 <tr>
                     <th>Collaboration id</th>
-                    <th>Skill name</th>
-                    <th>Skill level</th>
-                    <th>Place</th>
-                    <th>State (debug)</th>
-                    <th>Score</th>
-                    <th>Hours</th>
+                    <th>Offer Origin</th>
+                    <th>Request Origin</th>
+                    <th>Skill</th>
+                    <th>Level</th>
+<!--                    <th>Place</th>-->
+<!--                    <th>State (debug)</th>-->
+<!--                    <th>Score</th>-->
+<!--                    <th>Hours</th>-->
                     <th>Start day</th>
-                    <th>End day</th>
+<!--                    <th>End day</th>-->
                     <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="collaboration: ${collaborationsInProgress}">
                     <td th:text="${collaboration.id}"></td>
+                    <td th:text="${studentsInfo.get(offersInfo.get(collaboration.idOffer).dniOffer).name}"></td>
+                    <td th:text="${studentsInfo.get(requestsInfo.get(collaboration.idRequest).dniRequest).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).level}"></td>
-                    <td th:text="${collaboration.place}"></td>
-                    <td th:text="${collaboration.state}"></td>
-                    <td th:text="${collaboration.score}"></td>
-                    <td th:text="${collaboration.hours}"></td>
+<!--                    <td th:text="${collaboration.place}"></td>-->
+<!--                    <td th:text="${collaboration.state}"></td>-->
+<!--                    <td th:text="${collaboration.score}"></td>-->
+<!--                    <td th:text="${collaboration.hours}"></td>-->
                     <td th:text="${collaboration.startDate}"></td>
-                    <td th:text="${collaboration.endDate}"></td>
+<!--                    <td th:text="${collaboration.endDate}"></td>-->
                     <td>
                         <a data-toggle="modal" th:attr="data-target='#popup'+${collaboration.id}" class="btn buttonEdit">Finish</a>
                         <!-- Pop up -->
@@ -148,12 +156,12 @@
                 <thead>
                 <tr>
                     <th>Collaboration id</th>
-                    <th>Student Offer</th>
-                    <th>Student Request</th>
-                    <th>Skill name</th>
-                    <th>Skill level</th>
+                    <th>Offer Origin</th>
+                    <th>Request Origin</th>
+                    <th>Skill</th>
+                    <th>Level</th>
                     <th>Place</th>
-                    <th>State (debug)</th>
+<!--                    <th>State (debug)</th>-->
                     <th>Score</th>
                     <th>Hours</th>
                     <th>Start day</th>
@@ -169,8 +177,10 @@
                     <td th:text="${skillsInfo.get(collaboration.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).level}"></td>
                     <td th:text="${collaboration.place}"></td>
-                    <td th:text="${collaboration.state}"></td>
-                    <td th:text="${collaboration.score}"></td>
+<!--                    <td th:text="${collaboration.state}"></td>-->
+                    <td>
+                        <span th:text="${collaboration.score}"></span> / 5
+                    </td>
                     <td th:text="${collaboration.hours}"></td>
                     <td th:text="${collaboration.startDate}"></td>
                     <td th:text="${collaboration.endDate}"></td>

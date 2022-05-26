@@ -79,6 +79,12 @@ public class StudentController {
     @RequestMapping(value="/ban/{dni}/{banned}")
     public String processBan(@PathVariable String dni, @PathVariable boolean banned) {
         studentDao.setBanStudent(dni, !banned);
+
+        if(!banned){
+            collaborationService.finishAllOffersStudent(dni);
+            collaborationService.finishAllRequestStudent(dni);
+        }
+
         return "redirect:..";
     }
 
@@ -95,8 +101,8 @@ public class StudentController {
         if(session != null){
             Student user = (Student) session.getAttribute("user");
             if(user != null){
-                model.addAttribute("sGiven", collaborationService.getAverageGivenScores(user.getDni()));
-                model.addAttribute("sTeacher", collaborationService.getAverageTeacherScores(user.getDni()));
+                model.addAttribute("sGiven", collaborationService.getAverageGivenScores(user.getDni()).replace(",","."));
+                model.addAttribute("sTeacher", collaborationService.getAverageTeacherScores(user.getDni()).replace(",","."));
             }
         }
         return "profile/profile";

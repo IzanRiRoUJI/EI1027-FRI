@@ -120,6 +120,11 @@ th{
    color: #ffffff;
    font-family: Arimo-Bold;
    text-align: center;
+
+}
+.description{
+  width: 300px;
+  max-width: 300px;
 }
 tr{
    font-family: Arimo-Regular;

@@ -23,4 +23,8 @@ public interface CollaborationService{
     public Map<Integer, Float> getUsePercentageSkillsInOffers();
     public Map<Integer, Float> getUsePercentageSkillsInRequests();
     public Map<Integer, Float> getUsePercentageSkillsInCollaborations();
+
+    public void finishAllRequestStudent(String dni);
+    public void finishAllOffersStudent(String dni);
+//    public void finishAllCollaborationsStudent(String dni);
 }

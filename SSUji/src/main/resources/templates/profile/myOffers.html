@@ -20,10 +20,9 @@
                 <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Offer's DNI</th>
                     <th>Skill name</th>
                     <th>Skill level</th>
-                    <th>Description</th>
+                    <th class="description">Description</th>
                     <th>Starting day</th>
                     <th>Ending day</th>
                     <th colspan="2"><a th:href="@{/offer/add}" class="btn buttonAddA">Add Offer</a></th>
@@ -32,7 +31,6 @@
                 <tbody>
                 <tr th:each="offer: ${offers}">
                     <td th:text="${offer.name}"></td>
-                    <td th:text="${offer.dniOffer}"></td>
                     <td th:text="${skillsInfo.get(offer.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(offer.skillId).level}"></td>
                     <td th:text="${offer.description}"></td>

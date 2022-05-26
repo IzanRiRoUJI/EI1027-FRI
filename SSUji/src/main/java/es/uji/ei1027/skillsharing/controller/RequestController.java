@@ -48,6 +48,7 @@ public class RequestController {
         }
         model.addAttribute("requests", requestDao.getRequestsUnexpired());
         model.addAttribute("skillsInfo", collaborationService.getSkillsById());
+        model.addAttribute("studentsInfo", collaborationService.getStudentsByDni());
         return "request/list";
     }
     @RequestMapping("/mylist")

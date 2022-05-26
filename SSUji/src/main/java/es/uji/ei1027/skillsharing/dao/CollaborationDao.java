@@ -67,13 +67,6 @@ public class CollaborationDao {
             return new ArrayList<Collaboration>();
         }
     }
-    public List<Collaboration> getMyCollaboration(int id){ //  (state in ('notStarted', 'inProgress', 'finished')),
-        try {
-            return jdbcTemplate.query("SELECT * FROM Collaboration WHERE id=?", new CollaborationRowMapper(),id);
-        }catch(EmptyResultDataAccessException e) {
-            return new ArrayList<Collaboration>();
-        }
-    }
 
     public List<Collaboration> getCollaborationsOfStudentByState( String state){
         try {

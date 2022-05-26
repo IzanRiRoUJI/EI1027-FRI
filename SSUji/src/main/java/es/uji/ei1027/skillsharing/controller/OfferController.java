@@ -44,6 +44,7 @@ public class OfferController {
     public String listOffers(Model model) {
         model.addAttribute("offers", offerDao.getOffersUnexpired());
         model.addAttribute("skillsInfo", collaborationService.getSkillsById());
+        model.addAttribute("studentsInfo", collaborationService.getStudentsByDni());
         return "offer/list";
     }
 
