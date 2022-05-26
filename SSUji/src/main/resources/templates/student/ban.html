@@ -66,7 +66,9 @@
                                     </div>
                                     <div class="popUpBody">
                                         Are you sure you want to ban <b th:text="${student.name}"></b> (<b th:text="${student.dni}"></b>) ? <br>
-                                        (This action can be reversed)
+                                        <b>This will end all offers and demands for this student.</b> <br>
+                                        <br>
+                                        (The student can be unbanned in the "Banned" tab but the offers and demands will not be restored)
                                         <br>
                                         <br>
                                         <div class="textBox">
@@ -122,6 +124,8 @@
                                     </div>
                                     <div class="popUpBody">
                                         Are you sure you want to unban <b th:text="${student.name}"></b> (<b th:text="${student.dni}"></b>) ? <br>
+                                        The student will be moved to the "Not banned" tab. <br>
+                                        <br>
                                         (This action can be reversed)
                                         <br>
                                     </div>

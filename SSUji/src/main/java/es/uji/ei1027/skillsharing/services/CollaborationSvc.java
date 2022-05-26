@@ -5,6 +5,7 @@ import es.uji.ei1027.skillsharing.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.awt.desktop.OpenFilesEvent;
 import java.util.*;
 
 @Service
@@ -262,6 +263,22 @@ public class CollaborationSvc implements CollaborationService{
         List<Request> requests = requestDao.getMyRequests(dni);
         for (Request request : requests) {
             requestDao.deleteBySetFinishDate(request.getId());
+        }
+    }
+
+    @Override
+    public void finishAllRequestSkill(int idSkill) {
+        List<Request> requests = requestDao.getRequestsBySkill(idSkill);
+        for (Request request : requests) {
+            requestDao.deleteBySetFinishDate(request.getId());
+        }
+    }
+
+    @Override
+    public void finishAllOffersSkill(int idSkill) {
+        List<Offer> offers = offerDao.getOffersBySkill(idSkill);
+        for (Offer offer : offers) {
+            offerDao.deleteBySetFinishDate(offer.getId());
         }
     }
 }

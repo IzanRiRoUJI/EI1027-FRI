@@ -104,6 +104,16 @@ public class RequestDao {
         }
     }
 
+    public List<Request> getRequestsBySkill(int idSkill) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Request WHERE skillId=?", new RequestRowMapper(), idSkill);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Request>();
+        }
+    }
+
+
     public List<Request> getMyRequests(String dni) {
         try {
             return jdbcTemplate.query("SELECT * FROM Request WHERE DATE(endDate) > DATE(NOW()) and dniRequest = ?", new RequestRowMapper(), dni);

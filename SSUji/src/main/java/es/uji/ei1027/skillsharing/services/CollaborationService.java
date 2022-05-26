@@ -6,25 +6,28 @@ import java.util.List;
 import java.util.Map;
 
 public interface CollaborationService{
-    public Map<Integer, Skill> getSkillsById();
-    public String getAverageGivenScores(String dni);
-    public String getAverageTeacherScores(String dni);
-    public List<Collaboration> getCollaborationsByDni(String dni);
-    public List<Collaboration> getCollaborationsByDniState(String dni,String notStarted);
-    public Map<Integer, Offer> getOffersById();
-    public Map<Integer, Request> getRequestsById();
-    public Map<String, Student> getStudentsByDni();
-    public void updateStudentsBalance(Collaboration collaboration);
-    public int getOffersNumber();
-    public int getRequestsNumber();
-    public int getCollaborationsNumber();
-    public int getSkillNumber();
-    public int getAverageCollaborations();
-    public Map<Integer, Float> getUsePercentageSkillsInOffers();
-    public Map<Integer, Float> getUsePercentageSkillsInRequests();
-    public Map<Integer, Float> getUsePercentageSkillsInCollaborations();
+    Map<Integer, Skill> getSkillsById();
+    String getAverageGivenScores(String dni);
+    String getAverageTeacherScores(String dni);
+    List<Collaboration> getCollaborationsByDni(String dni);
+    List<Collaboration> getCollaborationsByDniState(String dni,String notStarted);
+    Map<Integer, Offer> getOffersById();
+    Map<Integer, Request> getRequestsById();
+    Map<String, Student> getStudentsByDni();
+    void updateStudentsBalance(Collaboration collaboration);
+    int getOffersNumber();
+    int getRequestsNumber();
+    int getCollaborationsNumber();
+    int getSkillNumber();
+    int getAverageCollaborations();
+    Map<Integer, Float> getUsePercentageSkillsInOffers();
+    Map<Integer, Float> getUsePercentageSkillsInRequests();
+    Map<Integer, Float> getUsePercentageSkillsInCollaborations();
 
-    public void finishAllRequestStudent(String dni);
-    public void finishAllOffersStudent(String dni);
-//    public void finishAllCollaborationsStudent(String dni);
+    void finishAllRequestStudent(String dni);
+    void finishAllOffersStudent(String dni);
+
+    void finishAllOffersSkill(int idSkill);
+    void finishAllRequestSkill(int idSkill);
+
 }

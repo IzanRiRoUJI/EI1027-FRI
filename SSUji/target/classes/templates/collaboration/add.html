@@ -26,7 +26,7 @@
 
                         <div class="form-group"> <label for="form_idOffer">ID Offer *</label>
                             <td> <select class="mdb-select md-form" id="form_idOffer" type="text" th:field="*{idOffer}" searchable="Search here.." required="required" data-error="Please specify the offer.">
-                                <option th:each="offer : ${offers}" th:value="${offer.id}" th:text="${offer.name} + ' (' + ${skillsInfo.get(offer.skillId).name} + ' ' + ${skillsInfo.get(offer.skillId).level} + ')'"></option>
+                                <option th:each="offer : ${offers}" th:value="${offer.id}" th:text="${studentsInfo.get(offer.dniOffer).name} + ' - ' + ${skillsInfo.get(offer.skillId).name} + ' (' + ${skillsInfo.get(offer.skillId).level} + ')'"></option>
                             </select>
                             </td>
                         </div>
@@ -34,13 +34,13 @@
                         <br>
                         <div class="form-group"> <label for="form_idRequest">ID Request *</label>
                             <td> <select class="mdb-select md-form" id="form_idRequest" type="text" th:field="*{idRequest}" searchable="Search here.." required="required" data-error="Please specify the request.">
-                                <option th:each="request : ${requests}" th:value="${request.id}" th:text="${request.name} + ' (' + ${skillsInfo.get(request.skillId).name} + ' ' + ${skillsInfo.get(request.skillId).level} + ')'"></option>
+                                <option th:each="request : ${requests}" th:value="${request.id}" th:text="${studentsInfo.get(request.dniRequest).name} + ' - ' + ${skillsInfo.get(request.skillId).name} + ' (' + ${skillsInfo.get(request.skillId).level} + ')'"></option>
                             </select>
                             </td>
                         </div>
 
                         <br>
-                        <div class="form-group"> <label for="form_skill">Skill *</label>
+                        <div class="form-group"> <label for="form_skill">Skill *</label> <br>
                             <td> <select class="mdb-select md-form" id="form_skill" type="text" th:field="*{skillId}" searchable="Search here.." required="required" data-error="Please specify the skill.">
                                     <option th:each="skill : ${skillsActive}" th:value="${skill.id}" th:text="${skill.name} + ' (' + ${skill.level} + ')'"></option>
                                 </select>

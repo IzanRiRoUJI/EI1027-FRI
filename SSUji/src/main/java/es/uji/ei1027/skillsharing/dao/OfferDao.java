@@ -1,6 +1,7 @@
 package es.uji.ei1027.skillsharing.dao;
 
 import es.uji.ei1027.skillsharing.model.Offer;
+import es.uji.ei1027.skillsharing.model.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -79,8 +80,16 @@ public class OfferDao {
 
     public List<Offer> getOffers() {
         try {
-//            return jdbcTemplate.query("SELECT * FROM Offer WHERE DATE(endDate) > DATE(NOW())", new OfferRowMapper());
             return jdbcTemplate.query("SELECT * FROM Offer", new OfferRowMapper());
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Offer>();
+        }
+    }
+
+    public List<Offer> getOffersBySkill(int idSkill) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Offer WHERE skillId=?", new OfferRowMapper(), idSkill);
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Offer>();

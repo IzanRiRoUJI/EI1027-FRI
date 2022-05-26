@@ -2,6 +2,7 @@ package es.uji.ei1027.skillsharing.controller;
 
 import es.uji.ei1027.skillsharing.dao.SkillDao;
 import es.uji.ei1027.skillsharing.model.Skill;
+import es.uji.ei1027.skillsharing.services.CollaborationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,13 @@ public class SkillController {
     @Autowired
     public void setSkillDao(SkillDao skillDao){
         this.skillDao=skillDao;
+    }
+
+    private CollaborationService collaborationService;
+
+    @Autowired
+    public void setCollaborationService(CollaborationService collaborationService) {
+        this.collaborationService = collaborationService;
     }
 
     @RequestMapping("/list")
@@ -71,6 +79,11 @@ public class SkillController {
     @RequestMapping(value="/list/{id}/{active}")
     public String processActive(@PathVariable int id, @PathVariable boolean active) {
         skillDao.setActiveSkill(id, !active);
+
+        if(active){
+            collaborationService.finishAllRequestSkill(id);
+            collaborationService.finishAllOffersSkill(id);
+        }
         return "redirect:..";
     }
 }

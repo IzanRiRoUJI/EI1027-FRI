@@ -96,9 +96,13 @@ INSERT INTO Request (name, dniRequest, skillId, description, startDate, endDate)
 VALUES ('Help with Mathematics II' , '0000', 1, 'I dont understand the new maths topic', TO_DATE('04/03/2022', 'DD/MM/YYYY'), TO_DATE('14/07/2022', 'DD/MM/YYYY'));
 
     --- German --
-INSERT INTO Request (name, dniRequest, skillId, description, startDate, endDate) -- 3 --
+INSERT INTO Request (name, dniRequest, skillId, description, startDate, endDate)
 VALUES ('need urgent help' , '0004', 4, 'I need to understand German for an interview', TO_DATE('04/03/2022', 'DD/MM/YYYY'), TO_DATE('14/07/2022', 'DD/MM/YYYY'));
 
+    --- Algebra --
+INSERT INTO Request (name, dniRequest, skillId, description, startDate, endDate)
+VALUES ('algebra for beginner' , '0005', 9 , 'i can teach algebra to beginner', TO_DATE('01/05/2022', 'DD/MM/YYYY'), TO_DATE('01/07/2022', 'DD/MM/YYYY'));
+
     --- Programming --
-INSERT INTO Request (name, dniRequest, skillId, description, startDate, endDate) -- 4 --
+INSERT INTO Request (name, dniRequest, skillId, description, startDate, endDate)
 VALUES ('programming please' , '0004', 2, 'I need help understanding a program', TO_DATE('04/03/2022', 'DD/MM/YYYY'), TO_DATE('14/07/2022', 'DD/MM/YYYY'));
