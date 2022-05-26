@@ -82,6 +82,7 @@ public class CollaborationController {
         model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
         model.addAttribute("offers", offerDao.getOffersUnexpired());
         model.addAttribute("requests", requestDao.getRequestsUnexpired());
+        model.addAttribute("studentsInfo", collaborationService.getStudentsByDni());
         return "collaboration/add";
     }
 

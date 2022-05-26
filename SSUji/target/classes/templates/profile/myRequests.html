@@ -21,10 +21,9 @@
             <thead>
             <tr>
                 <th>Name</th>
-                <th>Request's DNI</th>
                 <th>Skill name</th>
                 <th>Skill level</th>
-                <th>Description</th>
+                <th class="description">Description</th>
                 <th>Starting day</th>
                 <th>Ending day</th>
                 <th colspan="2"><a th:href="@{/request/add}" class="btn buttonAddA" style="font-size: 87%">Add Request</a></th>
@@ -33,8 +32,6 @@
             <tbody>
             <tr th:each="request: ${requests}">
                 <td th:text="${request.name}"></td>
-                <td th:text="${request.dniRequest}"></td>
-
                 <td th:text="${skillsInfo.get(request.skillId).name}"></td>
                 <td th:text="${skillsInfo.get(request.skillId).level}"></td>
                 <td th:text="${request.description}"></td>
