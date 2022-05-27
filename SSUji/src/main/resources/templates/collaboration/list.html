@@ -42,8 +42,7 @@
                     <th>Student Request</th>
                     <th>Skill name</th>
                     <th>Skill level</th>
-                    <th>State (debug)</th>
-                    <th></th>
+<!--                    <th></th>-->
                 </tr>
                 </thead>
                 <tbody>
@@ -52,8 +51,7 @@
                     <td th:text="${studentsInfo.get(requestsInfo.get(collaboration.idRequest).dniRequest).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).level}"></td>
-                    <td th:text="${collaboration.state}"></td>
-                    <td><a th:href="@{/collaboration/update/{id}(id=${collaboration.id})}" class="btn buttonEdit">Rate</a></td>
+<!--                    <td><a th:href="@{/collaboration/update/{id}(id=${collaboration.id})}" class="btn buttonEdit">Edit</a></td>-->
                 </tr>
                 </tbody>
             </table>
@@ -68,9 +66,8 @@
                     <th>Student Request</th>
                     <th>Skill name</th>
                     <th>Skill level</th>
-                    <th>State (debug)</th>
                     <th>Start day</th>
-                    <th></th>
+<!--                    <th></th>-->
                 </tr>
                 </thead>
                 <tbody>
@@ -79,9 +76,8 @@
                     <td th:text="${studentsInfo.get(requestsInfo.get(collaboration.idRequest).dniRequest).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).level}"></td>
-                    <td th:text="${collaboration.state}"></td>
                     <td th:text="${collaboration.startDate}"></td>
-                    <td><a th:href="@{/collaboration/update/{id}(id=${collaboration.id})}" class="btn buttonEdit">Edit</a></td>
+<!--                    <td><a th:href="@{/collaboration/update/{id}(id=${collaboration.id})}" class="btn buttonEdit">Edit</a></td>-->
                 </tr>
                 </tbody>
             </table>
@@ -98,12 +94,11 @@
                     <th>Student Request</th>
                     <th>Skill name</th>
                     <th>Skill level</th>
-                    <th>State (debug)</th>
                     <th>Score</th>
                     <th>Hours</th>
                     <th>Start day</th>
                     <th>End day</th>
-                    <th></th>
+<!--                    <th></th>-->
                 </tr>
                 </thead>
                 <tbody>
@@ -112,12 +107,11 @@
                     <td th:text="${studentsInfo.get(requestsInfo.get(collaboration.idRequest).dniRequest).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).level}"></td>
-                    <td th:text="${collaboration.state}"></td>
                     <td th:text="${collaboration.score}"></td>
                     <td th:text="${collaboration.hours}"></td>
                     <td th:text="${collaboration.startDate}"></td>
                     <td th:text="${collaboration.endDate}"></td>
-                    <td><a th:href="@{/collaboration/update/{id}(id=${collaboration.id})}" class="btn buttonEdit">Edit</a></td>
+<!--                    <td><a th:href="@{/collaboration/update/{id}(id=${collaboration.id})}" class="btn buttonEdit">Edit</a></td>-->
                 </tr>
                 </tbody>
             </table>

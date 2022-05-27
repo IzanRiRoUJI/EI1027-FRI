@@ -64,8 +64,9 @@
                                     </div>
                                     <div class="popUpBody">
                                         Are you sure you want to inactivate <b th:text="${skill.name}"></b> (<b th:text="${skill.level}"></b>) ? <br>
-                                        (This action can be reversed)
+                                        <b>This will end all offers and demands for this skill.</b> <br>
                                         <br>
+                                        (The ability can be reactivated in the "Inactive" tab but the offers and demands will not be restored)
                                         <br>
                                     </div>
                                     <div class="modal-footer">
@@ -115,8 +116,9 @@
                                     </div>
                                     <div class="popUpBody">
                                         Are you sure you want to activate <b th:text="${skill.name}"></b> (<b th:text="${skill.level}"></b>) ? <br>
-                                        (This action can be reversed)
+                                        The collaboration will be moved to the "Active" tab.<br>
                                         <br>
+                                        (This action can be reversed)
                                         <br>
                                     </div>
                                     <div class="modal-footer">

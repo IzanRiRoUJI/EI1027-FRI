@@ -25,7 +25,6 @@ VALUES ('0006', 'SKP1', 'skp01@uji.es', 'Medicina', TRUE, '123');
 INSERT INTO Student (dni , name, email, degree, isskp, password)
 VALUES ('0007', 'SKP2', 'skp02@gmail.com', 'Química', TRUE, '123');
 
--- Student --
 
 -- Skill --
 

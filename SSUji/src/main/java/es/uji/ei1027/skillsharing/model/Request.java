@@ -11,9 +11,10 @@ public class Request {
     private String dniRequest;
     private int skillId;
     private String description;
-    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+//    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate startDate;
-    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate endDate;
 
 

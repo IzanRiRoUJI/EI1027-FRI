@@ -21,12 +21,5 @@ public final class OfferRowMapper implements RowMapper<Offer> {
         offer.setStartDate(rs.getObject("startDate", LocalDate.class));
         offer.setEndDate(rs.getObject("endDate", LocalDate.class));
         return offer;
-
-//                name        VARCHAR(50),
-//                dniOffer    VARCHAR(10),
-//                skillId     SERIAL,
-//                description VARCHAR(100),
-//                startDate   DATE,
-//                endDate     DATE,
     }
 }

@@ -243,10 +243,10 @@ public class CollaborationSvc implements CollaborationService{
                     cnt ++;
                 }
             }
-            System.out.println(cnt);
+//            System.out.println(cnt);
             porcentajes.put(skill.getId(),(float) ((float)cnt / (float) collaborations.size()) * 100);
         }
-        System.out.println( "Collaborations: "+ porcentajes);
+//        System.out.println( "Collaborations: "+ porcentajes);
         return porcentajes;
     }
 

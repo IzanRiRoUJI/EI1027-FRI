@@ -13,8 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-
 @Controller
 @RequestMapping("/offer")
 public class OfferController {
@@ -45,6 +43,7 @@ public class OfferController {
         model.addAttribute("offers", offerDao.getOffersUnexpired());
         model.addAttribute("skillsInfo", collaborationService.getSkillsById());
         model.addAttribute("studentsInfo", collaborationService.getStudentsByDni());
+
         return "offer/list";
     }
 
@@ -54,13 +53,13 @@ public class OfferController {
             session.setAttribute("nextUrl", "/profile/myOffers");
         }
 
-        if(session != null){
-            Student user = (Student) session.getAttribute("user");
-            if(user != null){
-                String dni = user.getDni();
-                model.addAttribute("offers", offerDao.getMyOffers(dni));
-            }
+
+        Student user = (Student) session.getAttribute("user");
+        if(user != null){
+            String dni = user.getDni();
+            model.addAttribute("offers", offerDao.getMyOffers(dni));
         }
+
 
         model.addAttribute("skillsInfo", collaborationService.getSkillsById());
         return "profile/myOffers";
@@ -104,22 +103,12 @@ public class OfferController {
         return "redirect:mylist";
     }
 
-//    @RequestMapping(value="/delete/{dniOffer}/{skillId}")
-//    public String processDelete(@PathVariable String dniOffer, @PathVariable int skillId, HttpSession session) {
-//        if (session.getAttribute("nextUrl") == null){
-//            session.setAttribute("nextUrl", "offer/list");
-//        }
-//        offerDao.deleteOffer(dniOffer, skillId);
-//        return "redirect:/offer/list";
-//    }
-
     @RequestMapping(value="/delete/{id}")
     public String processDelete(@PathVariable int id, HttpSession session) {
         if (session.getAttribute("nextUrl") == null){
             session.setAttribute("nextUrl", "offer/list");
         }
         offerDao.deleteBySetFinishDate(id);
-        // offerDao.deleteOffer(id);
         return "redirect:/offer/mylist";
     }
 

@@ -12,9 +12,10 @@ public class Collaboration {
     private String state;
     private int score;
     private float hours;
-    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+//    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate startDate;
-    @DateTimeFormat(iso=DateTimeFormat.ISO.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private LocalDate endDate;
 
 
