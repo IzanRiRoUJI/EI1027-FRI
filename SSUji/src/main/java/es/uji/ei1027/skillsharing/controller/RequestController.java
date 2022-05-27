@@ -59,7 +59,8 @@ public class RequestController {
         Student user = (Student) session.getAttribute("user");
         if(user != null){
             String dni = user.getDni();
-            model.addAttribute("requests", requestDao.getMyRequests(dni));
+            model.addAttribute("ActiveRequests", requestDao.getMyActiveRequests(dni));
+            model.addAttribute("InactiveRequests", requestDao.getMyInactiveRequests(dni));
         }
         model.addAttribute("skillsInfo", collaborationService.getSkillsById());
         return "profile/myRequests";

@@ -114,9 +114,18 @@ public class RequestDao {
     }
 
 
-    public List<Request> getMyRequests(String dni) {
+    public List<Request> getMyActiveRequests(String dni) {
         try {
             return jdbcTemplate.query("SELECT * FROM Request WHERE DATE(endDate) > DATE(NOW()) and dniRequest = ?", new RequestRowMapper(), dni);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Request>();
+        }
+    }
+
+    public List<Request> getMyInactiveRequests(String dni) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Request WHERE DATE(endDate) <= DATE(NOW()) and dniRequest = ?", new RequestRowMapper(), dni);
         }
         catch(EmptyResultDataAccessException e) {
             return new ArrayList<Request>();

@@ -15,6 +15,20 @@
         </p>
     </div>
     <h1>Your Offers</h1>
+
+
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><h3>Active</h3></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false"><h3>Inactive</h3></a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+
+        <!-- ACTIVE -->
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
             <table class="table table-striped table-sm">
                 <thead>
@@ -29,7 +43,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="offer: ${offers}">
+                <tr th:each="offer: ${ActiveOffers}">
                     <td th:text="${offer.name}"></td>
                     <td th:text="${skillsInfo.get(offer.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(offer.skillId).level}"></td>
@@ -51,6 +65,7 @@
                                     </div>
                                     <div class="popUpBody">
                                         Are you sure you want to delete <b th:text="${offer.name}"></b> (<b th:text="${offer.id}"></b>) ? <br>
+                                        The offer will be moved to the "Inactive" tab.<br>
                                         (This action can <b>NOT</b> be reversed)
                                         <br>
                                         <br>
@@ -67,6 +82,36 @@
                 </tbody>
             </table>
         </div>
+
+        <!-- INACTIVE -->
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <table class="table table-striped table-sm">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Skill name</th>
+                    <th>Skill level</th>
+                    <th class="description">Description</th>
+                    <th>Starting day</th>
+                    <th>Ending day</th>
+                    <th colspan="2"><a th:href="@{/offer/add}" class="btn buttonAddA">Add Offer</a></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="offer: ${InactiveOffers}">
+                    <td th:text="${offer.name}"></td>
+                    <td th:text="${skillsInfo.get(offer.skillId).name}"></td>
+                    <td th:text="${skillsInfo.get(offer.skillId).level}"></td>
+                    <td th:text="${offer.description}"></td>
+                    <td th:text="${offer.startDate}"></td>
+                    <td th:text="${offer.endDate}"></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
     <br>
 </div>
 </body>

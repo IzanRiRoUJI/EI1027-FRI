@@ -252,7 +252,7 @@ public class CollaborationSvc implements CollaborationService{
 
     @Override
     public void finishAllOffersStudent(String dni) {
-        List<Offer> offers = offerDao.getMyOffers(dni);
+        List<Offer> offers = offerDao.getMyActiveOffers(dni);
         for (Offer offer : offers) {
             offerDao.deleteBySetFinishDate(offer.getId());
         }
@@ -260,7 +260,7 @@ public class CollaborationSvc implements CollaborationService{
 
     @Override
     public void finishAllRequestStudent(String dni) {
-        List<Request> requests = requestDao.getMyRequests(dni);
+        List<Request> requests = requestDao.getMyInactiveRequests(dni);
         for (Request request : requests) {
             requestDao.deleteBySetFinishDate(request.getId());
         }

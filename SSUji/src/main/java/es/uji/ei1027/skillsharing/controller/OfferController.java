@@ -57,7 +57,8 @@ public class OfferController {
         Student user = (Student) session.getAttribute("user");
         if(user != null){
             String dni = user.getDni();
-            model.addAttribute("offers", offerDao.getMyOffers(dni));
+            model.addAttribute("ActiveOffers", offerDao.getMyActiveOffers(dni));
+            model.addAttribute("InactiveOffers", offerDao.getMyInactiveOffers(dni));
         }
 
 
