@@ -56,8 +56,8 @@
                     <td th:text="${skillsInfo.get(request.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(request.skillId).level}"></td>
                     <td th:text="${request.description}"></td>
-                    <td th:text="${request.startDate}"></td>
-                    <td th:text="${request.endDate}"></td>
+                    <td th:text="${request.startDate}?${#temporals?.format(request.startDate,'dd/MM/yyyy')}"></td>
+                    <td th:text="${request.endDate}?${#temporals?.format(request.endDate,'dd/MM/yyyy')}"></td>
                     <td><a th:href="@{/request/update/{idRequest}(idRequest=${request.id})}" class="btn buttonEdit">Edit</a></td>
                     <td>
                         <a data-toggle="modal" th:attr="data-target='#popup'+${request.id}" class="btn buttonWarning">Delete</a>
@@ -114,8 +114,8 @@
                     <td th:text="${skillsInfo.get(request.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(request.skillId).level}"></td>
                     <td th:text="${request.description}"></td>
-                    <td th:text="${request.startDate}"></td>
-                    <td th:text="${request.endDate}"></td>
+                    <td th:text="${request.startDate}?${#temporals?.format(request.startDate,'dd/MM/yyyy')}"></td>
+                    <td th:text="${request.endDate}?${#temporals?.format(request.endDate,'dd/MM/yyyy')}"></td>
                     <td></td>
                     <td></td>
                 </tr>

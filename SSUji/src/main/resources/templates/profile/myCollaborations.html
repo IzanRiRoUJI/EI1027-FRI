@@ -35,12 +35,6 @@
                     <th>Request Origin</th>
                     <th>Skill</th>
                     <th>Level</th>
-<!--                    <th>Place</th>-->
-<!--                    <th>State (debug)</th>-->
-<!--                    <th>Score</th>-->
-<!--                    <th>Hours</th>-->
-<!--                    <th>Start day</th>-->
-<!--                    <th>End day</th>-->
                     <th></th>
                 </tr>
                 </thead>
@@ -51,12 +45,6 @@
                     <td th:text="${studentsInfo.get(requestsInfo.get(collaboration.idRequest).dniRequest).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).level}"></td>
-<!--                    <td th:text="${collaboration.place}"></td>-->
-<!--                    <td th:text="${collaboration.state}"></td>-->
-<!--                    <td th:text="${collaboration.score}"></td>-->
-<!--                    <td th:text="${collaboration.hours}"></td>-->
-<!--                    <td th:text="${collaboration.startDate}"></td>-->
-<!--                    <td th:text="${collaboration.endDate}"></td>-->
                     <td>
                         <a data-toggle="modal" th:attr="data-target='#popup'+${collaboration.id}" class="btn buttonEdit">Start</a>
                         <!-- Pop up -->
@@ -99,12 +87,7 @@
                     <th>Request Origin</th>
                     <th>Skill</th>
                     <th>Level</th>
-<!--                    <th>Place</th>-->
-<!--                    <th>State (debug)</th>-->
-<!--                    <th>Score</th>-->
-<!--                    <th>Hours</th>-->
                     <th>Start day</th>
-<!--                    <th>End day</th>-->
                     <th></th>
                 </tr>
                 </thead>
@@ -115,12 +98,7 @@
                     <td th:text="${studentsInfo.get(requestsInfo.get(collaboration.idRequest).dniRequest).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).level}"></td>
-<!--                    <td th:text="${collaboration.place}"></td>-->
-<!--                    <td th:text="${collaboration.state}"></td>-->
-<!--                    <td th:text="${collaboration.score}"></td>-->
-<!--                    <td th:text="${collaboration.hours}"></td>-->
-                    <td th:text="${collaboration.startDate}"></td>
-<!--                    <td th:text="${collaboration.endDate}"></td>-->
+                    <td th:text="${collaboration.startDate}?${#temporals?.format(collaboration.startDate,'dd/MM/yyyy')}"></td>
                     <td>
                         <a data-toggle="modal" th:attr="data-target='#popup'+${collaboration.id}" class="btn buttonEdit">Finish</a>
                         <!-- Pop up -->
@@ -179,13 +157,12 @@
                     <td th:text="${skillsInfo.get(collaboration.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(collaboration.skillId).level}"></td>
                     <td th:text="${collaboration.place}"></td>
-<!--                    <td th:text="${collaboration.state}"></td>-->
                     <td>
                         <span th:text="${collaboration.score}"></span> / 5
                     </td>
                     <td th:text="${collaboration.hours}"></td>
-                    <td th:text="${collaboration.startDate}"></td>
-                    <td th:text="${collaboration.endDate}"></td>
+                    <td th:text="${collaboration.startDate}?${#temporals?.format(collaboration.startDate,'dd/MM/yyyy')}"></td>
+                    <td th:text="${collaboration.endDate}?${#temporals?.format(collaboration.endDate,'dd/MM/yyyy')}"></td>
                     <p th:if="*{collaboration.hours == 0.0 and collaborationsIsRequest.get(collaboration.id) != null}">
                         <td><a th:href="@{/collaboration/edit/{id}(id=${collaboration.id})}" class="btn buttonEdit">Edit</a></td>
                     </p>

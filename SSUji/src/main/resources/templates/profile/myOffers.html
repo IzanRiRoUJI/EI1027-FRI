@@ -56,8 +56,8 @@
                     <td th:text="${skillsInfo.get(offer.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(offer.skillId).level}"></td>
                     <td th:text="${offer.description}"></td>
-                    <td th:text="${offer.startDate}"></td>
-                    <td th:text="${offer.endDate}"></td>
+                    <td th:text="${offer.startDate}?${#temporals?.format(offer.startDate,'dd/MM/yyyy')}"></td>
+                    <td th:text="${offer.endDate}?${#temporals?.format(offer.endDate,'dd/MM/yyyy')}"></td>
                     <td><a th:href="@{/offer/update/{idOffer}(idOffer=${offer.id})}" class="btn buttonEdit">Edit</a></td>
                     <td>
                         <a data-toggle="modal" th:attr="data-target='#popup'+${offer.id}" class="btn buttonWarning">Delete</a>
@@ -113,8 +113,8 @@
                     <td th:text="${skillsInfo.get(offer.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(offer.skillId).level}"></td>
                     <td th:text="${offer.description}"></td>
-                    <td th:text="${offer.startDate}"></td>
-                    <td th:text="${offer.endDate}"></td>
+                    <td th:text="${offer.startDate}?${#temporals?.format(offer.startDate,'dd/MM/yyyy')}"></td>
+                    <td th:text="${offer.endDate}?${#temporals?.format(offer.endDate,'dd/MM/yyyy')}"></td>
                     <td></td>
                     <td></td>
                 </tr>
