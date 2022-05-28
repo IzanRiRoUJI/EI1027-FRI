@@ -65,6 +65,9 @@ public class OfferController {
 
 
         model.addAttribute("skillsInfo", collaborationService.getSkillsById());
+        model.addAttribute("goodMsg", session.getAttribute("goodMsg"));
+        session.removeAttribute("goodMsg");
+
         return "profile/myOffers";
     }
 
@@ -101,6 +104,7 @@ public class OfferController {
 
         session.removeAttribute("errorMsg");
         offerDao.addOffer(offer);
+        session.setAttribute("goodMsg", "The offer '" + offer.getName() + "' has been successfully added :)");
         return "redirect:mylist";
     }
 
@@ -138,6 +142,7 @@ public class OfferController {
 
         session.removeAttribute("errorMsg");
         offerDao.updateOffer(offer);
+        session.setAttribute("goodMsg", "The offer '" + offer.getName() + "' (" + offer.getId() + ") has been successfully updated :)");
         return "redirect:mylist";
     }
 

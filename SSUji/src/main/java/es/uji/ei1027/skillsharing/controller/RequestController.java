@@ -63,7 +63,11 @@ public class RequestController {
             model.addAttribute("ActiveRequests", requestDao.getMyActiveRequests(dni));
             model.addAttribute("InactiveRequests", requestDao.getMyInactiveRequests(dni));
         }
+
         model.addAttribute("skillsInfo", collaborationService.getSkillsById());
+        model.addAttribute("goodMsg", session.getAttribute("goodMsg"));
+        session.removeAttribute("goodMsg");
+
         return "profile/myRequests";
     }
 
@@ -100,6 +104,7 @@ public class RequestController {
 
         session.removeAttribute("errorMsg");
         requestDao.addRequest(request);
+        session.setAttribute("goodMsg", "The offer '" + request.getName() + "' has been successfully added :)");
         return "redirect:mylist";
     }
 
@@ -115,7 +120,6 @@ public class RequestController {
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
     public String processUpdateSubmit(@ModelAttribute("request") Request request, BindingResult bindingResult, HttpSession session, Model model) {
-        // System.out.println("---------" + request);
         if (bindingResult.hasErrors())
             return "request/update";
 
@@ -135,6 +139,7 @@ public class RequestController {
 
         session.removeAttribute("errorMsg");
         requestDao.updateRequest(request);
+        session.setAttribute("goodMsg", "The offer '" + request.getName() + "' (" + request.getId() + ") has been successfully updated :)");
         return "redirect:mylist";
     }
 

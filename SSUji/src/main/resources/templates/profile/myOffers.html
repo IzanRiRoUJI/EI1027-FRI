@@ -18,6 +18,12 @@
 
 
 
+    <div class="center">
+        <span class="good" th:text="${goodMsg}"></span>
+    </div>
+
+
+
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><h3>Active</h3></a>
@@ -33,6 +39,7 @@
             <table class="table table-striped table-sm">
                 <thead>
                 <tr>
+                    <th>Id</th>
                     <th>Name</th>
                     <th>Skill name</th>
                     <th>Skill level</th>
@@ -44,6 +51,7 @@
                 </thead>
                 <tbody>
                 <tr th:each="offer: ${ActiveOffers}">
+                    <td th:text="${offer.id}"></td>
                     <td th:text="${offer.name}"></td>
                     <td th:text="${skillsInfo.get(offer.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(offer.skillId).level}"></td>
@@ -88,6 +96,7 @@
             <table class="table table-striped table-sm">
                 <thead>
                 <tr>
+                    <th>Id</th>
                     <th>Name</th>
                     <th>Skill name</th>
                     <th>Skill level</th>
@@ -99,6 +108,7 @@
                 </thead>
                 <tbody>
                 <tr th:each="offer: ${InactiveOffers}">
+                    <td th:text="${offer.id}"></td>
                     <td th:text="${offer.name}"></td>
                     <td th:text="${skillsInfo.get(offer.skillId).name}"></td>
                     <td th:text="${skillsInfo.get(offer.skillId).level}"></td>

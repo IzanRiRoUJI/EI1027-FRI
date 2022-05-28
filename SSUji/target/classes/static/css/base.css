@@ -87,6 +87,13 @@
     color: #eb895b;
 }
 
+.good{
+    font-size: 120%;
+    font-family: Arimo-Bold;
+    text-align: center;
+    color: #63bb9d;
+}
+
 /* ----------- BUTTONS ----------- */
 .buttonWarning {
     background-color: #eb895b;
