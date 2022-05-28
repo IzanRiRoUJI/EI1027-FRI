@@ -11,3 +11,17 @@ z
 Jsrc/main/java/es/uji/ei1027/skillsharing/controller/StudentController.java,f\b\fbe96ed4e66a06c4188431fd4f36e3c03bf4e0db
 p
 @src/main/java/es/uji/ei1027/skillsharing/dao/OfferRowMapper.java,7\b\7b9e62a30bf3e9cf935f3e1472ab7d2fd354abbf
+k
+;src/main/java/es/uji/ei1027/skillsharing/model/Request.java,b\2\b2b1c54bc9b7e947ef23d60f4ecd232375d809fa
+q
+Asrc/main/java/es/uji/ei1027/skillsharing/model/Collaboration.java,5\f\5f14ae0744e57fb7862d2857eca0af7b7dd3de74
+j
+:src/main/java/es/uji/ei1027/skillsharing/dao/OfferDao.java,3\b\3b49551440a3e2774b42a57c7307d6334df10658
+i
+9src/main/java/es/uji/ei1027/skillsharing/model/Offer.java,e\3\e38ed9186037219201a5400cbc0dbb6c9b095831
+l
+<src/main/java/es/uji/ei1027/skillsharing/dao/RequestDao.java,8\c\8c5b9d666dc6d6f46bd58031a24eaed935b5958a
+z
+Jsrc/main/java/es/uji/ei1027/skillsharing/controller/RequestController.java,c\f\cf17b6e0f457e9c076c0b55e23f03783c975678d
+x
+Hsrc/main/java/es/uji/ei1027/skillsharing/controller/OfferController.java,3\7\37e45ac7b1df749e52fd266f82366b1c0e309706

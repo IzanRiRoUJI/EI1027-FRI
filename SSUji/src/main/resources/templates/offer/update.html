@@ -35,7 +35,9 @@
                         <div class="loggeduser" th:object="${session}">
                             <div class="form-group">
 <!--                                <label for="form_dni">DNI *</label><input th:name="dniOffer" th:id="dniOffer" th:value="*{user.dni}" id="form_dni" type="text" name="dniOffer" class="form-control" required="required" data-error="Your DNI is required." readonly> </div></div>-->
-                                <input th:name="dniOffer" th:id="dniOffer" th:value="*{user.dni}" id="form_dni" type="text" name="dniOffer" class="form-control" required="required" data-error="Your DNI is required." readonly hidden> </div></div>
+                                <p class="form-group" th:unless="*{user == null}"><input th:name="dniOffer" th:id="dniOffer" th:value="*{user.dni}" id="form_dni" type="text" name="dniOffer" class="form-control" required="required" data-error="Your DNI is required." readonly hidden> </p>
+                            </div>
+                        </div>
                         <div class="form-group"> <label for="form_description">Description *</label>
                             <textarea th:field="*{description}" id="form_description" name="description" class="form-control" placeholder="Write the description of the offer here." rows="4" required="required" data-error="A description is required." maxlength="100"></textarea> </div>
 

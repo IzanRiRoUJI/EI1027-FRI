@@ -186,9 +186,13 @@
                     <td th:text="${collaboration.hours}"></td>
                     <td th:text="${collaboration.startDate}"></td>
                     <td th:text="${collaboration.endDate}"></td>
-                    <p th:if="*{collaboration.hours == 0.0}">
+                    <p th:if="*{collaboration.hours == 0.0 and collaborationsIsRequest.get(collaboration.id) != null}">
                         <td><a th:href="@{/collaboration/edit/{id}(id=${collaboration.id})}" class="btn buttonEdit">Edit</a></td>
                     </p>
+                    <p th:if="*{collaboration.hours == 0.0 and collaborationsIsRequest.get(collaboration.id) == null}">
+                        <td><b> Waiting score </b></td>
+                    </p>
+
                     <p th:if="*{collaboration.hours > 0.0}">
                         <td><b> Complete </b></td>
                     </p>
