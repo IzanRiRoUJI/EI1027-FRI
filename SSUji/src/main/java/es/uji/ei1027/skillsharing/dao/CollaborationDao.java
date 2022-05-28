@@ -68,13 +68,6 @@ public class CollaborationDao {
         }
     }
 
-    public List<Collaboration> getCollaborationsOfStudentByState( String state){
-        try {
-            return jdbcTemplate.query("SELECT * FROM Collaboration WHERE state=?)", new CollaborationRowMapper(), state);
-        }catch(EmptyResultDataAccessException e) {
-            return new ArrayList<Collaboration>();
-        }
-    }
     public void setCollaborationState(Collaboration collaboration, String state){
         if(Objects.equals(collaboration.getState(), "notStarted"))
             jdbcTemplate.update("UPDATE Collaboration SET state=?, startDate=? WHERE id=?", state,LocalDate.now(),collaboration.getId());

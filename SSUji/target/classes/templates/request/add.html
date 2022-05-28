@@ -23,11 +23,14 @@
                     <div class="controls">
 
                         <div class="form-group"> <label for="form_name">Request name *</label>
-                            <input th:field="*{name}" id="form_name" type="text" name="name" class="form-control" placeholder="Name of the request (other students will be able to see this)." required="required" data-error="Name is required." maxlength="50"> </div>
+                            <input th:field="*{name}" id="form_name" type="text" name="name" class="form-control" placeholder="Name of the request" required="required" data-error="Name is required." maxlength="50"> </div>
 
                         <div class="loggeduser" th:object="${session}">
-                            <p class="form-group" th:unless="*{user == null}"> <label for="form_dni">DNI *</label> <input th:name="dniRequest" th:id="dniRequest" th:value="*{user.dni}" id="form_dni" type="text" name="dniOffer" class="form-control" required="required" data-error="Your DNI is required." readonly> </p></div>
-                        <div class="form-group"> <label for="form_description">Description *</label> <textarea th:field="*{description}" id="form_description" name="description" class="form-control" placeholder="Write the description of the skill here." rows="4" required="required" data-error="A description is required." maxlength="100"></textarea> </div>
+<!--                            <p class="form-group" th:unless="*{user == null}"> <label for="form_dni">DNI *</label> <input th:name="dniRequest" th:id="dniRequest" th:value="*{user.dni}" id="form_dni" type="text" name="dniOffer" class="form-control" required="required" data-error="Your DNI is required." readonly> </p>-->
+                            <p class="form-group" th:unless="*{user == null}"> <input th:name="dniRequest" th:id="dniRequest" th:value="*{user.dni}" id="form_dni" type="text" name="dniOffer" class="form-control" required="required" data-error="Your DNI is required." readonly hidden> </p>
+                        </div>
+
+                        <div class="form-group"> <label for="form_description">Description *</label> <textarea th:field="*{description}" id="form_description" name="description" class="form-control" placeholder="Write the description of the request here." rows="4" required="required" data-error="A description is required." maxlength="100"></textarea> </div>
                         <div class="form-group"> <label for="form_skill">Skill *</label>
                             <td> <select class="mdb-select md-form" id="form_skill" type="text" th:field="*{skillId}" searchable="Search here.." required="required" data-error="Please specify the skill.">
                                 <option th:each="skill : ${skillsActive}" th:value="${skill.id}" th:text="${skill.name} + ' (' + ${skill.level} + ')'"></option>

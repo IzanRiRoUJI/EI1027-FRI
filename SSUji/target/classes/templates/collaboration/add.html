@@ -31,7 +31,6 @@
                             </td>
                         </div>
 
-                        <br>
                         <div class="form-group"> <label for="form_idRequest">ID Request *</label>
                             <td> <select class="mdb-select md-form" id="form_idRequest" type="text" th:field="*{idRequest}" searchable="Search here.." required="required" data-error="Please specify the request.">
                                 <option th:each="request : ${requests}" th:value="${request.id}" th:text="${studentsInfo.get(request.dniRequest).name} + ' - ' + ${skillsInfo.get(request.skillId).name} + ' (' + ${skillsInfo.get(request.skillId).level} + ')'"></option>
@@ -39,7 +38,6 @@
                             </td>
                         </div>
 
-                        <br>
                         <div class="form-group"> <label for="form_skill">Skill *</label> <br>
                             <td> <select class="mdb-select md-form" id="form_skill" type="text" th:field="*{skillId}" searchable="Search here.." required="required" data-error="Please specify the skill.">
                                     <option th:each="skill : ${skillsActive}" th:value="${skill.id}" th:text="${skill.name} + ' (' + ${skill.level} + ')'"></option>
@@ -47,7 +45,7 @@
                             </td>
                         </div>
 
-                        <label for="form_state">State *</label> <input th:name="state" th:id="state" th:value='notStarted' id="form_state" type="text" name="dniOffer" class="form-control" required="required" data-error="State is required." readonly>
+                        <input th:name="state" th:id="state" th:value='notStarted' id="form_state" type="text" name="dniOffer" class="form-control" required="required" data-error="State is required." readonly hidden>
 
                         <br>
                         <h4>Make sure that the skill matches in all three fields.</h4>

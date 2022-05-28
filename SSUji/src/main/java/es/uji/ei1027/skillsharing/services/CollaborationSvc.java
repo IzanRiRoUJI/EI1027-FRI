@@ -281,4 +281,21 @@ public class CollaborationSvc implements CollaborationService{
             offerDao.deleteBySetFinishDate(offer.getId());
         }
     }
+
+    @Override
+    public Map<Integer, Collaboration> getRequestCollaborationsStudent(String dni) {
+
+        List<Collaboration> collaborations = getCollaborationsByDniState(dni, "finished");
+        Map<Integer, Collaboration> result = new HashMap<>();
+        for (Collaboration c : collaborations) {
+
+            Request request = requestDao.getRequest(c.getIdRequest());
+            String requestDni = studentDao.getStudent(request.getDniRequest()).getDni();
+
+            if(dni.equals(requestDni)){
+                result.put(c.getId(), c);
+            }
+        }
+        return result;
+    }
 }

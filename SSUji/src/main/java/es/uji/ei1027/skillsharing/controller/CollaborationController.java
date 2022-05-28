@@ -1,9 +1,7 @@
 package es.uji.ei1027.skillsharing.controller;
 
 import es.uji.ei1027.skillsharing.dao.*;
-import es.uji.ei1027.skillsharing.model.Collaboration;
-import es.uji.ei1027.skillsharing.model.Skill;
-import es.uji.ei1027.skillsharing.model.Student;
+import es.uji.ei1027.skillsharing.model.*;
 import es.uji.ei1027.skillsharing.services.CollaborationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.CustomEditorConfigurer;
@@ -130,11 +128,14 @@ public class CollaborationController {
         model.addAttribute("requestsInfo", collaborationService.getRequestsById());
         model.addAttribute("studentsInfo", collaborationService.getStudentsByDni());
 
-        // System.out.println(model.getAttribute("offersInfo"));
-        //System.out.println(model.getAttribute("studentsInfo"));
+
         model.addAttribute("collaborationsNotStarted", collaborationService.getCollaborationsByDniState(dni,"notStarted"));
         model.addAttribute("collaborationsInProgress", collaborationService.getCollaborationsByDniState(dni,"inProgress"));
         model.addAttribute("collaborationsFinished", collaborationService.getCollaborationsByDniState(dni,"finished"));
+
+        //Todo: solo el que recibe la ayuda puede poner la calificacion
+        model.addAttribute("collaborationsIsRequest", collaborationService.getRequestCollaborationsStudent(dni));
+
         model.addAttribute("skillsInfo", collaborationService.getSkillsById());
         return "profile/mycollaborations";
     }
@@ -163,9 +164,21 @@ public class CollaborationController {
         return "redirect:../listmycollaborations";
     }
     @RequestMapping(value="/setFinished/{id}")
-    public String setCollaborationFinished(@PathVariable int id) {
-        collaborationDao.setCollaborationState(collaborationDao.getCollaboration(id),"finished");
-        return "redirect:../edit/"+ id;
+    public String setCollaborationFinished(@PathVariable int id, HttpSession session) {
+
+
+        Collaboration coll = collaborationDao.getCollaboration(id);
+        collaborationDao.setCollaborationState(coll,"finished");
+
+        //Todo: solo el que recibe la ayuda puede poner la calificacion
+        Request request = requestDao.getRequest(coll.getIdRequest());
+        String requestDni = studentDao.getStudent(request.getDniRequest()).getDni();
+        Student studentSession = (Student) session.getAttribute("user");
+        if (studentSession.getDni().equals(requestDni)){ //es el que hizo la oferta
+            return "redirect:../edit/"+ id;
+        }
+
+        return "redirect:/collaboration/listmycollaborations";
     }
 
     @RequestMapping("/statistics")
