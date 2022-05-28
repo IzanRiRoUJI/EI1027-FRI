@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+
 @Controller
 @RequestMapping("/offer")
 public class OfferController {
@@ -73,14 +75,31 @@ public class OfferController {
         }
         model.addAttribute("offer", new Offer());
         model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
+        session.removeAttribute("errorMsg");
         return "offer/add";
     }
 
     @RequestMapping(value="/add", method= RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("offer") Offer offer, BindingResult bindingResult) {
+    public String processAddSubmit(@ModelAttribute("offer") Offer offer, BindingResult bindingResult, HttpSession session, Model model) {
         if (bindingResult.hasErrors()){
             return "offer/add";
         }
+
+        if(offer.getStartDate().isAfter(offer.getEndDate())){
+            session.setAttribute("errorMsg", "The start date cannot be later than the final :(");
+            System.out.println("Error fecha primera posterior a ultima");
+            model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
+            return "offer/add";
+        }
+
+        if(offer.getEndDate().isBefore(LocalDate.now().plusDays(1))){
+            session.setAttribute("errorMsg", "The final day cannot be earlier than tomorrow :(");
+            System.out.println("Error periodo ya paso");
+            model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
+            return "offer/add";
+        }
+
+        session.removeAttribute("errorMsg");
         offerDao.addOffer(offer);
         return "redirect:mylist";
     }
@@ -93,14 +112,31 @@ public class OfferController {
         Offer of = offerDao.getOffer(id);
         model.addAttribute("offer", of);
         model.addAttribute("skill", skillDao.getSkill(of.getSkillId()));
+        session.removeAttribute("errorMsg");
         return "offer/update";
     }
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(@ModelAttribute("offer") Offer offer, BindingResult bindingResult) {
+    public String processUpdateSubmit(@ModelAttribute("offer") Offer offer, BindingResult bindingResult, HttpSession session, Model model) {
         if (bindingResult.hasErrors())
             return "offer/update";
 
+        if(offer.getStartDate().isAfter(offer.getEndDate())){
+            session.setAttribute("errorMsg", "The start date cannot be later than the final :(");
+            System.out.println("Error fecha primera posterior a ultima");
+            model.addAttribute("skill", skillDao.getSkill(offer.getSkillId()));
+            return "offer/update";
+        }
+
+        if(offer.getEndDate().isBefore(LocalDate.now().plusDays(1))){
+            session.setAttribute("errorMsg", "The final day cannot be earlier than tomorrow :(");
+            System.out.println("Error periodo ya paso");
+            model.addAttribute("skill", skillDao.getSkill(offer.getSkillId()));
+            return "offer/update";
+        }
+
+
+        session.removeAttribute("errorMsg");
         offerDao.updateOffer(offer);
         return "redirect:mylist";
     }

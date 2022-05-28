@@ -22,9 +22,6 @@ public class OfferDao {
     }
 
     public void addOffer(Offer offer) {
-//        jdbcTemplate.update("INSERT INTO Offer VALUES (?,?,?,?,?,?)",
-//                offer.getName(), offer.getDniOffer(), offer.getSkillId(),
-//                offer.getDescription(), offer.getStartDate(), offer.getEndDate());
 
         jdbcTemplate.update("INSERT INTO Offer (name, dniOffer, skillId, description, startDate, endDate) " +
                         "VALUES (?,?,?,?,?,?)",
@@ -35,11 +32,6 @@ public class OfferDao {
     public void deleteOffer(Offer offer) {
         jdbcTemplate.update("DELETE FROM Offer WHERE id = ?", offer.getId());
     }
-
-//    public void deleteOffer(String dniOffer, int skillId) {
-//        jdbcTemplate.update("DELETE FROM Offer WHERE dniOffer = ? AND skillId = ?",
-//                dniOffer, skillId);
-//    }
 
     public void deleteOffer(int id) {
         jdbcTemplate.update("DELETE FROM Offer WHERE id = ?", id);

@@ -80,6 +80,13 @@
     margin: 30px;
 }
 
+.error{
+    font-size: 120%;
+    font-family: Arimo-Bold;
+    text-align: center;
+    color: #eb895b;
+}
+
 /* ----------- BUTTONS ----------- */
 .buttonWarning {
     background-color: #eb895b;

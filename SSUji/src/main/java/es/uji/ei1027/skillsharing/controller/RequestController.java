@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDate;
 
 @Controller
 @RequestMapping("/request")
@@ -73,32 +74,66 @@ public class RequestController {
         }
         model.addAttribute("request", new Request());
         model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
+        session.removeAttribute("errorMsg");
         return "request/add";
     }
 
     @RequestMapping(value="/add", method= RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("request") Request request,
-                                   BindingResult bindingResult) {
+    public String processAddSubmit(@ModelAttribute("request") Request request, BindingResult bindingResult, HttpSession session, Model model) {
         if (bindingResult.hasErrors())
             return "request/add";
+
+
+        if(request.getStartDate().isAfter(request.getEndDate())){
+            session.setAttribute("errorMsg", "The start date cannot be later than the final :(");
+            System.out.println("Error fecha primera posterior a ultima");
+            model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
+            return "request/add";
+        }
+
+        if(request.getEndDate().isBefore(LocalDate.now().plusDays(1))){
+            session.setAttribute("errorMsg", "The final day cannot be earlier than tomorrow :(");
+            System.out.println("Error periodo ya paso");
+            model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
+            return "request/add";
+        }
+
+        session.removeAttribute("errorMsg");
         requestDao.addRequest(request);
         return "redirect:mylist";
     }
 
     @RequestMapping(value="/update/{id}", method = RequestMethod.GET)
-    public String updateRequest(Model model, @PathVariable int id) {
+    public String updateRequest(Model model, @PathVariable int id, HttpSession session) {
 
         Request r = requestDao.getRequest(id);
         model.addAttribute("request", r);
         model.addAttribute("skill", skillDao.getSkill(r.getSkillId()));
+        session.removeAttribute("errorMsg");
         return "request/update";
     }
 
     @RequestMapping(value="/update", method = RequestMethod.POST)
-    public String processUpdateSubmit(@ModelAttribute("request") Request request, BindingResult bindingResult) {
+    public String processUpdateSubmit(@ModelAttribute("request") Request request, BindingResult bindingResult, HttpSession session, Model model) {
         // System.out.println("---------" + request);
         if (bindingResult.hasErrors())
             return "request/update";
+
+        if(request.getStartDate().isAfter(request.getEndDate())){
+            session.setAttribute("errorMsg", "The start date cannot be later than the final :(");
+            System.out.println("Error fecha primera posterior a ultima");
+            model.addAttribute("skill", skillDao.getSkill(request.getSkillId()));
+            return "request/update";
+        }
+
+        if(request.getEndDate().isBefore(LocalDate.now().plusDays(1))){
+            session.setAttribute("errorMsg", "The final day cannot be earlier than tomorrow :(");
+            System.out.println("Error periodo ya paso");
+            model.addAttribute("skill", skillDao.getSkill(request.getSkillId()));
+            return "request/update";
+        }
+
+        session.removeAttribute("errorMsg");
         requestDao.updateRequest(request);
         return "redirect:mylist";
     }

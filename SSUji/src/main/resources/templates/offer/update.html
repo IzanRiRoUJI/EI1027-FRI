@@ -18,7 +18,11 @@
         </p>
     </div>
 
-
+    <div class="center">
+        <div class="loggeduser" th:object="${session}">
+            <span class="error" th:text="*{errorMsg}"></span>
+        </div>
+    </div>
 
 <div class="col-lg-7 mx-auto">
     <div class="card mt-2 mx-auto p-4 bg-light">
