@@ -93,7 +93,7 @@ public class CollaborationController {
     public String processAddSubmit(@ModelAttribute("collaboration") Collaboration collaboration, BindingResult bindingResult, Model model, HttpSession session) {
         if (bindingResult.hasErrors())
             return "collaboration/add";
-        System.out.println("----------------------------COLLABORATION " + collaboration);
+//        System.out.println("----------------------------COLLABORATION " + collaboration);
 
         Offer offer = offerDao.getOffer(collaboration.getIdOffer());
         Request request = requestDao.getRequest(collaboration.getIdRequest());
@@ -125,6 +125,7 @@ public class CollaborationController {
 
         collaboration.setSkillId(offer.getSkillId());
         collaborationDao.addCollaboration(collaboration);
+        session.setAttribute("goodMsg", "The collaboration has been successfully created :)");
         session.removeAttribute("errorMsg");
         return "redirect:../collaboration/listmycollaborations";
     }
@@ -173,6 +174,11 @@ public class CollaborationController {
         model.addAttribute("collaborationsIsRequest", collaborationService.getRequestCollaborationsStudent(dni));
 
         model.addAttribute("skillsInfo", collaborationService.getSkillsById());
+
+        model.addAttribute("skillsInfo", collaborationService.getSkillsById());
+        model.addAttribute("goodMsg", session.getAttribute("goodMsg"));
+        session.removeAttribute("goodMsg");
+
         return "profile/mycollaborations";
     }
 

@@ -11,6 +11,11 @@
 
 <div layout:fragment="content">
     <h1>Your Collaborations</h1>
+
+    <div class="center">
+        <span class="good" th:text="${goodMsg}"></span>
+    </div>
+
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="notStarted-tab" data-toggle="tab" href="#notStarted" role="tab" aria-controls="notStarted" aria-selected="true"><h3>Not started</h3></a>
@@ -22,6 +27,7 @@
             <a class="nav-link" id="finished-tab" data-toggle="tab" href="#finished" role="tab" aria-controls="finished" aria-selected="false"><h3>Finished</h3></a>
         </li>
     </ul>
+
     <div class="tab-content" id="myTabContent">
 
         <!-- NOT STARTED -->
