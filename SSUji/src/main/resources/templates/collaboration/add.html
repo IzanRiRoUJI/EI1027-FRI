@@ -17,6 +17,12 @@
             </p>
         </div>
 
+        <div class="center">
+            <div class="loggeduser" th:object="${session}">
+                <span class="error" th:text="*{errorMsg}"></span>
+            </div>
+        </div>
+
 <div class="col-lg-7 mx-auto">
     <div class="card mt-2 mx-auto p-4 bg-light">
         <div class="card-body bg-light">
@@ -24,36 +30,62 @@
                 <form action="#" th:action="@{/collaboration/add}" th:object="${collaboration}" method="post">
                     <div class="controls">
 
-                        <div class="form-group"> <label for="form_idOffer">ID Offer *</label>
-                            <td> <select class="mdb-select md-form" id="form_idOffer" type="text" th:field="*{idOffer}" searchable="Search here.." required="required" data-error="Please specify the offer.">
-                                <option th:each="offer : ${offers}" th:value="${offer.id}" th:text="${studentsInfo.get(offer.dniOffer).name} + ' - ' + ${skillsInfo.get(offer.skillId).name} + ' (' + ${skillsInfo.get(offer.skillId).level} + ')'"></option>
-                            </select>
-                            </td>
-                        </div>
 
-                        <div class="form-group"> <label for="form_idRequest">ID Request *</label>
-                            <td> <select class="mdb-select md-form" id="form_idRequest" type="text" th:field="*{idRequest}" searchable="Search here.." required="required" data-error="Please specify the request.">
-                                <option th:each="request : ${requests}" th:value="${request.id}" th:text="${studentsInfo.get(request.dniRequest).name} + ' - ' + ${skillsInfo.get(request.skillId).name} + ' (' + ${skillsInfo.get(request.skillId).level} + ')'"></option>
-                            </select>
-                            </td>
-                        </div>
+                        <label for="form_idRequest">Your request *</label>
 
-                        <div class="form-group"> <label for="form_skill">Skill *</label> <br>
-                            <td> <select class="mdb-select md-form" id="form_skill" type="text" th:field="*{skillId}" searchable="Search here.." required="required" data-error="Please specify the skill.">
-                                    <option th:each="skill : ${skillsActive}" th:value="${skill.id}" th:text="${skill.name} + ' (' + ${skill.level} + ')'"></option>
+                        <p th:if="${requests.isEmpty()}">
+                            <span class="error">You don't have requests available (create a new in "Profile/My Requests")</span>
+                        </p>
+
+                        <div th:if="${!requests.isEmpty()}">
+                            <div class="form-group">
+                                <td> <select class="mdb-select md-form" id="form_idRequest" type="text" th:field="*{idRequest}" searchable="Search here.." required="required" data-error="Please specify the request.">
+    <!--                                <option th:each="request : ${requests}" th:value="${request.id}" th:text="${studentsInfo.get(request.dniRequest).name} + ' - ' + ${skillsInfo.get(request.skillId).name} + ' (' + ${skillsInfo.get(request.skillId).level} + ')'"></option>-->
+                                    <option th:each="request : ${requests}" th:value="${request.id}" th:text="'[' + ${request.id} + '] ' + ${skillsInfo.get(request.skillId).name} + ' (' + ${skillsInfo.get(request.skillId).level} + ')'" ></option>
                                 </select>
-                            </td>
+                                </td>
+                            </div>
                         </div>
+
+                        <label for="form_idOffer">Offers available for your requests *</label>
+
+                        <p th:if="${offers.isEmpty()}">
+                            <span class="error">No offers match your requests right now</span>
+                        </p>
+
+                        <div th:if="${!offers.isEmpty()}">
+                            <div class="form-group">
+                                <td> <select class="mdb-select md-form" id="form_idOffer" type="text" th:field="*{idOffer}" searchable="Search here.." required="required" data-error="Please specify the offer.">
+                                    <option th:each="offer : ${offers}" th:value="${offer.id}" th:text="${studentsInfo.get(offer.dniOffer).name} + ' - ' + ${skillsInfo.get(offer.skillId).name} + ' (' + ${skillsInfo.get(offer.skillId).level} + ')'"></option>
+                                </select>
+                                </td>
+                            </div>
+                        </div>
+
+
+
+<!--                        <div class="form-group"> <label for="form_skill">Skill *</label> <br>-->
+<!--                            <td> <select class="mdb-select md-form" id="form_skill" type="text" th:field="*{skillId}" searchable="Search here.." required="required" data-error="Please specify the skill.">-->
+<!--                                    <option th:each="skill : ${skillsActive}" th:value="${skill.id}" th:text="${skill.name} + ' (' + ${skill.level} + ')'"></option>-->
+<!--                                </select>-->
+<!--                            </td>-->
+<!--                        </div>-->
 
                         <input th:name="state" th:id="state" th:value='notStarted' id="form_state" type="text" name="dniOffer" class="form-control" required="required" data-error="State is required." readonly hidden>
 
-                        <br>
-                        <h4>Make sure that the skill matches in all three fields.</h4>
-                        <br>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <input type="submit" class="btn buttonAddA btn-send pt-2 btn-block" value="Create Collaboration">
+                        <div th:if="${!offers.isEmpty() and !requests.isEmpty()}">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <input type="submit" class="btn buttonAddA btn-send pt-2 btn-block" value="Create Collaboration">
+                                </div>
+                            </div>
+                        </div>
+                        <div th:if="${offers.isEmpty() or requests.isEmpty()}">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a class="btn buttonEdit pt-2 btn-block" href="/skill/list" th:href="@{/collaboration/listmycollaborations}">Return</a>
+                                </div>
                             </div>
                         </div>
 

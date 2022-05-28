@@ -36,8 +36,8 @@
                 <td th:text="${skillsInfo.get(request.skillId).name}"></td>
                 <td th:text="${skillsInfo.get(request.skillId).level}"></td>
                 <td th:text="${request.description}"></td>
-                <td th:text="${request.startDate}"></td>
-                <td th:text="${request.endDate}"></td>
+                <td th:text="${request.startDate}?${#temporals?.format(request.startDate,'dd/MM/yyyy')}"></td>
+                <td th:text="${request.endDate}?${#temporals?.format(request.endDate,'dd/MM/yyyy')}"></td>
             </tr>
             </tbody>
         </table>

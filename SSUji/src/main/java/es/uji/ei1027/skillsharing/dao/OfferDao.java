@@ -106,4 +106,13 @@ public class OfferDao {
             return new ArrayList<Offer>();
         }
     }
+
+    public List<Offer> getOffersNotFromStudent(String dni) {
+        try {
+            return jdbcTemplate.query("SELECT * FROM Offer WHERE DATE(endDate) > DATE(NOW()) and dniOffer != ?", new OfferRowMapper(), dni);
+        }
+        catch(EmptyResultDataAccessException e) {
+            return new ArrayList<Offer>();
+        }
+    }
 }

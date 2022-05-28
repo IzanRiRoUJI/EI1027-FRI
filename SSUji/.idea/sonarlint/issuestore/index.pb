@@ -15,19 +15,7 @@ k
 ;src/main/java/es/uji/ei1027/skillsharing/model/Request.java,b\2\b2b1c54bc9b7e947ef23d60f4ecd232375d809fa
 q
 Asrc/main/java/es/uji/ei1027/skillsharing/model/Collaboration.java,5\f\5f14ae0744e57fb7862d2857eca0af7b7dd3de74
-l
-<src/main/java/es/uji/ei1027/skillsharing/dao/RequestDao.java,8\c\8c5b9d666dc6d6f46bd58031a24eaed935b5958a
-€
-Psrc/main/java/es/uji/ei1027/skillsharing/controller/CollaborationController.java,b\8\b8b4b13b6346c97c13afafeee8063e74bacd1814
-w
-Gsrc/main/java/es/uji/ei1027/skillsharing/services/CollaborationSvc.java,5\5\55bda09363425ac48220b498f6fc2578ee24bce2
-{
-Ksrc/main/java/es/uji/ei1027/skillsharing/services/CollaborationService.java,8\f\8f127234ba3681824e93ae42f891d453b53b3010
 r
 Bsrc/main/java/es/uji/ei1027/skillsharing/dao/CollaborationDao.java,e\9\e9cb43951a0e9da9d6dd99dd459682d7f14653f8
-F
-instruccionesBases.sql,3\a\3aec92a583ea6230ae8c3391dbf4dbec9cd2ab27
 ;
 inserts.sql,2\0\201c0b70eb8e85f57fabd6bff8d0467c11faab31
-j
-:src/main/java/es/uji/ei1027/skillsharing/dao/OfferDao.java,3\b\3b49551440a3e2774b42a57c7307d6334df10658

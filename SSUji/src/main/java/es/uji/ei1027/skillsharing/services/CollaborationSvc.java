@@ -298,4 +298,24 @@ public class CollaborationSvc implements CollaborationService{
         }
         return result;
     }
+
+    @Override
+    public List<Offer> getOffersForStudent(String dni){
+        List<Offer> offers = offerDao.getOffersNotFromStudent(dni);
+        List<Request> studentRequest = requestDao.getMyActiveRequests(dni);
+
+        List<Integer> studentRequestsSkills = new ArrayList<>();
+        for (Request r : studentRequest){
+            studentRequestsSkills.add(r.getSkillId());
+        }
+
+
+        List<Offer> result = new ArrayList<>();
+        for (Offer f : offers){
+            if(studentRequestsSkills.contains(f.getSkillId())){
+                result.add(f);
+            }
+        }
+        return result;
+    }
 }

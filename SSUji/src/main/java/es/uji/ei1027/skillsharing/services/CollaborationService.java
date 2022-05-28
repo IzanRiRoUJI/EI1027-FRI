@@ -31,5 +31,6 @@ public interface CollaborationService{
     void finishAllRequestSkill(int idSkill);
 
     Map<Integer, Collaboration> getRequestCollaborationsStudent(String dni);
+    List<Offer> getOffersForStudent(String dni);
 
 }

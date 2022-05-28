@@ -74,22 +74,58 @@ public class CollaborationController {
     }
 
     @RequestMapping(value="/add")
-    public String addCollaboration(Model model) {
+    public String addCollaboration(Model model, HttpSession session) {
         model.addAttribute("collaboration", new Collaboration());
         model.addAttribute("skillsInfo", collaborationService.getSkillsById());
         model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
-        model.addAttribute("offers", offerDao.getOffersUnexpired());
-        model.addAttribute("requests", requestDao.getRequestsUnexpired());
+
+
+        Student currentStudent = (Student) session.getAttribute("user");
+        model.addAttribute("requests", requestDao.getMyActiveRequests(currentStudent.getDni()));
+        model.addAttribute("offers", collaborationService.getOffersForStudent(currentStudent.getDni()));
+
         model.addAttribute("studentsInfo", collaborationService.getStudentsByDni());
+        session.removeAttribute("errorMsg");
         return "collaboration/add";
     }
 
     @RequestMapping(value="/add", method= RequestMethod.POST)
-    public String processAddSubmit(@ModelAttribute("collaboration") Collaboration collaboration, BindingResult bindingResult) {
+    public String processAddSubmit(@ModelAttribute("collaboration") Collaboration collaboration, BindingResult bindingResult, Model model, HttpSession session) {
         if (bindingResult.hasErrors())
             return "collaboration/add";
         System.out.println("----------------------------COLLABORATION " + collaboration);
+
+        Offer offer = offerDao.getOffer(collaboration.getIdOffer());
+        Request request = requestDao.getRequest(collaboration.getIdRequest());
+
+        if(offer.getSkillId() != request.getSkillId()){
+            System.out.println("Error: no se puede crear colaboración con habilidades distintas");
+            session.setAttribute("errorMsg", "Error: the skill (and level) of the chosen offer and request must be the same :(");
+            model.addAttribute("skillsInfo", collaborationService.getSkillsById());
+            model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
+            Student currentStudent = (Student) session.getAttribute("user");
+            model.addAttribute("requests", requestDao.getMyActiveRequests(currentStudent.getDni()));
+//            model.addAttribute("offers", offerDao.getOffersNotFromStudent(currentStudent.getDni()));
+            model.addAttribute("offers", collaborationService.getOffersForStudent(currentStudent.getDni()));
+            model.addAttribute("studentsInfo", collaborationService.getStudentsByDni());
+            return "collaboration/add";
+        }
+
+        if(offer.getDniOffer().equals(request.getDniRequest())){
+            System.out.println("Error: no se puede crear colaboración con el mismo estudiante");
+            session.setAttribute("errorMsg", "Error: the offer and request must be from different students :(");
+            model.addAttribute("skillsInfo", collaborationService.getSkillsById());
+            model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
+            Student currentStudent = (Student) session.getAttribute("user");
+            model.addAttribute("requests", requestDao.getMyActiveRequests(currentStudent.getDni()));
+            model.addAttribute("offers", offerDao.getOffersNotFromStudent(currentStudent.getDni()));
+            model.addAttribute("studentsInfo", collaborationService.getStudentsByDni());
+            return "collaboration/add";
+        }
+
+        collaboration.setSkillId(offer.getSkillId());
         collaborationDao.addCollaboration(collaboration);
+        session.removeAttribute("errorMsg");
         return "redirect:../collaboration/listmycollaborations";
     }
 
