@@ -87,8 +87,10 @@ public class RequestController {
 
     @RequestMapping(value="/update/{id}", method = RequestMethod.GET)
     public String updateRequest(Model model, @PathVariable int id) {
-        model.addAttribute("request", requestDao.getRequest(id));
-        model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
+
+        Request r = requestDao.getRequest(id);
+        model.addAttribute("request", r);
+        model.addAttribute("skill", skillDao.getSkill(r.getSkillId()));
         return "request/update";
     }
 

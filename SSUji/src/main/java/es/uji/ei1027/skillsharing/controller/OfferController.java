@@ -90,8 +90,9 @@ public class OfferController {
         if (session.getAttribute("nextUrl") == null){
             session.setAttribute("nextUrl", "/offer/update");
         }
-        model.addAttribute("offer", offerDao.getOffer(id));
-        model.addAttribute("skillsInfo", collaborationService.getSkillsById());
+        Offer of = offerDao.getOffer(id);
+        model.addAttribute("offer", of);
+        model.addAttribute("skill", skillDao.getSkill(of.getSkillId()));
         return "offer/update";
     }
 
