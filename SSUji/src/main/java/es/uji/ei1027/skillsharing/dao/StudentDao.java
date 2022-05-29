@@ -108,9 +108,7 @@ public class StudentDao implements UserDao{
     @java.lang.Override
     public Student loadUserByUsername(String email, String password) {
 
-        // System.out.println("email " + email + " | pass " + password);
         Student user = this.getStudentByEmail(email.trim());
-        // System.out.println(user);
         if (user == null)
             return null; // Usuari no trobat
 

@@ -38,7 +38,6 @@ public class OfferDao {
     }
 
     public void deleteBySetFinishDate(int id) {
-        //System.out.println("Delete con id");
         jdbcTemplate.update("UPDATE Offer SET endDate=? WHERE id = ?", LocalDate.now(), id);
     }
 

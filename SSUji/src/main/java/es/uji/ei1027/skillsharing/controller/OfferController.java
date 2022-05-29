@@ -90,14 +90,12 @@ public class OfferController {
 
         if(offer.getStartDate().isAfter(offer.getEndDate())){
             session.setAttribute("errorMsg", "Error: the start date cannot be later than the end date :(");
-            System.out.println("Error fecha primera posterior a ultima");
             model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
             return "offer/add";
         }
 
         if(offer.getEndDate().isBefore(LocalDate.now().plusDays(1))){
             session.setAttribute("errorMsg", "Error: the final day cannot be earlier than tomorrow :(");
-            System.out.println("Error periodo ya paso");
             model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
             return "offer/add";
         }
@@ -127,14 +125,13 @@ public class OfferController {
 
         if(offer.getStartDate().isAfter(offer.getEndDate())){
             session.setAttribute("errorMsg", "Error: the start date cannot be later than the end date :(");
-            System.out.println("Error fecha primera posterior a ultima");
             model.addAttribute("skill", skillDao.getSkill(offer.getSkillId()));
             return "offer/update";
         }
 
         if(offer.getEndDate().isBefore(LocalDate.now().plusDays(1))){
             session.setAttribute("errorMsg", "Error: the final day cannot be earlier than tomorrow :(");
-            System.out.println("Error periodo ya paso");
+
             model.addAttribute("skill", skillDao.getSkill(offer.getSkillId()));
             return "offer/update";
         }

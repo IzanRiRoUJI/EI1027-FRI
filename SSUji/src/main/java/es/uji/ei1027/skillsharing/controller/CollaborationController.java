@@ -96,13 +96,11 @@ public class CollaborationController {
     public String processAddSubmit(@ModelAttribute("collaboration") Collaboration collaboration, BindingResult bindingResult, Model model, HttpSession session) {
         if (bindingResult.hasErrors())
             return "collaboration/add";
-//        System.out.println("----------------------------COLLABORATION " + collaboration);
 
         Offer offer = offerDao.getOffer(collaboration.getIdOffer());
         Request request = requestDao.getRequest(collaboration.getIdRequest());
 
         if(offer.getSkillId() != request.getSkillId()){
-            System.out.println("Error: no se puede crear colaboración con habilidades distintas");
             session.setAttribute("errorMsg", "Error: the skill (and level) of the chosen offer and request must be the same :(");
             model.addAttribute("skillsInfo", collaborationService.getSkillsById());
             model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));
@@ -115,7 +113,6 @@ public class CollaborationController {
         }
 
         if(offer.getDniOffer().equals(request.getDniRequest())){
-            System.out.println("Error: no se puede crear colaboración con el mismo estudiante");
             session.setAttribute("errorMsg", "Error: the offer and request must be from different students :(");
             model.addAttribute("skillsInfo", collaborationService.getSkillsById());
             model.addAttribute("skillsActive", skillDao.getSkillByActiveStatus(true));

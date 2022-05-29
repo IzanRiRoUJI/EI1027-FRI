@@ -49,7 +49,6 @@ public class CollaborationSvc implements CollaborationService{
             }
         }
 
-//        System.out.print("getCollaborationsByDni " + collaborations);
         return result;
     }
 
@@ -206,7 +205,6 @@ public class CollaborationSvc implements CollaborationService{
             }
             porcentajes.put(skill.getId(),(float) ((float)cnt / (float) offers.size()) * 100);
         }
-        //System.out.println(porcentajes);
         return porcentajes;
     }
 
@@ -226,7 +224,6 @@ public class CollaborationSvc implements CollaborationService{
 
             porcentajes.put(skill.getId(),(float) ((float)cnt / (float) requests.size()) * 100);
         }
-        //System.out.println(porcentajes);
         return porcentajes;
     }
 
@@ -243,10 +240,8 @@ public class CollaborationSvc implements CollaborationService{
                     cnt ++;
                 }
             }
-//            System.out.println(cnt);
             porcentajes.put(skill.getId(),(float) ((float)cnt / (float) collaborations.size()) * 100);
         }
-//        System.out.println( "Collaborations: "+ porcentajes);
         return porcentajes;
     }
 
