@@ -29,7 +29,8 @@
             <div class="container">
                 <form action="#" th:action="@{/collaboration/add}" th:object="${collaboration}" method="post">
                     <div class="controls">
-
+                        <a class="close" href="../collaboration/listmycollaborations" th:href="@{/collaboration/listmycollaborations}">x</a>
+                        <br>
 
                         <label for="form_idRequest">Your request *</label>
 

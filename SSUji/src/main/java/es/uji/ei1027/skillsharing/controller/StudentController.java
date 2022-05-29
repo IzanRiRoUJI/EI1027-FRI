@@ -33,13 +33,6 @@ public class StudentController {
         this.collaborationService = collaborationService;
     }
 
-
-    @RequestMapping("/list")
-    public String listStudents(Model model) {
-        model.addAttribute("students", studentDao.getStudents());
-        return "student/list";
-    }
-
     @RequestMapping(value="/add")
     public String addStudent(Model model) {
         model.addAttribute("student", new Student());
@@ -52,7 +45,7 @@ public class StudentController {
         if (bindingResult.hasErrors())
             return "student/add";
         studentDao.addStudent(student);
-        return "redirect:list";
+        return "redirect:/login";
     }
 
     @RequestMapping(value="/update/{dni}", method = RequestMethod.GET)

@@ -24,7 +24,8 @@
                 <div class="container">
                     <form action="#" th:action="@{/skill/update}" th:object="${skill}" method="post">
                         <div class="controls">
-
+                            <a class="close" href="/skill/list" th:href="@{/skill/list}">x</a>
+                            <br>
                             <div class="form-group"> <label for="form_id">Id</label>
                                 <input th:field="*{id}" id="form_id" type="text" name="id" class="form-control" placeholder="Id of the skill" required="required" data-error="Id is required." readonly> </div>
 

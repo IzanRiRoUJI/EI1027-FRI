@@ -30,6 +30,8 @@
                 <div class="container">
                     <form action="#" th:action="@{/request/update}" th:object="${request}" method="post">
                         <div class="controls">
+                            <a class="close" href="../request/mylist" th:href="@{/request/mylist}">x</a>
+                            <br>
                             <div class="form-group">
 <!--                                <label for="form_id">Request id *</label> <input th:field="*{id}" id="form_id" type="number" name="name" class="form-control"  required="required" readonly data-error="Id is required."> </div>-->
                                 <input th:field="*{id}" id="form_id" type="number" name="name" class="form-control"  required="required"  data-error="Id is required." readonly hidden> </div>

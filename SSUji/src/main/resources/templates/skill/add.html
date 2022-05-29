@@ -25,6 +25,8 @@
                     <div class="container">
                         <form action="#" th:action="@{/skill/add}" th:object="${skill}" method="post">
                             <div class="controls">
+                                <a class="close" href="/skill/list" th:href="@{/skill/list}">x</a>
+                                <br>
                                 <div class="form-group"> <label for="form_name">Name *</label>
                                     <input th:field="*{name}" id="form_name" type="text" name="name" class="form-control" placeholder="Please enter the name of the skill." required="required" data-error="Name is required." maxlength="50"> </div>
                                 <div class="form-group"> <label for="form_description">Description *</label>

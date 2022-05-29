@@ -29,7 +29,8 @@
             <div class="container">
                 <form action="#" th:action="@{/request/add}" th:object="${request}" method="post">
                     <div class="controls">
-
+                        <a class="close" href="../request/mylist" th:href="@{/request/mylist}">x</a>
+                        <br>
                         <div class="form-group"> <label for="form_name">Request name *</label>
                             <input th:field="*{name}" id="form_name" type="text" name="name" class="form-control" placeholder="Name of the request" required="required" data-error="Name is required." maxlength="50"> </div>
 

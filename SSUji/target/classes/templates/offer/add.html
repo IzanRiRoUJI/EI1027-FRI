@@ -32,7 +32,8 @@
                 <div class="container">
                     <form action="#" th:action="@{/offer/add}" th:object="${offer}" method="post">
                         <div class="controls">
-
+                            <a class="close" href="../offer/mylist" th:href="@{/offer/mylist}">x</a>
+                            <br>
                             <div class="form-group"> <label for="form_name">Offer name *</label> <input th:field="*{name}" id="form_name" type="text" name="name" class="form-control" placeholder="Name of the offer" required="required" data-error="Name is required." maxlength="50"> </div>
 
                             <div class="loggeduser" th:object="${session}">

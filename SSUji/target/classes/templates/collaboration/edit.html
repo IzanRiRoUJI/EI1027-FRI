@@ -21,6 +21,8 @@
                     <form action="#" th:action="@{/collaboration/edit}" th:object="${collaboration}" method="post">
                         <div class="controls">
                             <div class="controls">
+                                <a class="close" href="../collaboration/listmycollaborations" th:href="@{/collaboration/listmycollaborations}">x</a>
+                                <br>
                                 <table hidden>
                                     <tr>
                                         <td><label>Id</label></td>

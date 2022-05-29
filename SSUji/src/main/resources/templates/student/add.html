@@ -16,6 +16,8 @@
                 <div class="container">
                     <form action="#" th:action="@{/student/add}" th:object="${student}" method="post">
                         <div class="controls">
+                            <a class="close" href="/student/list" th:href="@{/student/list}">x</a>
+                            <br>
                             <div class="form-group"> <label for="form_dni">DNI *</label>
                                 <input th:field="*{dni}" id="form_dni" type="text" name="dni" class="form-control" placeholder="Your DNI." required="required" data-error="DNI is required." maxlength="10"> </div>
                             <div class="form-group"> <label for="form_name">Name * (this can be changed in your profile)</label>
