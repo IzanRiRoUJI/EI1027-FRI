@@ -63,6 +63,9 @@ public class CollaborationController {
 
     @RequestMapping("/list")
     public String listCollaborations(Model model, HttpSession session) {
+        if (session.getAttribute("nextUrl") == null){
+            session.setAttribute("nextUrl", "collaboration/list");
+        }
         model.addAttribute("collaborationsNotStarted", collaborationDao.getCollaborationsByState("notStarted"));
         model.addAttribute("collaborationsInProgress", collaborationDao.getCollaborationsByState("inProgress"));
         model.addAttribute("collaborationsFinished", collaborationDao.getCollaborationsByState("finished"));
@@ -225,6 +228,9 @@ public class CollaborationController {
 
     @RequestMapping("/statistics")
     public String listStatistics(Model model, HttpSession session) {
+        if (session.getAttribute("nextUrl") == null){
+            session.setAttribute("nextUrl", "collaboration/statistics");
+        }
         model.addAttribute("offersNumber", collaborationService.getOffersNumber());
         model.addAttribute("requestNumber", collaborationService.getRequestsNumber());
         model.addAttribute("collaborationsNumber", collaborationService.getCollaborationsNumber());

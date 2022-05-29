@@ -52,7 +52,7 @@ public class OfferController {
     @RequestMapping("/mylist")
     public String listMyOffers(Model model, HttpSession session) {
         if (session.getAttribute("nextUrl") == null){
-            session.setAttribute("nextUrl", "/profile/myOffers");
+            session.setAttribute("nextUrl", "/offer/mylist");
         }
 
 

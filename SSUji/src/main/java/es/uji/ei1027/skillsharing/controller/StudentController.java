@@ -89,7 +89,10 @@ public class StudentController {
     }
 
     @RequestMapping("/ban")
-    public String listStudentsByBanStatus(Model model) {
+    public String listStudentsByBanStatus(Model model, HttpSession session) {
+        if (session.getAttribute("nextUrl") == null){
+            session.setAttribute("nextUrl", "student/ban");
+        }
         model.addAttribute("studentsNotBanned", studentDao.getStudentsByBanStatus(false));
         model.addAttribute("studentsBanned", studentDao.getStudentsByBanStatus(true));
         return "student/ban";
@@ -97,7 +100,9 @@ public class StudentController {
 
     @RequestMapping(value="/profile")
     public String showProfile(HttpSession session, Model model) {
-
+        if (session.getAttribute("nextUrl") == null){
+            session.setAttribute("nextUrl", "student/profile");
+        }
         if(session != null){
             Student user = (Student) session.getAttribute("user");
             if(user != null){

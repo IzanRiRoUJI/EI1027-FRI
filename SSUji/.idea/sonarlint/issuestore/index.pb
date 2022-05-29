@@ -5,10 +5,6 @@ l
 <src/main/java/es/uji/ei1027/skillsharing/dao/StudentDao.java,8\d\8dd86fde1574d80c14b843c521dacd776bd2785b
 x
 Hsrc/main/java/es/uji/ei1027/skillsharing/dao/CollaborationRowMapper.java,2\a\2a673399a77ee1168ac6aa93811777c4fa9928cc
-x
-Hsrc/main/java/es/uji/ei1027/skillsharing/controller/SkillController.java,5\4\54550376d20be3be09a9bbc9dc2a748047dfe94e
-z
-Jsrc/main/java/es/uji/ei1027/skillsharing/controller/StudentController.java,f\b\fbe96ed4e66a06c4188431fd4f36e3c03bf4e0db
 p
 @src/main/java/es/uji/ei1027/skillsharing/dao/OfferRowMapper.java,7\b\7b9e62a30bf3e9cf935f3e1472ab7d2fd354abbf
 k
